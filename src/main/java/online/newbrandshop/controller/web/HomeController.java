@@ -100,14 +100,27 @@ public class HomeController {
 		ModelAndView mav=new ModelAndView("web/custom");
 		return mav;
 	}
+	//test fe profile
 	@RequestMapping("/profile")
 	ModelAndView profile(){
 		ModelAndView mav=new ModelAndView("web/profile");
 		return mav;
 	}
+	//test fe chi tiet lic su mua hang
+		@RequestMapping("/chitietlichsu")
+		ModelAndView chitietls(){
+			ModelAndView mav=new ModelAndView("web/chitietlichsu");
+			return mav;
+		}
 	@RequestMapping("/checkout")
 	ModelAndView checkout(){
 		ModelAndView mav=new ModelAndView("web/checkout");
+		return mav;
+	}
+	//test fe admin
+	@RequestMapping("/admintest")
+	ModelAndView admin(){
+		ModelAndView mav=new ModelAndView("admin/new/list");
 		return mav;
 	}
 	@RequestMapping("/uploadImage")
