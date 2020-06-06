@@ -1,5 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@include file="/common/taglib.jsp"%>
+
 <!doctype html>
 <html lang="en">
 
@@ -30,7 +31,7 @@
             <p class="tensp">${item.name}</p>
           </div>
           <div class="col-4">
-            <p>${item.price}</p>
+            <p id="price">${item.price}</p>
           </div>
         </div>
         <div class="row">
@@ -39,32 +40,32 @@
         <div class="row">
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio">XS
+              <input type="radio" checked class="form-check-input" name="optradio" value="XS">XS
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio">S
+              <input type="radio" class="form-check-input" name="optradio" value="S">S
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio">M
+              <input type="radio" class="form-check-input" name="optradio" value="M">M
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio">L
+              <input type="radio" class="form-check-input" name="optradio" value="L">L
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio">XL
+              <input type="radio" class="form-check-input" name="optradio" value="XL">XL
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio">2XL
+              <input type="radio" class="form-check-input" name="optradio" value="2XL">2XL
             </label>
           </div>
         </div>
@@ -128,7 +129,6 @@
     window.onload=function(){
       $.getScript("/template/js/page/chitiet.js")
     }
-
   </script>
 </body>
 

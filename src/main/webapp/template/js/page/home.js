@@ -1,8 +1,4 @@
 
-$(".loginclick").click(function () {
-    event.preventDefault();
-    $("#btshowlog").click();
-})
 var input = document.querySelector('.pswrd');
 var show = document.querySelector('.show');
 show.addEventListener('click', active);
@@ -16,7 +12,3 @@ function active() {
         show.style.color = "#111";
     }
 }
-$("#signuplink").click(function () {
-    event.preventDefault();
-    $("#btshowlogsignup").click();
-})

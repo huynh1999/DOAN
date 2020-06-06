@@ -1,7 +1,6 @@
 <%@ page import="online.newbrandshop.util.SecurityUtils" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@include file="/common/taglib.jsp"%>
 <!doctype html>
 <html lang="en">
 

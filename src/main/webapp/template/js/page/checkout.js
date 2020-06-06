@@ -22,11 +22,13 @@ function ShowData(index,data) {
         "                                        <label class=\"lbsize\" for=\"size\">Size</label>\n" +
         "                                    </div>\n" +
         "                                    <div class=\"mycustomformgroup_c2\">\n" +
-        "                                        <select class=\"form-control mycustomselect\" name=\"\" id=\"size\">\n" +
-        "                                            <option value=\"\">S</option>\n" +
-        "                                            <option value=\"\">M</option>\n" +
-        "                                            <option value=\"\">L</option>\n" +
-        "                                            <option value=\"\">XL</option>\n" +
+        "                                        <select class=\"form-control mycustomselect\" name=\"size\" >\n" +
+        "                                            <option value=\"S\">S</option>\n" +
+        "                                            <option value=\"XS\">XS</option>\n" +
+        "                                            <option value=\"2XL\">2XL</option>\n" +
+        "                                            <option value=\"M\">M</option>\n" +
+        "                                            <option value=\"L\">L</option>\n" +
+        "                                            <option value=\"XL\">XL</option>\n" +
         "                                        </select>\n" +
         "                                    </div>\n" +
         "                                </div>\n" +
@@ -35,7 +37,7 @@ function ShowData(index,data) {
         "                                        <label class=\"lbsoluong\" >Số lượng</label>\n" +
         "                                    </div>\n" +
         "                                    <div class=\"mycustomformgroup_c2\">\n" +
-        "                                        <select class=\"form-control mycustomselect mycustomselectsl\" name=\"sl_sl\">\n" +
+        "                                        <select class=\"form-control mycustomselect mycustomselectsl\" name=\"amount\">\n" +
         "                                            <option value=\"1\">1</option>\n" +
         "                                            <option value=\"2\">2</option>\n" +
         "                                            <option value=\"3\">3</option>\n" +
@@ -57,16 +59,6 @@ function ShowData(index,data) {
         "                            </td>\n" +
         "                        </tr>"
 }
-async function doWork() {
-    await LoadData();
-    $(".deleteBtn").click(function()
-    {
-        var index=$(this).parents("tr").find("th").text();
-        var idproduct=$(this).parents("tr").find("input.idproduct").val();
-        $(this).parents("tr").remove();
-        deleteItemCart(idproduct,index);
-    })
-}
 function deleteItemCart(id,index) {console.log(index)
     listItem=JSON.parse(localStorage.getItem("cart_item"));
     listItem= $.grep(listItem, function(e){
@@ -79,5 +71,87 @@ function deleteItemCart(id,index) {console.log(index)
         var indexnow=parseInt($(this).text());
         if(indexid<indexnow){$(this).text(--indexnow)};
     })
+}
+function ChangeSize(selectElement)
+{
+    selectElement.addEventListener("change",function(){
+        var idproduct=$(this).parents("tr").find("input[hidden]").val();
+        var option=$(this).find("option");
+        for(var i=0;i<option.length;i++){
+            if(option[i].selected){
+                var listItem=JSON.parse(localStorage.getItem("cart_item"));
+                listItem.find(e=>e.id==idproduct).size=option[i].value;
+                localStorage.setItem("cart_item",JSON.stringify(listItem));
+            }
+        }
+    })
+}
+function ChangeAmount(selectElement) {
+    selectElement.addEventListener("change",function () {
+        var idproduct=$(this).parents("tr").find("input[hidden]").val();
+        var option=$(this).find("option");
+        for(var i=0;i<option.length;i++){
+            if(option[i].selected){
+                var listItem=JSON.parse(localStorage.getItem("cart_item"));
+                listItem.find(e=>e.id==idproduct).amount=parseInt(option[i].value);
+                localStorage.setItem("cart_item",JSON.stringify(listItem));
+            }
+        }
+        SetTotalPrice();
+    })
+}
+function SetSizeAndAmount()
+{
+    var sizeSelect=$("select[name=size]");
+    var amountSelect=$("select[name=amount]");
+    for(var i=0;i<sizeSelect.length;i++)
+    {
+        ChangeSize(sizeSelect[i]);
+        ChangeAmount(amountSelect[i]);
+    }
+}
+function SetDefaultValue()
+{
+    var row=document.getElementsByClassName("mathang");
+    for(var i=0;i<row.length;i++)
+    {
+        var size=$(row[i]).find("select[name=size]").find("option");
+        var amount=$(row[i]).find("select[name=amount]").find("option");
+        var listItem=JSON.parse(localStorage.getItem("cart_item"));
+        var sizeInfo=listItem[i].size;
+        var index=listItem[i].amount-1;
+        for(var j=0;i<size.length;j++)
+        {
+            if(size[j].value===sizeInfo){
+                size[j].setAttribute("selected","selected");
+                break;
+            }
+        }
+        amount[index].setAttribute("selected","selected");
+    }
+}
+function SetTotalPrice()
+{
+    var element=document.getElementById("tong");
+    var listItem=JSON.parse(localStorage.getItem("cart_item"));
+    var total=0;
+    for(var i=0;i<listItem.length;i++)
+    {
+        total+=parseInt(listItem[i].amount)*parseInt(listItem[i].price);
+    }
+    element.innerText=total+"đ";
+}
+async function doWork() {
+    await LoadData();
+    $(".deleteBtn").click(function()
+    {
+        var index=$(this).parents("tr").find("th").text();
+        var idproduct=$(this).parents("tr").find("input.idproduct").val();
+        $(this).parents("tr").remove();
+        deleteItemCart(idproduct,index);
+    });
+    SetSizeAndAmount();
+    SetDefaultValue();
+    SetTotalPrice();
 }
 doWork();

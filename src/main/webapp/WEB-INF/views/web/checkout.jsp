@@ -1,4 +1,7 @@
+<%@ page import="online.newbrandshop.util.SecurityUtils" %>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@include file="/common/taglib.jsp"%>
+
 <!doctype html>
 <html lang="en">
 
@@ -50,76 +53,141 @@
                 </div>
                 <div class="row">
                     <button type="button" class="btn btn-warning btn_thanhtoan" data-toggle="modal"
-                        data-target="#myModal" style="margin: auto; margin-top: 10px;">Thanh
+                        data-target="#ModalOfCheckout" style="margin: auto; margin-top: 10px;">Thanh
                         toán</button>
                 </div>
             </div>
 
         </div>
         <!-- thanh toán  -->
-        <div>
-            <!-- The Modal -->
-            <!-- login  -->
-            <div class="modal fade" id="myModal">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
+      <sec:authorize access="isAnonymous()">
+      <div>
+          <!-- The Modal -->
+          <div class="modal fade" id="ModalOfCheckout">
+              <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
 
-                        <!-- Modal Header -->
-                        <div class="modal-header">
+                      <!-- Modal Header -->
+                      <div class="modal-header">
 
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
 
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="containerform">
-                                <div class="chudau">
-                                    <h4 class="modal-title">Thông tin thanh toán</h4>
-                                </div>
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                          <div class="containerform">
+                              <div class="chudau">
+                                  <h4 class="modal-title">Thông tin thanh toán</h4>
+                              </div>
 
-                                <form>
-                                    <div class="input-field">
-                                        <input type="text" required="">
-                                        <label>Tên</label>
-                                    </div>
-                                    <div class="input-field">
-                                        <input type="text" required="">
-                                        <label>Email</label>
-                                    </div>
-                                    <div class="input-field">
-                                        <input type="text" required="">
-                                        <label>Số điện thoại</label>
-                                    </div>
-                                    <div class="input-field">
-                                        <input type="text" required="">
-                                        <label>Địa chỉ nhận hàng</label>
-                                    </div>
-                                    <!-- <div id="widget">
-                                        <form>
-                                            City/State&raquo; <select name="city_state" size="1"
-                                                onchange="print_city_state(country,this)"></select>
-                                        </form>
-                                        <div id="txtregion"></div>
-                                        <div id="txtplacename"></div>
-                                    </div> -->
-                                    <div style="text-align: center;">
-                                        <div class="inner">
-                                        </div>
-                                        <button class="btn btn-warning" type="button" id="dathang">Hoàn thành</button>
-                                    </div>
-                                </form>
-                            </div>
+                              <form>
+                                  <div class="input-field">
+                                      <input type="text" required="">
+                                      <label>Tên</label>
+                                  </div>
+                                  <div class="input-field">
+                                      <input type="text" required="">
+                                      <label>Email</label>
+                                  </div>
+                                  <div class="input-field">
+                                      <input type="text" required="">
+                                      <label>Số điện thoại</label>
+                                  </div>
+                                  <div class="input-field">
+                                      <input type="text" required="">
+                                      <label>Địa chỉ nhận hàng</label>
+                                  </div>
+                                  <!-- <div id="widget">
+                                      <form>
+                                          City/State&raquo; <select name="city_state" size="1"
+                                              onchange="print_city_state(country,this)"></select>
+                                      </form>
+                                      <div id="txtregion"></div>
+                                      <div id="txtplacename"></div>
+                                  </div> -->
+                                  <div style="text-align: center;">
+                                      <div class="inner">
+                                      </div>
+                                      <button class="btn btn-warning" type="button" id="dathang">Hoàn thành</button>
+                                  </div>
+                              </form>
+                          </div>
 
-                        </div>
+                      </div>
 
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
+                      <!-- Modal footer -->
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
 
-                    </div>
-                </div>
-            </div>
+                  </div>
+              </div>
+          </div>
+      </sec:authorize>
+      <sec:authorize access="hasRole('customer')">
+          <div>
+              <!-- The Modal -->
+              <div class="modal fade" id="ModalOfCheckout">
+                  <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                          <!-- Modal Header -->
+                          <div class="modal-header">
+
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+
+                          <!-- Modal body -->
+                          <div class="modal-body">
+                              <div class="containerform">
+                                  <div class="chudau">
+                                      <h4 class="modal-title">Thông tin thanh toán</h4>
+                                  </div>
+
+                                  <form >
+                                      <div class="input-field">
+                                          <input type="text" required="" value="<%=SecurityUtils.getPrincipal().getName()%>">
+                                          <label>Tên</label>
+                                      </div>
+                                      <div class="input-field">
+                                          <input type="text" required="" value="<%=SecurityUtils.getPrincipal().getEmail()%>">
+                                          <label>Email</label>
+                                      </div>
+                                      <div class="input-field">
+                                          <input type="text" required="" value="<%=SecurityUtils.getPrincipal().getPhonenumber()%>">
+                                          <label>Số điện thoại</label>
+                                      </div>
+                                      <div class="input-field">
+                                          <input type="text" required="" value="<%=SecurityUtils.getPrincipal().getAddress()%>">
+                                          <label>Địa chỉ nhận hàng</label>
+                                      </div>
+                                      <!-- <div id="widget">
+                                          <form>
+                                              City/State&raquo; <select name="city_state" size="1"
+                                                  onchange="print_city_state(country,this)"></select>
+                                          </form>
+                                          <div id="txtregion"></div>
+                                          <div id="txtplacename"></div>
+                                      </div> -->
+                                      <div style="text-align: center;">
+                                          <div class="inner">
+                                          </div>
+                                          <button class="btn btn-warning" type="button" id="dathang">Hoàn thành</button>
+                                      </div>
+                                  </form>
+                              </div>
+
+                          </div>
+
+                          <!-- Modal footer -->
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+      </sec:authorize>
+
             <div class="row" style=" margin-top: 50px; border-top: 1px solid gray;">
                 <h6 class="chudep"
                     style="font-size: x-large; margin-top: 20px; background-image: -webkit-linear-gradient(#9ea811,#9dbd10,#e812a6);">
