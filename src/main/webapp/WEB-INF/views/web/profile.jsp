@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-  <title>Checkout</title>
+  <title>Profile</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,7 +44,7 @@
                         </div>
                         <button type="button" class="btn btn-warning">Kiểm tra giỏ hàng ngay</button>
                     </div>
-                    <div class="thongtin" id="thongtin">
+                    <div class="thongtin" id="idthongtin">
                         <br>
                         <h5><b>Thông tin cá nhân</b> </h5>
                         <form>
@@ -65,26 +65,28 @@
                                 <label>Địa chỉ</label>
                             </div>
                             <div class="mygroupbtn">
-                                <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#myModalcpass">Đổi mật khẩu</button>
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#myModalcpass">Đổi mật khẩu</button>
                                 <!-- The Modal -->
                                 <!-- change password  -->
                                 <div class="modal fade" id="myModalcpass">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
-    
+
                                             <!-- Modal Header -->
                                             <div class="modal-header">
-    
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                                <button type="button" class="close"
+                                                    data-dismiss="modal">&times;</button>
                                             </div>
-    
+
                                             <!-- Modal body -->
                                             <div class="modal-body">
                                                 <div class="containerform">
                                                     <div class="chudau">
                                                         <h4 class="modal-title">Đổi mật khẩu</h4>
                                                     </div>
-    
+
                                                     <form>
                                                         <div class="input-field">
                                                             <input type="text" required="">
@@ -109,171 +111,69 @@
                                                         </div>
                                                     </form>
                                                 </div>
-    
+
                                             </div>
-    
+
                                             <!-- Modal footer -->
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary btn_changepass"
                                                     data-dismiss="modal">Close</button>
                                             </div>
-    
+
                                         </div>
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-danger">Xóa tài khoản</button>
                             </div>
-                            
+
                         </form>
                     </div>
-                    <div class="lichsumua" id="lichsumua">
+                    <div class="lichsumua" id="idlichsumua" style="overflow-x:auto; width: 100%;">
                         <br>
                         <h5><b>Lịch sử mua hàng</b> </h5>
                         <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Ngày mua</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 <tr class="mathang">
-                                    <th scope="row">1</th>
-                                    <td><img class="anhsanpham thugon"
-                                            src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/i1-86f7b43f-2f76-42cb-b253-a7591b6032c7/jordan-short-sleeve-crew-BsLCrG.jpg"
-                                            alt="anh sp"></td>
+                                    <td><a href="">ma1</a></td>
+                                    <td>6/6/2020</td>
                                     <td>
-                                        <h6>Nike msmsm12 (tên sp)</h6>
-                                        <div class="form-group mycustomformgroup">
-                                            <div class="mycustomformgroup_c1">
-                                                <label class="lbsize" for="size">Size</label>
-                                            </div>
-                                            <div class="mycustomformgroup_c2">
-                                                <select class="form-control mycustomselect" name="" id="size" disabled="disabled">
-                                                    <option value="">S</option>
-                                                    <option value="">M</option>
-                                                    <option value="">L</option>
-                                                    <option value="">XL</option>
-                                                </select>
-                                            </div>
-        
-                                        </div>
-                                        <div class="form-group mycustomformgroup">
-                                            <div class="mycustomformgroup_c1">
-                                                <label class="lbsoluong" for="soluong">Số lượng</label>
-                                            </div>
-                                            <div class="mycustomformgroup_c2">
-                                                <select class="form-control mycustomselect mycustomselectsl" name="sl_sl"
-                                                    id="soluong" disabled="disabled">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-        
-                                        </div>
-                                        
+                                        <a href="">Áo thun nike msmsm2020(Tên sp)</a>
                                     </td>
                                     <td>
                                         <p class="gia">500000</p>
                                     </td>
+                                    <td>Giao hàng thành công</td>
                                 </tr>
                                 <tr class="mathang">
-                                    <th scope="row">2</th>
-                                    <td><img class="anhsanpham thugon"
-                                            src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/i1-86f7b43f-2f76-42cb-b253-a7591b6032c7/jordan-short-sleeve-crew-BsLCrG.jpg"
-                                            alt="anh sp"></td>
+                                    <td><a href="">ma1</a></td>
+                                    <td>6/6/2020</td>
                                     <td>
-                                        <h6>Nike msmsm12 (tên sp)</h6>
-                                        <div class="form-group mycustomformgroup">
-                                            <div class="mycustomformgroup_c1">
-                                                <label class="lbsize" for="size">Size</label>
-                                            </div>
-                                            <div class="mycustomformgroup_c2">
-                                                <select class="form-control mycustomselect" name="" id="size" disabled="disabled">
-                                                    <option value="">S</option>
-                                                    <option value="">M</option>
-                                                    <option value="">L</option>
-                                                    <option value="">XL</option>
-                                                </select>
-                                            </div>
-        
-                                        </div>
-                                        <div class="form-group mycustomformgroup">
-                                            <div class="mycustomformgroup_c1">
-                                                <label class="lbsoluong" for="soluong">Số lượng</label>
-                                            </div>
-                                            <div class="mycustomformgroup_c2">
-                                                <select class="form-control mycustomselect mycustomselectsl" name="sl_sl"
-                                                    id="soluong" disabled="disabled">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-        
-                                        </div>
-                                        
+                                        <a href="">Áo thun nike msmsm2020(Tên sp)</a>
                                     </td>
                                     <td>
                                         <p class="gia">500000</p>
                                     </td>
+                                    <td>Đã hủy</td>
                                 </tr>
                                 <tr class="mathang">
-                                    <th scope="row">3</th>
-                                    <td><img class="anhsanpham thugon"
-                                            src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/i1-86f7b43f-2f76-42cb-b253-a7591b6032c7/jordan-short-sleeve-crew-BsLCrG.jpg"
-                                            alt="anh sp"></td>
+                                    <td><a href="">ma1</a></td>
+                                    <td>6/6/2020</td>
                                     <td>
-                                        <h6>Nike msmsm12 (tên sp)</h6>
-                                        <div class="form-group mycustomformgroup">
-                                            <div class="mycustomformgroup_c1">
-                                                <label class="lbsize" for="size">Size</label>
-                                            </div>
-                                            <div class="mycustomformgroup_c2">
-                                                <select class="form-control mycustomselect" name="" id="size" disabled="disabled">
-                                                    <option value="">S</option>
-                                                    <option value="">M</option>
-                                                    <option value="">L</option>
-                                                    <option value="">XL</option>
-                                                </select>
-                                            </div>
-        
-                                        </div>
-                                        <div class="form-group mycustomformgroup">
-                                            <div class="mycustomformgroup_c1">
-                                                <label class="lbsoluong" for="soluong">Số lượng</label>
-                                            </div>
-                                            <div class="mycustomformgroup_c2">
-                                                <select class="form-control mycustomselect mycustomselectsl" name="sl_sl"
-                                                    id="soluong" disabled="disabled">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-        
-                                        </div>
-                                        
+                                        <a href="">Áo thun nike msmsm2020(Tên sp)</a>
                                     </td>
                                     <td>
                                         <p class="gia">500000</p>
                                     </td>
+                                    <td>Đang giao hàng</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -284,18 +184,18 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                  <th>Mã giảm giá</th>
-                                  <th>Thông tin</th>
-                                  <th>Ngày hết hạn</th>
+                                    <th>Mã giảm giá</th>
+                                    <th>Thông tin</th>
+                                    <th>Ngày hết hạn</th>
                                 </tr>
-                              </thead>
-                              <tbody>
+                            </thead>
+                            <tbody>
                                 <tr>
-                                  <td>giam20k</td>
-                                  <td>Thành viên có đăng kí tài khoản, like theo dõi fanpage được giảm 20.000 vnđ</td>
-                                  <td>10/6/2020</td>
+                                    <td>giam20k</td>
+                                    <td>Thành viên có đăng kí tài khoản, like theo dõi fanpage được giảm 20.000 vnđ</td>
+                                    <td>10/6/2020</td>
                                 </tr>
-                              </tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -335,20 +235,21 @@
                 </div>
             </div>
             <div class="col-3">
-                <h5><b>My account</b> </h5>
+                
                 <nav class="col-sm-3 col-4" id="myScrollspy">
+                <h5><b>My account</b> </h5>
                     <ul class="nav nav-pills flex-column">
-                      <li class="nav-item">
-                        <a class="nav-link active" href="#thongtin">Thông tin cá nhân</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#lichsumua">Lịch sử mua hàng</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#magg">Mã giảm giá</a>
-                      </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#idthongtin">Thông tin cá nhân</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#idlichsumua">Lịch sử mua hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#magg">Mã giảm giá</a>
+                        </li>
                     </ul>
-                  </nav>
+                </nav>
             </div>
         </div>
     </div>
@@ -369,6 +270,6 @@
                 show.style.color = "#111";
             }
         }
-        </script>   
+    </script>
 </body>
 </html>
