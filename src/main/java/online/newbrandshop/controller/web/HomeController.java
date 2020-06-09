@@ -2,10 +2,15 @@ package online.newbrandshop.controller.web;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.google.gson.Gson;
 import online.newbrandshop.modal.*;
 import online.newbrandshop.repository.*;
 import online.newbrandshop.security.MyUser;
 import online.newbrandshop.util.SecurityUtils;
+import online.newbrandshop.util.Utils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,10 +29,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,11 +46,25 @@ public class HomeController {
 	ImageRepository imageRepository;
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	BillRepository billRepository;
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	   public ModelAndView homePage(HttpSession session) {
+//		if(SecurityUtils.isAuthenticanted())
+//		{
+//			System.out.println(SecurityUtils.getPrincipal().getUsername());
+//		}
+//		else {System.out.println("Not Login");}
 		ModelAndView mav = new ModelAndView("web/home");
 		return mav;
 	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView loginPage(HttpSession session) {
+		ModelAndView mav = new ModelAndView("web/login");
+		return mav;
+	}
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -56,6 +73,7 @@ public class HomeController {
 		}
 		return new ModelAndView("redirect:/home");
 	}
+
 	@RequestMapping(value = "/register",method = RequestMethod.POST)
 	public String register(@RequestParam("username")String userName,@RequestParam("fullname")String fullName
 								,@RequestParam("phone") String phone,@RequestParam("email")String email
@@ -88,6 +106,7 @@ public class HomeController {
 		ModelAndView mav=new ModelAndView("web/category");
 		return mav;
 	}
+
 	@RequestMapping("/product/{idproduct}")
 	ModelAndView chitiet(@PathVariable("idproduct")Long id){
 		ModelAndView mav=new ModelAndView("web/chitietsp");
@@ -95,25 +114,15 @@ public class HomeController {
 		mav.addObject("item",productEntity);
 		return mav;
 	}
+
 	@RequestMapping("/custom")
 	ModelAndView custom(){
 		ModelAndView mav=new ModelAndView("web/custom");
 		return mav;
 	}
-	//test fe profile
-	@RequestMapping("/profile")
-	ModelAndView profile(){
-		ModelAndView mav=new ModelAndView("web/profile");
-		return mav;
-	}
-	//test fe chi tiet lic su mua hang
-		@RequestMapping("/chitietlichsu")
-		ModelAndView chitietls(){
-			ModelAndView mav=new ModelAndView("web/chitietlichsu");
-			return mav;
-		}
-	@RequestMapping("/checkout")
-	ModelAndView checkout(){
+
+	@RequestMapping("/cart")
+	ModelAndView cart(){
 		ModelAndView mav=new ModelAndView("web/checkout");
 		return mav;
 	}
@@ -123,62 +132,71 @@ public class HomeController {
 		ModelAndView mav=new ModelAndView("admin/new/list");
 		return mav;
 	}
-	@RequestMapping("/uploadImage")
-	ModelAndView uploadImage()
-	{
-		ModelAndView mav=new ModelAndView("web/UploadImage");
-		return mav;
-	}
-	@RequestMapping(value = "/savefile",method = RequestMethod.POST)
-	public String savefile(@RequestParam CommonsMultipartFile file, HttpSession session) throws FileNotFoundException {
-		String path = session.getServletContext().getRealPath("/template/img");
-		String filename = file.getOriginalFilename();
-
-		System.out.println(path + " " + filename);
-		try {
-			byte barr[] = file.getBytes();
-
-			BufferedOutputStream bout = new BufferedOutputStream(
-					new FileOutputStream(path + "/" + filename));
-			bout.write(barr);
-			bout.flush();
-			bout.close();
-			ImageEntity imageEntity=new ImageEntity();
-			imageEntity.setLink("/template/img/"+filename);
-			imageRepository.save(imageEntity);
-		} catch (Exception e) {
-			e.printStackTrace();
+	@RequestMapping("bill/{nameBill}")
+	public ModelAndView GetBill(@PathVariable("nameBill") String nameBill) throws IOException {
+		BillEntity billEntity=billRepository.findByBillName(nameBill);
+		ModelAndView modelAndView=new ModelAndView("/web/chitietlichsu");
+		if(billEntity.getCreatedBy().equals("anonymousUser"))
+		{
+			modelAndView.addObject("data",billEntity.getContent());
+			modelAndView.addObject("total",new String(billEntity.getTotalMoney()));
 		}
-		return "web/UploadImage";
+		else{
+			if(SecurityUtils.isAuthenticanted())
+			{
+				if(SecurityUtils.getPrincipal().getUsername().equals(billEntity.getCreatedBy())){
+					modelAndView.addObject("data",billEntity.getContent());
+					modelAndView.addObject("total",new String(billEntity.getTotalMoney()));
+				}
+				else{
+					modelAndView.addObject("data","error");
+				}
+			}else modelAndView.addObject("data","error");
+		}
+
+		return modelAndView;
 	}
-	@RequestMapping("/uploadedImage")
-	ModelAndView uploadedImage()
-	{
-		ModelAndView mav=new ModelAndView("/web/UploadedImage");
-		List<ImageEntity>imageEntities=imageRepository.findAll();
-		mav.addObject("test","huynh");
-		mav.addObject("list",imageEntities);
-		return mav;
+	@RequestMapping(value = "/checkout",method = RequestMethod.POST)
+	String checkout(@RequestParam("content")String content,@RequestParam("name")String name
+						 ,@RequestParam("address")String address,@RequestParam("phone")String phone
+						 ,@RequestParam("email")String email) throws IOException {
+		try {
+			String nameBill=Utils.GetNameBill();
+			ObjectMapper mapper=new ObjectMapper();
+			BillEntity billEntity=new BillEntity();
+			billEntity.setBillName(nameBill);
+			billEntity.setStatus(0);
+			BigInteger totalMoney=new BigInteger("0");
+			JsonNode nodes=mapper.readTree(content);
+			JSONArray jsonArray=new JSONArray();
+			for(JsonNode single:nodes)
+			{
+				ProductEntity productEntity=productRepository.findById((long) single.get("id").asInt());
+				JSONObject json = new JSONObject();
+				json.put("id",productEntity.getId());
+				json.put("price",(new BigInteger(productEntity.getPrice().replaceAll("\\D+","")).multiply(new BigInteger(single.get("amount").asText()))).toString());
+				json.put("img",productEntity.getUrl1());
+				json.put("amount",single.get("amount").asInt());
+				json.put("name",productEntity.getName());
+				jsonArray.put(json);
+				totalMoney=totalMoney.add(new BigInteger(productEntity.getPrice().replaceAll("\\D+","")).multiply(new BigInteger(single.get("amount").asText())));
+			}
+			billEntity.setContent(jsonArray.toString());
+			billEntity.setTotalMoney(totalMoney.toString());
+			billEntity.setPaymentMethod("COD");
+			PayerEntity payerEntity=new PayerEntity();
+			payerEntity.setName(name);
+			payerEntity.setEmail(email);
+			payerEntity.setAddress(address);
+			payerEntity.setPhone(phone);
+			billEntity.setPayerEntity(payerEntity);
+			payerEntity.setBillEntity(billEntity);
+			billRepository.save(billEntity);
+			return "redirect:/bill/"+nameBill;
+		}
+		catch (Exception e){
+			return "redirect:/cart?error";
+		}
 	}
-	@RequestMapping(value = "/login-facebook",method = RequestMethod.POST)
-	public String test(HttpServletRequest request, @RequestBody String bd) throws IOException {
-		ObjectMapper mapper=new ObjectMapper();
-		JsonNode node=mapper.readTree(bd);
-		boolean enabled = true;
-		boolean accountNonExpired = true;
-		boolean credentialsNonExpired = true;
-		boolean accountNonLocked = true;
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority("customer"));
-		UserDetails userDetail = new MyUser(node.get("id").asText(), "123", enabled, accountNonExpired, credentialsNonExpired,
-				accountNonLocked, authorities);
-		((MyUser)userDetail).setName(node.get("name").asText());
-		((MyUser)userDetail).setEmail(node.get("email").asText());
-		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
-				userDetail.getAuthorities());
-		authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		System.out.println("done");
-		return "redirect:/home";
-	}
+
 }

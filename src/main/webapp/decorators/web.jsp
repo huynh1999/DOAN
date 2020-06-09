@@ -1,3 +1,4 @@
+<%@ page import="online.newbrandshop.util.SecurityUtils" %>
 <%@include file="/common/taglib.jsp"%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
@@ -65,18 +66,18 @@
 	function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
 		console.log('Welcome!  Fetching your information.... ');
 		FB.api('/me?fields=email,name', function(response) {
-			axios.post("/login-facebook",{
+			axios.post("/api/login-facebook",{
 				id:response.id,
 				name:response.name,
 				email:response.email
+			}).then(re=>{
+				if(re.data==="ok"){location.reload()};
 			})
 
 		});
 	}
 
 </script>
-
-<div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=189392698895180&autoLogAppEvents=1"></script>
 
 
@@ -87,12 +88,28 @@
 		<div class="headinfo_left" role="listitem">
 			<a href="#" class="text_" data-target="#myModal">Join us</a>
 		</div>
-		<div class="headinfo_right" role="listitem">
-			<a href="#" class="text_ loginclick">Login</a>
-			<a href="#" class="text_">Help</a>
-			<a href="${pageContext.request.contextPath}/checkout" class="fa fa-shopping-cart icon_color"></a>
-			<a href="#" class="fa fa-map-marker icon_color"><span class="text_"> HCM</span></a>
-		</div>
+		<sec:authorize access="isAnonymous()">
+			<div class="headinfo_right" role="listitem">
+				<a href="#" class="text_ loginclick">Login</a>
+				<a href="#" class="text_">Help</a>
+				<a href="${pageContext.request.contextPath}/cart" class="fa fa-shopping-cart icon_color"></a>
+				<a href="#" class="fa fa-map-marker icon_color"><span class="text_"> HCM</span></a>
+			</div>
+		</sec:authorize>
+		<sec:authorize access="hasRole('customer')">
+			<div class="headinfo_right dropdown" role="listitem">
+				<a href="#" class="text_ logintextsc" data-toggle="dropdown">Welcome <%=SecurityUtils.getPrincipal().getName()%></a>
+				<div class="dropdown-menu hidemydropdown">
+					<a href="/user/profile" class="dropdown-item">Profile</a>
+					<div class="dropdown-divider"></div>
+					<a href="/logout" class="dropdown-item">Logout</a>
+				</div>
+				<a href="#" class="text_">Help</a>
+				<a href="${pageContext.request.contextPath}/cart" class="fa fa-shopping-cart icon_color"></a>
+				<a href="#" class="fa fa-map-marker icon_color"><span class="text_"> HCM</span></a>
+			</div>
+		</sec:authorize>
+
 	</div>
 	<div class="headmenu" role="listitem">
 		<div class="headmenu_cl1" role="listitem">
@@ -207,15 +224,12 @@
 							<p id="login_with">Or login with</p>
 						</div>
 						<div class="links">
-							<div class="facebook">
-								<fb:login-button size="medium"
+							<div class="face">
+								<fb:login-button size="xlarge"
 												 scope="public_profile,email"
 												 onlogin="checkLoginState();">
 									Connect to Facebook
 								</fb:login-button>
-							</div>
-							<div class="google">
-								<i class="fa fa-google-plus-square"><span>Google</span></i>
 							</div>
 						</div>
 						<div class="signup">
@@ -311,10 +325,36 @@
 			</div>
 		</div>
 	</div>
+</div>
 
 
 	<dec:body />
-	<!-- Footer -->
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				xfbml            : true,
+				version          : 'v7.0'
+			});
+		};
+
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+	<!-- Your Chat Plugin code -->
+	<div class="fb-customerchat"
+		 attribution=setup_tool
+		 page_id="106383004443658"
+		 logged_in_greeting="Chúng tôi có thể giúp gì cho bạn?"
+		 logged_out_greeting="Chúng tôi có thể giúp gì cho bạn?">
+	</div>
+<%--	<!-- Footer -->--%>
 	<script src="${pageContext.request.contextPath}/template/js/common/axios.js"></script>
 	<link href="<c:url value='/template/css/font-awesome.min.css' />"
 		  rel="stylesheet" type="text/css">
@@ -331,6 +371,19 @@
 				event.preventDefault();
 				$("#btshowlogsignup").click();
 			})
+			if ($("a.logintextsc").text() != "Login") {
+				$("a.logintextsc").addClass("dropdown-toggle");
+
+				$("a.logintextsc").mouseenter(function () {
+					$(".hidemydropdown").show();
+				})
+				$("a.logintextsc").mouseleave(function () {
+					$(".hidemydropdown").mouseleave(function () {
+						$(".hidemydropdown").hide();
+					})
+				})
+
+			}
 		})
 	</script>
 </body>

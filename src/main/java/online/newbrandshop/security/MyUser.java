@@ -23,7 +23,6 @@ public class MyUser extends User{
 	
 	private String name;
 	private String address;
-	private Date birthday;
 	private String phonenumber;
 	private String email;
 	
@@ -49,14 +48,6 @@ public class MyUser extends User{
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
 	}
 
 	public String getPhonenumber() {

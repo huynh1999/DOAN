@@ -11,7 +11,7 @@
 			access=" hasAnyRole('admin')" />
 			
 		<access-denied-handler
-			error-page="/adminAccessDenied" />
+			error-page="/AccessDenied" />
 		<form-login
 			username-parameter="j_username" password-parameter="j_password"
 			login-processing-url="/admin_j_spring_security_check"
@@ -24,11 +24,9 @@
 
 		<intercept-url pattern="/user/**"
 			access="hasAnyRole('customer')" />
-
-
 		<access-denied-handler
 			error-page="/customerAccessDenied" />
-		<form-login
+		<form-login login-page="/login"
 			username-parameter="j_username" password-parameter="j_password"
 			login-processing-url="/j_spring_security_check"
 			authentication-success-handler-ref="customSuccessHandler"

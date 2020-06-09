@@ -1,3 +1,5 @@
+<%@ page import="online.newbrandshop.util.SecurityUtils" %>
+<%@include file="/common/taglib.jsp"%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!doctype html>
 <html lang="en">
@@ -9,7 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/template/css/nhshop.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/template/css/checkout.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/template/css/profile.css">
@@ -17,56 +18,48 @@
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+<script>
+    var data=${list};
+</script>
     <div class="container">
         <div class="row">
             <div class="col-9">
                 <div class="row card border-dark myct">
                     <div class="mygiohang">
-                        <h5><b>Giỏ hàng</b> </h5>
-                        <span><span>3</span> sản phẩm chưa thanh toán</span>
-                        <div class="d-flex flex-row myctwrap">
-                            <div class="item">
-                                <a href=""><img class="thugon"
-                                        src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/i1-86f7b43f-2f76-42cb-b253-a7591b6032c7/jordan-short-sleeve-crew-BsLCrG.jpg"
-                                        alt="ảnh sp giỏ hàng"></a>
-                            </div>
-                            <div class="item">
-                                <a href=""><img class="thugon"
-                                        src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/i1-86f7b43f-2f76-42cb-b253-a7591b6032c7/jordan-short-sleeve-crew-BsLCrG.jpg"
-                                        alt="ảnh sp giỏ hàng"></a>
-                            </div>
-                            <div class="item">
-                                <a href=""><img class="thugon"
-                                        src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/i1-86f7b43f-2f76-42cb-b253-a7591b6032c7/jordan-short-sleeve-crew-BsLCrG.jpg"
-                                        alt="ảnh sp giỏ hàng"></a>
-                            </div>
 
-                        </div>
-                        <button type="button" class="btn btn-warning">Kiểm tra giỏ hàng ngay</button>
                     </div>
                     <div class="thongtin" id="idthongtin">
+                        <div class="alert alert-success" id="success-alert" style="display: none;text-align: center">
+                            <button type="button" class="close" data-dismiss="alert">x</button>
+                            <strong>Success! </strong> Cập nhật thông tin thành công
+                        </div>
+                        <div class="alert alert-danger" id="error-alert" style="display: none;text-align: center">
+                            <button type="button" class="close" data-dismiss="alert">x</button>
+                            <strong>Error! </strong> Lỗi khi cập nhật thông tin
+                        </div>
                         <br>
                         <h5><b>Thông tin cá nhân</b> </h5>
                         <form>
                             <div class="input-field">
-                                <input type="text" required="">
+                                <input type="text" required="" id="nameInfo" value="<%=SecurityUtils.getPrincipal().getName()%>">
                                 <label>Tên</label>
                             </div>
                             <div class="input-field">
-                                <input type="text" required="">
+                                <input type="text" required=""  id="emailInfo" value="<%=SecurityUtils.getPrincipal().getEmail()%>">
                                 <label>Email</label>
                             </div>
                             <div class="input-field">
-                                <input type="text" required="">
+                                <input type="text" required="" id="phoneInfo" value="<%=SecurityUtils.getPrincipal().getPhonenumber()%>">
                                 <label>Số điện thoại</label>
                             </div>
                             <div class="input-field">
-                                <input type="text" required="">
+                                <input type="text" required="" id="addressInfo" value="<%=SecurityUtils.getPrincipal().getAddress()%>">
                                 <label>Địa chỉ</label>
                             </div>
                             <div class="mygroupbtn">
                                 <button type="button" class="btn btn-info" data-toggle="modal"
                                     data-target="#myModalcpass">Đổi mật khẩu</button>
+                                <button type="button" class="btn btn-info" id="uploadInfo">Cập nhật lại thông tin</button>
                                 <!-- The Modal -->
                                 <!-- change password  -->
                                 <div class="modal fade" id="myModalcpass">
@@ -82,6 +75,7 @@
 
                                             <!-- Modal body -->
                                             <div class="modal-body">
+                                                <div id="alter-changepass"></div>
                                                 <div class="containerform">
                                                     <div class="chudau">
                                                         <h4 class="modal-title">Đổi mật khẩu</h4>
@@ -89,25 +83,21 @@
 
                                                     <form>
                                                         <div class="input-field">
-                                                            <input type="text" required="">
-                                                            <label>Email</label>
-                                                        </div>
-                                                        <div class="input-field">
-                                                            <input type="password" required="">
+                                                            <input type="password" required="" id="oldpass">
                                                             <label>Mật khẩu cũ</label>
                                                         </div>
                                                         <div class="input-field">
-                                                            <input type="password" required="">
+                                                            <input type="password" required="" id="newpass">
                                                             <label>Mật khẩu mới</label>
                                                         </div>
                                                         <div class="input-field">
-                                                            <input type="password" required="">
+                                                            <input type="password" required="" id="renewpass">
                                                             <label>Nhập lại mật khẩu</label>
                                                         </div>
                                                         <div class="button">
                                                             <div class="inner">
                                                             </div>
-                                                            <button type="button" class="btn btn-dark">Xác nhận</button>
+                                                            <button type="button" class="btn btn-dark" id="btn-changepass">Xác nhận</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -141,64 +131,42 @@
                                     <th>Trạng thái</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="mathang">
-                                    <td><a href="">ma1</a></td>
-                                    <td>6/6/2020</td>
-                                    <td>
-                                        <a href="">Áo thun nike msmsm2020(Tên sp)</a>
-                                    </td>
-                                    <td>
-                                        <p class="gia">500000</p>
-                                    </td>
-                                    <td>Giao hàng thành công</td>
-                                </tr>
-                                <tr class="mathang">
-                                    <td><a href="">ma1</a></td>
-                                    <td>6/6/2020</td>
-                                    <td>
-                                        <a href="">Áo thun nike msmsm2020(Tên sp)</a>
-                                    </td>
-                                    <td>
-                                        <p class="gia">500000</p>
-                                    </td>
-                                    <td>Đã hủy</td>
-                                </tr>
-                                <tr class="mathang">
-                                    <td><a href="">ma1</a></td>
-                                    <td>6/6/2020</td>
-                                    <td>
-                                        <a href="">Áo thun nike msmsm2020(Tên sp)</a>
-                                    </td>
-                                    <td>
-                                        <p class="gia">500000</p>
-                                    </td>
-                                    <td>Đang giao hàng</td>
-                                </tr>
+                            <tbody id="rootHistory">
+<%--                                <tr class="mathang">--%>
+<%--                                    <td><a href="">ma1</a></td>--%>
+<%--                                    <td>6/6/2020</td>--%>
+<%--                                    <td>--%>
+<%--                                        <a href="">Áo thun nike msmsm2020(Tên sp)</a>--%>
+<%--                                    </td>--%>
+<%--                                    <td>--%>
+<%--                                        <p class="gia">500000</p>--%>
+<%--                                    </td>--%>
+<%--                                    <td>Giao hàng thành công</td>--%>
+<%--                                </tr>--%>
                             </tbody>
                         </table>
                     </div>
-                    <div class="magiamgia" id="magg">
-                        <br>
-                        <h5><b>Mã giảm giá của bạn</b> </h5>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Mã giảm giá</th>
-                                    <th>Thông tin</th>
-                                    <th>Ngày hết hạn</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>giam20k</td>
-                                    <td>Thành viên có đăng kí tài khoản, like theo dõi fanpage được giảm 20.000 vnđ</td>
-                                    <td>10/6/2020</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+<%--                    <div class="magiamgia" id="magg">--%>
+<%--                        <br>--%>
+<%--                        <h5><b>Mã giảm giá của bạn</b> </h5>--%>
+<%--                        <table class="table">--%>
+<%--                            <thead>--%>
+<%--                                <tr>--%>
+<%--                                    <th>Mã giảm giá</th>--%>
+<%--                                    <th>Thông tin</th>--%>
+<%--                                    <th>Ngày hết hạn</th>--%>
+<%--                                </tr>--%>
+<%--                            </thead>--%>
+<%--                            <tbody>--%>
+<%--                                <tr>--%>
+<%--                                    <td>giam20k</td>--%>
+<%--                                    <td>Thành viên có đăng kí tài khoản, like theo dõi fanpage được giảm 20.000 vnđ</td>--%>
+<%--                                    <td>10/6/2020</td>--%>
+<%--                                </tr>--%>
+<%--                            </tbody>--%>
+<%--                        </table>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
                 <h6 class="chudep"
                     style="font-size: x-large; margin-top: 20px; background-image: -webkit-linear-gradient(#9ea811,#9dbd10,#e812a6);">
                     Các sản phẩm đề xuất</h6>
@@ -254,22 +222,10 @@
         </div>
     </div>
     <script>
-        $("button.btn_changepass").click(function () {
-            event.preventDefault();
-        })
-        var input = document.querySelector('.pswrd');
-        var show = document.querySelector('.show');
-        show.addEventListener('click', active);
-
-        function active() {
-            if (input.type === "password") {
-                input.type = "text";
-                show.style.color = "#1DA1F2";
-            } else {
-                input.type = "password";
-                show.style.color = "#111";
-            }
+        window.onload=function () {
+            $.getScript("/template/js/page/profile.js")
         }
     </script>
+
 </body>
 </html>

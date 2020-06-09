@@ -1,5 +1,6 @@
 package online.newbrandshop.modal;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -16,11 +17,11 @@ public abstract class BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy\nHH:mm:ss")
 	@Column(name = "createddate")
 	@CreatedDate
 	private Date createdDate;
-	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy\nHH:mm:ss")
 	@Column(name = "modifieddate")
 	@LastModifiedDate
 	private Date modifiedDate;

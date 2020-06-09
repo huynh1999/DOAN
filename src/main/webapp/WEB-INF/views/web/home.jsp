@@ -20,12 +20,6 @@
 
 <body>
     <!-- body  -->
-    <sec:authorize access="isAnonymous()">
-        Not login
-    </sec:authorize>
-    <sec:authorize access="hasRole('customer')">
-        <%=SecurityUtils.getPrincipal().getName()%>
-    </sec:authorize>
     <div id="my_slide" class="carousel slide my_slide" data-ride="carousel">
         <ol class="carousel-indicators _hidden">
             <li data-target="#my_slide" data-slide-to="0" class="active"></li>
@@ -188,102 +182,102 @@
     <!-- top product  -->
     <i class="fa fa-star mystar"></i>
     <h5 class="tieu_de">TOP PRODUCT</h5>
-    <div class="product_box" role="list">
-        <div class="_12sanpham" role="list">
-            <div class="_1sanpham" role="listitem">
-                <a href="#"><img alt="sanpham1" class="anhsanpham"
-                        src="https://cdn3.yame.vn/pimg/ao-thun-nam-y2010-bd-b01-0019570/f7e1d4ae-c9b3-0100-d1ac-0016c9eb68f5.jpg?w=440"
-                        alt=""></a>
-                        <p style=" margin-top: 10px;">Áo nike mksks</p>
-                <p>100.000 vnd</p>
-                <!-- mau  -->
-                <a href="#"><img alt="mau sac sp1" class="anhmau"
-                        src="https://cdn3.yame.vn/pimg/ao-thun-nam-y2010-bd-b01-0019570/f7e1d4ae-c9b3-0100-d1ac-0016c9eb68f5.jpg?w=440"
-                        alt=""></a>
+<%--    <div class="product_box" role="list">--%>
+<%--        <div class="_12sanpham" role="list">--%>
+<%--            <div class="_1sanpham" role="listitem">--%>
+<%--                <a href="#"><img alt="sanpham1" class="anhsanpham"--%>
+<%--                        src="https://cdn3.yame.vn/pimg/ao-thun-nam-y2010-bd-b01-0019570/f7e1d4ae-c9b3-0100-d1ac-0016c9eb68f5.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
+<%--                        <p style=" margin-top: 10px;">Áo nike mksks</p>--%>
+<%--                <p>100.000 vnd</p>--%>
+<%--                <!-- mau  -->--%>
+<%--                <a href="#"><img alt="mau sac sp1" class="anhmau"--%>
+<%--                        src="https://cdn3.yame.vn/pimg/ao-thun-nam-y2010-bd-b01-0019570/f7e1d4ae-c9b3-0100-d1ac-0016c9eb68f5.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
 
-            </div>
-            <div class="_1sanpham" role="listitem">
-                <a href="#"><img alt="sanpham2" class="anhsanpham"
-                        src="https://cdn3.yame.vn/pimg/ao-thun-nam-y2010-bd-b03-0019572/d901b2c4-22ec-0300-5539-0016c9eb9d40.jpg?w=440"
-                        alt=""></a>
-                        <p style=" margin-top: 10px;">Áo nike mksks</p>
-                <p>100.000 vnd</p>
-                <!-- mau  -->
-                <a href="#"><img alt="mau sanpham2" class="anhmau"
-                        src="https://cdn3.yame.vn/pimg/ao-thun-nam-y2010-bd-b03-0019572/d901b2c4-22ec-0300-5539-0016c9eb9d40.jpg?w=440"
-                        alt=""></a>
+<%--            </div>--%>
+<%--            <div class="_1sanpham" role="listitem">--%>
+<%--                <a href="#"><img alt="sanpham2" class="anhsanpham"--%>
+<%--                        src="https://cdn3.yame.vn/pimg/ao-thun-nam-y2010-bd-b03-0019572/d901b2c4-22ec-0300-5539-0016c9eb9d40.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
+<%--                        <p style=" margin-top: 10px;">Áo nike mksks</p>--%>
+<%--                <p>100.000 vnd</p>--%>
+<%--                <!-- mau  -->--%>
+<%--                <a href="#"><img alt="mau sanpham2" class="anhmau"--%>
+<%--                        src="https://cdn3.yame.vn/pimg/ao-thun-nam-y2010-bd-b03-0019572/d901b2c4-22ec-0300-5539-0016c9eb9d40.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
 
-            </div>
-            <div class="_1sanpham" role="listitem">
-                <a href="#"><img alt="sanpham3" class="anhsanpham"
-                        src="https://cdn2.yame.vn/pimg/ao-khoac-y2010-kaki-e06-0019437/80f8c358-7a9c-1e00-c2bc-0016a782c0ff.jpg?w=440"
-                        alt=""></a>
-                        <p style=" margin-top: 10px;">Áo nike mksks</p>
-                <p>100.000 vnd</p>
-                <!-- mau  -->
-                <a href="#"><img alt="mau sanpham3" class="anhmau"
-                        src="https://cdn2.yame.vn/pimg/ao-khoac-y2010-kaki-e06-0019437/80f8c358-7a9c-1e00-c2bc-0016a782c0ff.jpg?w=440"
-                        alt=""></a>
-                <a href="#"><img alt="mau sanpham3" class="anhmau"
-                        src="https://cdn3.yame.vn/pimg/ao-khoac-y2010-kaki-e06-0019437/6e5365aa-cd19-1b00-f315-0016a7827302.jpg?w=100&h=140&c=true"
-                        alt=""></a>
-                <a href="#"><img alt="mau sanpham3" class="anhmau"
-                        src="https://cdn2.yame.vn/pimg/ao-khoac-y2010-kaki-e06-0019437/2711de3d-4e22-1c00-56b4-0016a7829674.jpg?w=100&h=140&c=true"
-                        alt=""></a>
+<%--            </div>--%>
+<%--            <div class="_1sanpham" role="listitem">--%>
+<%--                <a href="#"><img alt="sanpham3" class="anhsanpham"--%>
+<%--                        src="https://cdn2.yame.vn/pimg/ao-khoac-y2010-kaki-e06-0019437/80f8c358-7a9c-1e00-c2bc-0016a782c0ff.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
+<%--                        <p style=" margin-top: 10px;">Áo nike mksks</p>--%>
+<%--                <p>100.000 vnd</p>--%>
+<%--                <!-- mau  -->--%>
+<%--                <a href="#"><img alt="mau sanpham3" class="anhmau"--%>
+<%--                        src="https://cdn2.yame.vn/pimg/ao-khoac-y2010-kaki-e06-0019437/80f8c358-7a9c-1e00-c2bc-0016a782c0ff.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
+<%--                <a href="#"><img alt="mau sanpham3" class="anhmau"--%>
+<%--                        src="https://cdn3.yame.vn/pimg/ao-khoac-y2010-kaki-e06-0019437/6e5365aa-cd19-1b00-f315-0016a7827302.jpg?w=100&h=140&c=true"--%>
+<%--                        alt=""></a>--%>
+<%--                <a href="#"><img alt="mau sanpham3" class="anhmau"--%>
+<%--                        src="https://cdn2.yame.vn/pimg/ao-khoac-y2010-kaki-e06-0019437/2711de3d-4e22-1c00-56b4-0016a7829674.jpg?w=100&h=140&c=true"--%>
+<%--                        alt=""></a>--%>
 
-            </div>
-            <div class="_1sanpham" role="listitem">
-                <a href="#"><img alt="sanpham4" class="anhsanpham"
-                        src="https://cdn2.yame.vn/pimg/so-mi-nam-y2010-tn-g02-0019333/bd607f52-b1cf-0d00-65a6-0016c85210ee.jpg?w=440"
-                        alt=""></a>
-                        <p style=" margin-top: 10px;">Áo nike mksks</p>
-                <p>100.000 vnd</p>
-                <!-- mau  -->
-                <a href="#"><img alt="mau sanpham4" class="anhmau"
-                        src="https://cdn2.yame.vn/pimg/so-mi-nam-y2010-tn-g02-0019333/bd607f52-b1cf-0d00-65a6-0016c85210ee.jpg?w=440"
-                        alt=""></a>
-                <a href="#"><img alt="mau sanpham4" class="anhmau"
-                        src="https://cdn3.yame.vn/pimg/so-mi-nam-y2010-tn-g02-0019333/aebb4408-0c25-0c00-6817-0016c8520406.jpg?w=100&h=140&c=true"
-                        alt=""></a>
+<%--            </div>--%>
+<%--            <div class="_1sanpham" role="listitem">--%>
+<%--                <a href="#"><img alt="sanpham4" class="anhsanpham"--%>
+<%--                        src="https://cdn2.yame.vn/pimg/so-mi-nam-y2010-tn-g02-0019333/bd607f52-b1cf-0d00-65a6-0016c85210ee.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
+<%--                        <p style=" margin-top: 10px;">Áo nike mksks</p>--%>
+<%--                <p>100.000 vnd</p>--%>
+<%--                <!-- mau  -->--%>
+<%--                <a href="#"><img alt="mau sanpham4" class="anhmau"--%>
+<%--                        src="https://cdn2.yame.vn/pimg/so-mi-nam-y2010-tn-g02-0019333/bd607f52-b1cf-0d00-65a6-0016c85210ee.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
+<%--                <a href="#"><img alt="mau sanpham4" class="anhmau"--%>
+<%--                        src="https://cdn3.yame.vn/pimg/so-mi-nam-y2010-tn-g02-0019333/aebb4408-0c25-0c00-6817-0016c8520406.jpg?w=100&h=140&c=true"--%>
+<%--                        alt=""></a>--%>
 
-            </div>
-            <div class="_1sanpham" role="listitem">
-                <a href="#"><img alt="sanpham5" class="anhsanpham"
-                        src="https://cdn2.yame.vn/pimg/quan-jean-nam-y2010-dai-b33-0019430/de7d9052-93c1-3200-d42b-00168ca7ac40.jpg?w=440"
-                        alt=""></a>
-                        <p style=" margin-top: 10px;">Áo nike mksks</p>
-                <p>100.000 vnd</p>
-                <!-- mau  -->
-                <a href="#"><img alt="mau sanpham5" class="anhmau"
-                        src="https://cdn2.yame.vn/pimg/quan-jean-nam-y2010-dai-b33-0019430/de7d9052-93c1-3200-d42b-00168ca7ac40.jpg?w=440"
-                        alt=""></a>
-                <a href="#"><img alt="mau sanpham5" class="anhmau"
-                        src="https://cdn3.yame.vn/pimg/quan-jean-nam-y2010-dai-b33-0019430/0ddf4572-81eb-3800-802b-00168ca803d3.jpg?w=100&h=140&c=true"
-                        alt=""></a>
+<%--            </div>--%>
+<%--            <div class="_1sanpham" role="listitem">--%>
+<%--                <a href="#"><img alt="sanpham5" class="anhsanpham"--%>
+<%--                        src="https://cdn2.yame.vn/pimg/quan-jean-nam-y2010-dai-b33-0019430/de7d9052-93c1-3200-d42b-00168ca7ac40.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
+<%--                        <p style=" margin-top: 10px;">Áo nike mksks</p>--%>
+<%--                <p>100.000 vnd</p>--%>
+<%--                <!-- mau  -->--%>
+<%--                <a href="#"><img alt="mau sanpham5" class="anhmau"--%>
+<%--                        src="https://cdn2.yame.vn/pimg/quan-jean-nam-y2010-dai-b33-0019430/de7d9052-93c1-3200-d42b-00168ca7ac40.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
+<%--                <a href="#"><img alt="mau sanpham5" class="anhmau"--%>
+<%--                        src="https://cdn3.yame.vn/pimg/quan-jean-nam-y2010-dai-b33-0019430/0ddf4572-81eb-3800-802b-00168ca803d3.jpg?w=100&h=140&c=true"--%>
+<%--                        alt=""></a>--%>
 
-            </div>
-            <div class="_1sanpham" role="listitem">
-                <a href="#"><img alt="sanpham6" class="anhsanpham"
-                        src="https://cdn3.yame.vn/pimg/quan-tay-nam-no-style-dai-hg08-0019169/5642e409-1805-db00-98bc-0016746b6f3a.jpg?w=440"
-                        alt=""></a>
-                        <p style=" margin-top: 10px;">Áo nike mksks</p>
-                <p>100.000 vnd</p>
-                <!-- mau  -->
-                <a href="#"><img alt="mau sanpham6" class="anhmau"
-                        src="https://cdn3.yame.vn/pimg/quan-tay-nam-no-style-dai-hg08-0019169/5642e409-1805-db00-98bc-0016746b6f3a.jpg?w=440"
-                        alt=""></a>
-                <a href="#"><img alt="mau sanpham6" class="anhmau"
-                        src="https://cdn3.yame.vn/pimg/quan-tay-nam-no-style-dai-hg08-0019169/8b6225b7-d4cb-ec00-94c2-0016746bc8ac.jpg?w=100&h=140&c=true"
-                        alt=""></a>
-                <a href="#"><img alt="mau sanpham6" class="anhmau"
-                        src="https://cdn3.yame.vn/pimg/quan-tay-nam-no-style-dai-hg08-0019169/21a0e5dd-9aaa-ed00-f99a-0016746bdc12.jpg?w=100&h=140&c=true"
-                        alt=""></a>
+<%--            </div>--%>
+<%--            <div class="_1sanpham" role="listitem">--%>
+<%--                <a href="#"><img alt="sanpham6" class="anhsanpham"--%>
+<%--                        src="https://cdn3.yame.vn/pimg/quan-tay-nam-no-style-dai-hg08-0019169/5642e409-1805-db00-98bc-0016746b6f3a.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
+<%--                        <p style=" margin-top: 10px;">Áo nike mksks</p>--%>
+<%--                <p>100.000 vnd</p>--%>
+<%--                <!-- mau  -->--%>
+<%--                <a href="#"><img alt="mau sanpham6" class="anhmau"--%>
+<%--                        src="https://cdn3.yame.vn/pimg/quan-tay-nam-no-style-dai-hg08-0019169/5642e409-1805-db00-98bc-0016746b6f3a.jpg?w=440"--%>
+<%--                        alt=""></a>--%>
+<%--                <a href="#"><img alt="mau sanpham6" class="anhmau"--%>
+<%--                        src="https://cdn3.yame.vn/pimg/quan-tay-nam-no-style-dai-hg08-0019169/8b6225b7-d4cb-ec00-94c2-0016746bc8ac.jpg?w=100&h=140&c=true"--%>
+<%--                        alt=""></a>--%>
+<%--                <a href="#"><img alt="mau sanpham6" class="anhmau"--%>
+<%--                        src="https://cdn3.yame.vn/pimg/quan-tay-nam-no-style-dai-hg08-0019169/21a0e5dd-9aaa-ed00-f99a-0016746bdc12.jpg?w=100&h=140&c=true"--%>
+<%--                        alt=""></a>--%>
 
-            </div>
+<%--            </div>--%>
 
 
-        </div>
-    </div>
+<%--        </div>--%>
+<%--    </div>--%>
 
     <!--  -->
     <!--  -->

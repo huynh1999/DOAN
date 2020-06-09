@@ -80,23 +80,25 @@
                                   <h4 class="modal-title">Thông tin thanh toán</h4>
                               </div>
 
-                              <form>
+                              <form action="/checkout" id="checkout" method="post">
                                   <div class="input-field">
-                                      <input type="text" required="">
+                                      <input type="text" required="" name="name">
                                       <label>Tên</label>
                                   </div>
                                   <div class="input-field">
-                                      <input type="text" required="">
+                                      <input type="text" required="" name="email">
                                       <label>Email</label>
                                   </div>
                                   <div class="input-field">
-                                      <input type="text" required="">
+                                      <input type="text" required="" name="phone">
                                       <label>Số điện thoại</label>
                                   </div>
                                   <div class="input-field">
-                                      <input type="text" required="">
+                                      <input type="text" required="" name="address">
                                       <label>Địa chỉ nhận hàng</label>
                                   </div>
+                                  <input name="content" hidden value ="">
+
                                   <!-- <div id="widget">
                                       <form>
                                           City/State&raquo; <select name="city_state" size="1"
@@ -108,7 +110,7 @@
                                   <div style="text-align: center;">
                                       <div class="inner">
                                       </div>
-                                      <button class="btn btn-warning" type="button" id="dathang">Hoàn thành</button>
+                                      <button class="btn btn-warning" type="submit" id="dathang">Hoàn thành</button>
                                   </div>
                               </form>
                           </div>
@@ -143,23 +145,24 @@
                                       <h4 class="modal-title">Thông tin thanh toán</h4>
                                   </div>
 
-                                  <form >
+                                  <form action="${pageContext.request.contextPath}/checkout" id="checkout" method="post">
                                       <div class="input-field">
-                                          <input type="text" required="" value="<%=SecurityUtils.getPrincipal().getName()%>">
+                                          <input type="text" required="" name="name" value="<%=SecurityUtils.getPrincipal().getName()%>">
                                           <label>Tên</label>
                                       </div>
                                       <div class="input-field">
-                                          <input type="text" required="" value="<%=SecurityUtils.getPrincipal().getEmail()%>">
+                                          <input type="text" required="" name="email" value="<%=SecurityUtils.getPrincipal().getEmail()%>">
                                           <label>Email</label>
                                       </div>
                                       <div class="input-field">
-                                          <input type="text" required="" value="<%=SecurityUtils.getPrincipal().getPhonenumber()%>">
+                                          <input type="text" required="" name="phone" value="<%=SecurityUtils.getPrincipal().getPhonenumber()%>">
                                           <label>Số điện thoại</label>
                                       </div>
                                       <div class="input-field">
-                                          <input type="text" required="" value="<%=SecurityUtils.getPrincipal().getAddress()%>">
+                                          <input type="text" required=""  name="address" value="<%=SecurityUtils.getPrincipal().getAddress()%>">
                                           <label>Địa chỉ nhận hàng</label>
                                       </div>
+                                      <input name="content" hidden value="">
                                       <!-- <div id="widget">
                                           <form>
                                               City/State&raquo; <select name="city_state" size="1"
@@ -171,7 +174,7 @@
                                       <div style="text-align: center;">
                                           <div class="inner">
                                           </div>
-                                          <button class="btn btn-warning" type="button" id="dathang">Hoàn thành</button>
+                                          <button class="btn btn-warning" type="submit" id="dathang">Hoàn thành</button>
                                       </div>
                                   </form>
                               </div>

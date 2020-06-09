@@ -25,9 +25,6 @@ public class UserEntity extends BaseEntity {
 	@Column(name = "active")
 	private int active;
 
-	@OneToMany(mappedBy = "userEntity")
-	private List<BillEntity> listBills = new ArrayList<>();
-
 	@ManyToOne
 	@JoinColumn(name = "roleuserid")
 	private RoleUserEntity roleUserEntity;
@@ -84,13 +81,6 @@ public class UserEntity extends BaseEntity {
 		this.roleUserEntity = roleUserEntity;
 	}
 
-	public List<BillEntity> getListBills() {
-		return listBills;
-	}
-
-	public void setListBills(List<BillEntity> listBills) {
-		this.listBills = listBills;
-	}
 
 	
 }

@@ -141,6 +141,14 @@ function SetTotalPrice()
     }
     element.innerText=total+"đ";
 }
+function CheckOut()
+{
+    $("#checkout").submit(function () {
+        $("input[name=content]").attr("value",localStorage.getItem("cart_item"));
+        localStorage.removeItem("cart_item");
+        return true;
+    })
+}
 async function doWork() {
     await LoadData();
     $(".deleteBtn").click(function()
@@ -153,5 +161,6 @@ async function doWork() {
     SetSizeAndAmount();
     SetDefaultValue();
     SetTotalPrice();
+    CheckOut();
 }
 doWork();

@@ -11,33 +11,42 @@ import javax.persistence.*;
 @Table(name="payer")
 public class PayerEntity  extends BaseEntity{
 	
-	@Column(name = "firstname")
-	private String firstName;
+	@Column(name = "name")
+	private String name;
 	
-	@Column(name = "lastname")
-	private String lastName;
-	
+	@Column(name = "address")
+	private String address;
+	@Column(name = "phone")
+	private String phone;
 	@Column(name = "email")
 	private String email;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name = "billid")
 	private BillEntity billEntity;
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getEmail() {

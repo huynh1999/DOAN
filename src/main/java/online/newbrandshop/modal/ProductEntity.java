@@ -15,10 +15,6 @@ import java.util.List;
 @Table(name = "product")
 public class ProductEntity extends BaseEntity{
 	@JsonIgnore
-	@OneToMany(mappedBy = "productEntity")
-	private List<BillDetailEntity> listBillDetail = new ArrayList<>();
-
-	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "productid"),
 			inverseJoinColumns = @JoinColumn(name = "categoryid"))
@@ -42,13 +38,6 @@ public class ProductEntity extends BaseEntity{
 	@Column(name = "content")
 	String content;
 
-	public List<BillDetailEntity> getListBillDetail() {
-		return listBillDetail;
-	}
-
-	public void setListBillDetail(List<BillDetailEntity> listBillDetail) {
-		this.listBillDetail = listBillDetail;
-	}
 
 	public List<CategoryEntity> getListCategories() {
 		return listCategories;

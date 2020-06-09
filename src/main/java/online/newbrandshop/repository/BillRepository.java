@@ -8,8 +8,10 @@ package online.newbrandshop.repository;
 import online.newbrandshop.modal.BillEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 
 public interface BillRepository extends JpaRepository<BillEntity, Long> {
-
-	BillEntity findOneByBillCode(String billCode);
+    BillEntity findByBillName(String billName);
+    List<BillEntity>findAllByCreatedBy(String createdBy);
 }
