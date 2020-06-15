@@ -67,9 +67,9 @@
         <tracking-mode>COOKIE</tracking-mode>
         <session-timeout>120</session-timeout>
     </session-config>
-<!--    <error-page>-->
-<!--        <location>/home</location>-->
-<!--    </error-page>-->
+    <error-page>
+        <location>/error</location>
+    </error-page>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

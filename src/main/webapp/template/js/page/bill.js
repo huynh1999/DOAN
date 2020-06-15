@@ -1,5 +1,5 @@
 var root=document.getElementById("root");
-console.log("test")
+console.log("test");
 var content="";
 var listData=data;
 if(listData!=="error")
@@ -32,7 +32,7 @@ if(listData!=="error")
 
 else
     {
-        content="Có vẻ bạn không có quyền xem đơn hàng này.Vui lòng đăng nhập";
+        content="Có vẻ bạn không có quyền xem đơn hàng này.Vui lòng đăng nhập hoặc đổi tài khoản khác";
         root=document.getElementById("lichsumua");
         document.getElementsByClassName("row")[1].remove();
     };

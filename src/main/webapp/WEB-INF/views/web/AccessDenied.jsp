@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    Bạn chưa có quyền truy cập trang này.
+    Bạn không có quyền truy cập trang này.
 </body>
 </html>

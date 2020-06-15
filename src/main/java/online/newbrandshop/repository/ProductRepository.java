@@ -38,9 +38,4 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 	@Query("select r from ProductEntity r")
 	public List<ProductEntity> find10Products(Pageable pageable);
 
-	@Transactional
-	@Modifying(clearAutomatically = true)
-	@Query(value = "update ProductEntity p set p.name=:name, p.url1=:url1, p.amount=:amount, p.price = :price, p.promotion=:promotion where p.id = :id")
-	public void update(@Param("id") long id, @Param("name") String name, @Param("url1") String url1,
-                       @Param("amount") int amount, @Param("price") float price, @Param("promotion") int promotion);
 }

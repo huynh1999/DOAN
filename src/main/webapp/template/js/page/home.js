@@ -12,3 +12,7 @@ function active() {
         show.style.color = "#111";
     }
 }
+if(window.location.search==="?logoutSuccess")
+{
+    localStorage.removeItem("cart_item");
+}

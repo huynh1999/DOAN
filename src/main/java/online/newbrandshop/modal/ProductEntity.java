@@ -32,12 +32,21 @@ public class ProductEntity extends BaseEntity{
 	@Column(name = "price")
 	private String price;
 
-	@Column(name = "promotion")
-	private int promotion;
+	@Column(name = "sold")
+	private int sold;
 
 	@Column(name = "content")
 	String content;
+	@Column(name = "active")
+	int active;
 
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
 
 	public List<CategoryEntity> getListCategories() {
 		return listCategories;
@@ -79,12 +88,12 @@ public class ProductEntity extends BaseEntity{
 		this.price = price;
 	}
 
-	public int getPromotion() {
-		return promotion;
+	public int getSold() {
+		return sold;
 	}
 
-	public void setPromotion(int promotion) {
-		this.promotion = promotion;
+	public void setSold(int sold) {
+		this.sold = sold;
 	}
 
 	public String getName() {
