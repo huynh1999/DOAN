@@ -34,6 +34,37 @@ public class HomeController {
         ModelAndView mav=new ModelAndView("web/UploadImage");
         return mav;
     }
+    
+    //////test//////
+    
+    @RequestMapping("/adminhome")
+    ModelAndView adminhome()
+    {
+        ModelAndView mav=new ModelAndView("admin/home");
+        return mav;
+    }
+    
+    @RequestMapping("/adminlist")
+    ModelAndView adminlist()
+    {
+        ModelAndView mav=new ModelAndView("admin/new/list");
+        return mav;
+    }
+    
+    @RequestMapping("/adminedit")
+    ModelAndView adminedit()
+    {
+        ModelAndView mav=new ModelAndView("admin/new/edit");
+        return mav;
+    }
+    @RequestMapping("/adminuploadimage")
+    ModelAndView adminuploadimage()
+    {
+        ModelAndView mav=new ModelAndView("admin/imagepage/uploadimage");
+        return mav;
+    }
+    ////-----//////
+    
     @RequestMapping(value = "/savefile",method = RequestMethod.POST)
     public String savefile(@RequestParam CommonsMultipartFile file, HttpSession session) throws FileNotFoundException {
         String path = session.getServletContext().getRealPath("/template/img");
