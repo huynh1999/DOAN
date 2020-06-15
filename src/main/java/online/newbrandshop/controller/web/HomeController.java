@@ -7,12 +7,18 @@ import com.google.gson.Gson;
 import online.newbrandshop.modal.*;
 import online.newbrandshop.repository.*;
 import online.newbrandshop.security.MyUser;
+import online.newbrandshop.service.EmailService;
 import online.newbrandshop.util.SecurityUtils;
 import online.newbrandshop.util.Utils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMailMessage;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,6 +32,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,6 +55,8 @@ public class HomeController {
 	ProductRepository productRepository;
 	@Autowired
 	BillRepository billRepository;
+	@Autowired
+	EmailService emailService;
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	   public ModelAndView homePage(HttpSession session) {
 //		if(SecurityUtils.isAuthenticanted())
@@ -61,6 +70,10 @@ public class HomeController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView loginPage(HttpSession session) {
+		if(SecurityUtils.isAuthenticanted())
+		{
+			return new ModelAndView("redirect:/home");
+		}
 		ModelAndView mav = new ModelAndView("web/login");
 		return mav;
 	}
@@ -71,7 +84,7 @@ public class HomeController {
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		return new ModelAndView("redirect:/home");
+		return new ModelAndView("redirect:/home?logoutSuccess");
 	}
 
 	@RequestMapping(value = "/register",method = RequestMethod.POST)
@@ -101,7 +114,7 @@ public class HomeController {
 		}
 		return "redirect:home?successRegister";
 	}
-	@RequestMapping("/category")
+	@RequestMapping("/category/{cate}")
 	ModelAndView category(){
 		ModelAndView mav=new ModelAndView("web/category");
 		return mav;
@@ -124,6 +137,11 @@ public class HomeController {
 	@RequestMapping("/cart")
 	ModelAndView cart(){
 		ModelAndView mav=new ModelAndView("web/checkout");
+		return mav;
+	}
+	@RequestMapping("/error")
+	ModelAndView error(){
+		ModelAndView mav=new ModelAndView("web/error");
 		return mav;
 	}
 	//test fe admin
@@ -149,13 +167,19 @@ public class HomeController {
 					modelAndView.addObject("total",new String(billEntity.getTotalMoney()));
 				}
 				else{
+					modelAndView.addObject("total",0);
 					modelAndView.addObject("data","error");
 				}
-			}else modelAndView.addObject("data","error");
+			}else
+				{
+					modelAndView.addObject("data","error");
+					modelAndView.addObject("total",new String(billEntity.getTotalMoney()));
+				}
 		}
 
 		return modelAndView;
 	}
+
 	@RequestMapping(value = "/checkout",method = RequestMethod.POST)
 	String checkout(@RequestParam("content")String content,@RequestParam("name")String name
 						 ,@RequestParam("address")String address,@RequestParam("phone")String phone
@@ -192,11 +216,14 @@ public class HomeController {
 			billEntity.setPayerEntity(payerEntity);
 			payerEntity.setBillEntity(billEntity);
 			billRepository.save(billEntity);
+			emailService.SendMailConfirmBill(billEntity);
 			return "redirect:/bill/"+nameBill;
 		}
 		catch (Exception e){
+			System.out.println(e.toString());
 			return "redirect:/cart?error";
 		}
+
 	}
 
 }

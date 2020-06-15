@@ -50,10 +50,12 @@ public class API {
     ProductRepository productRepository;
     @Autowired
     BillRepository billRepository;
-    @GetMapping(value = "/findAllNike" ,produces = "application/json;charset=UTF-8")
-    String FindAllNike() throws JsonProcessingException {
+    @Autowired
+    CategoryRepository categoryRepository;
+    @GetMapping(value = "/category/{cate}" ,produces = "application/json;charset=UTF-8")
+    String FindCategory(@PathVariable("cate")String cate) throws JsonProcessingException {
         Pageable pageRequest= new PageRequest(0,1);
-        List<ProductEntity>list=productRepository.find20Product();
+        List<ProductEntity>list=categoryRepository.findOneByCategoryName(cate).getListProducts();
         ObjectMapper mapper=new ObjectMapper();
         return mapper.writeValueAsString(list);
     }
@@ -67,6 +69,13 @@ public class API {
         ProductEntity productEntity=productRepository.findById(id);
         ObjectMapper mapper=new ObjectMapper();
         return mapper.writeValueAsString(productEntity);
+    }
+    @PostMapping("/checkUsername")
+    String CheckUserName(@RequestBody JsonNode node)
+    {
+        UserEntity userEntity=userRepository.findOneByUserNameAndActive(node.get("username").asText(),1);
+        if(userEntity==null)return "ok";
+        else return "error";
     }
     @PostMapping("user/changePass")
     String ChangePass(@RequestBody String body) throws IOException {

@@ -3,6 +3,7 @@ package online.newbrandshop.controller.admin;
 import online.newbrandshop.modal.ImageEntity;
 import online.newbrandshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +15,8 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
-
+@RequestMapping("/admin")
+@Controller("controllerForAdmin")
 public class HomeController {
     @Autowired
     UserRepository userRepository;

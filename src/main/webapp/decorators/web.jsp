@@ -17,8 +17,33 @@
 </head>
 <body>
 <!-- header -->
+<!-- Load Facebook SDK for JavaScript -->
 <script>
+	window.fbAsyncInit = function() {
+		FB.init({
+			xfbml            : true,
+			version          : 'v7.0'
+		});
+	};
 
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Your Chat Plugin code -->
+<div class="fb-customerchat"
+	 attribution=setup_tool
+	 page_id="106383004443658"
+	 theme_color="#ffc300"
+	 logged_in_greeting="Chúng tôi có thể giúp gì cho bạn?"
+	 logged_out_greeting="Chúng tôi có thể giúp gì cho bạn?">
+</div>
+<%--LoginFB--%>
+<script>
 	function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
 		console.log('statusChangeCallback');
 		console.log(response);                   // The current login status of the person.
@@ -80,7 +105,7 @@
 </script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=189392698895180&autoLogAppEvents=1"></script>
 
-
+<%--Chat mess--%>
 
 <!-- header  -->
 <div class="header" role="list">
@@ -121,7 +146,7 @@
 					<div class="list_down">
 						<a href="category.html">MEN</a>
 						<div class="dropdown_content" role="dropdown_content">
-							<a class="sm_item" href="#">MEN 1</a>
+							<a class="sm_item" href="/category/ClothesMenNike">Nike</a>
 							<a class="sm_item" href="#">MEN 2</a>
 							<a class="sm_item" href="#">MEN 3</a>
 						</div>
@@ -131,7 +156,7 @@
 					<div class="list_down">
 						<a href="#">WOMEN</a>
 						<div class="dropdown_content">
-							<a class="sm_item" href="#">WOMEN 1</a>
+							<a class="sm_item" href="/category/ClothesWomanNike">Nike</a>
 							<a class="sm_item" href="#">WOMEN 2</a>
 							<a class="sm_item" href="#">WOMEN 3</a>
 						</div>
@@ -141,8 +166,8 @@
 					<div class="list_down">
 						<a href="#">KIDS</a>
 						<div class="dropdown_content">
-							<a class="sm_item" href="#">KIDS 1</a>
-							<a class="sm_item" href="#">KIDS 2</a>
+							<a class="sm_item" href="/category/ClothesKidBoyNike">BOY Nike</a>
+							<a class="sm_item" href="/category/ClothesKidGirlNike">GIRL Nike</a>
 							<a class="sm_item" href="#">KIDS 3</a>
 						</div>
 					</div>
@@ -271,8 +296,11 @@
 							<div class="chudau">
 								<h4 class="modal-title chudep">Signup</h4>
 							</div>
-
-							<form action="/register" method="post">
+							<div class="alert alert-danger" id="error-alert-register" style="display: none;text-align: center">
+								<button type="button" class="close" data-dismiss="alert">x</button>
+								<strong>Error! </strong> Tên đăng nhập đã được sử dụng
+							</div>
+							<form id="form_register" action="/register" method="post">
 								<div class="input-field">
 									<input type="text" required="" name="username">
 									<label>User Name</label>
@@ -294,7 +322,7 @@
 									<label>Email</label>
 								</div>
 								<div class="input-field">
-									<input class="pswrd" type="password" required="" name="password">
+									<input class="pswrd" id="password" type="password" required="" name="password">
 									<span class="show"></span>
 									<label>Password</label>
 								</div>
@@ -306,7 +334,7 @@
 								<div class="button">
 									<div class="inner">
 									</div>
-									<button>SIGNUP</button>
+									<button type="submit" id="btn_signup">SIGNUP</button>
 								</div>
 							</form>
 							<div class="signup">
@@ -329,31 +357,8 @@
 
 
 	<dec:body />
-	<!-- Load Facebook SDK for JavaScript -->
-	<div id="fb-root"></div>
-	<script>
-		window.fbAsyncInit = function() {
-			FB.init({
-				xfbml            : true,
-				version          : 'v7.0'
-			});
-		};
 
-		(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
 
-	<!-- Your Chat Plugin code -->
-	<div class="fb-customerchat"
-		 attribution=setup_tool
-		 page_id="106383004443658"
-		 logged_in_greeting="Chúng tôi có thể giúp gì cho bạn?"
-		 logged_out_greeting="Chúng tôi có thể giúp gì cho bạn?">
-	</div>
 <%--	<!-- Footer -->--%>
 	<script src="${pageContext.request.contextPath}/template/js/common/axios.js"></script>
 	<link href="<c:url value='/template/css/font-awesome.min.css' />"
@@ -382,9 +387,42 @@
 						$(".hidemydropdown").hide();
 					})
 				})
-
 			}
-		})
+			async function apiUsername() {
+				var redata="";
+				var userName=$("[name=username]").val();
+				await axios.post("/api/checkUsername",{
+					username:userName
+				}).then(re=>{
+					redata=re.data;
+				});
+				return redata==="ok";
+			}
+			async function CheckUserName() {
+				var t=await apiUsername();
+				console.log(t);
+				if(!t){
+					$("#error-alert-register").show();
+				}
+				else {
+					$("#error-alert-register").hide();
+				}
+			}
+			$("#form_register").on('submit',async function (e) {
+				e.preventDefault();
+				var t=await apiUsername();
+				if(t)
+				{
+					$("#form_register")[0].submit();
+				}
+			});
+			$("[name=username]").change(function () {
+				CheckUserName();
+			})
+		});
+
+
+
 	</script>
 </body>
 </html>

@@ -46,7 +46,7 @@ public class CustomSuccessHandlerForAdmin extends SimpleUrlAuthenticationSuccess
 
 		List<String> roles = SecurityUtils.getAuthorities();
 		if (isAdmin(roles)) {
-			url = "/admin/LoginSuccessful";
+			url = "/admin/uploadImage";
 		}else {
 			url="/adminAccessDenied";
 		}

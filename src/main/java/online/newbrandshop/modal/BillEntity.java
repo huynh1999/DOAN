@@ -28,7 +28,6 @@ public class BillEntity extends BaseEntity {
 	@Column(name = "status")
 	private int status;
 
-
 	public String getBillName() {
 		return billName;
 	}

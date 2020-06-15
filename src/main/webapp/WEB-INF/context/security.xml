@@ -17,7 +17,7 @@
 			login-processing-url="/admin_j_spring_security_check"
 			authentication-success-handler-ref="customSuccessHandlerForAdmin"
 			authentication-failure-url="/adminlogin?incorrectAccount" />
-		<logout delete-cookies="JSESSIONID" />
+		<logout delete-cookies="JSESSIONID" logout-success-url="/home" />
 	</http>
 
 	<http auto-config="false" use-expressions="true" disable-url-rewriting="true">

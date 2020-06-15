@@ -31,6 +31,9 @@
         <div class="_12sanpham" role="list" id="box_item">
         </div>
     </div>
+    <div id="loadingGif" style="text-align: center">
+        <img src="/template/img/loading.gif">
+    </div>
     <script>
         window.onload=function () {
             $.getScript("/template/js/page/category.js");
