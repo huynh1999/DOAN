@@ -14,7 +14,9 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
+import org.springframework.stereotype.Controller;
 
+@Controller(value="controllerForAdmin")
 public class HomeController {
     @Autowired
     UserRepository userRepository;

@@ -7,7 +7,6 @@
 		<class>online.newbrandshop.modal.UserEntity</class>
 		<class>online.newbrandshop.modal.RoleUserEntity</class>
 		<class>online.newbrandshop.modal.BillEntity</class>
-		<class>online.newbrandshop.modal.BillDetailEntity</class>
 		<class>online.newbrandshop.modal.CategoryEntity</class>
 		<class>online.newbrandshop.modal.ProductEntity</class>
 		<class>online.newbrandshop.modal.ProfileUserEntity</class>
