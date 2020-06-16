@@ -1,7 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@include file="/common/taglib.jsp"%>
 <c:url var="APIurl" value="/api-admin-new"/>
 <c:url var ="NewURL" value="/admin-new"/>
+
 <html>
 <head>
     <title>Chỉnh sửa sản phẩm</title>

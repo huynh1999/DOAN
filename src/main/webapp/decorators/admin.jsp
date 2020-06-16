@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page import="online.newbrandshop.util.SecurityUtils" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -10,18 +10,14 @@
 		  rel="stylesheet" type="text/css">
 	<link href="<c:url value='/template/assets/font-awesome/4.5.0/css/font-awesome.min.css' />"
 		  rel="stylesheet" type="text/css">
-	<link href="<c:url value='/template/assets/css/ace.min.css' />"
-		  rel="stylesheet" type="text/css">
 	<script src="<c:url value='/template/assets/js/ace-extra.min.js' />"></script>
-	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<%--	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">--%>
+	<link rel="stylesheet" href="/template/assets/css/jquery-ui.css">
+    <script src="<c:url value='/template/js/common/jquery.js' />"></script>
 	<link href="<c:url value='/template/assets/css/ace.min.css' />"
 		  rel="stylesheet" type="text/css">
 	<script src="<c:url value='/template/assets/js/jquery.2.1.1.min.js' />"></script>
-	<script src="<c:url value='/template/assets/js/jquery.2.1.1.min.js' />"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/template/assets/js/jquery-ui.js"></script>
 </head>
 
 <body class="no-skin">
@@ -40,7 +36,7 @@
                 <ul class="nav ace-nav">
                     <li class="light-blue dropdown-modal">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            Xin chào, [Tên]
+                            Xin chào, <%=SecurityUtils.getPrincipal().getName()%>
                         </a>
                     <li class="light-blue dropdown-modal">
                         <a href="#">
@@ -107,7 +103,7 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="#">
+                            <a href="${pageContext.request.contextPath}/admin/list">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Danh sách sản phẩm
                             </a>
@@ -117,7 +113,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle">
+                    <a href="/admin/uploadedImage" class="dropdown-toggle">
                         <i class="menu-icon fa fa-list"></i>
                         <span class="menu-text"> Quản lí ảnh </span>
 
@@ -127,7 +123,7 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="#">
+                            <a href="/admin/uploadImage">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Upload ảnh
                             </a>
@@ -137,7 +133,7 @@
                         <li>
                             <a href="#">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Chỉnh sửa ảnh
+                                Quản lí hình ảnh
                             </a>
 
                             <b class="arrow"></b>

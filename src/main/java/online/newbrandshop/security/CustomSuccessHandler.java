@@ -51,10 +51,10 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 		}
 		else if(isAdmin(roles))
 		{
-			url="/admin/uploadImage";
+			url="/admin/home";
 		}
 		else {
-			url="/error";
+			url="/login";
 		}
 		return url;
 	}

@@ -1,7 +1,7 @@
 <%@include file="/common/taglib.jsp"%>
 <c:url var="APIurl" value="/api-admin-new"/>
 <c:url var ="NewURL" value="/admin-new"/>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
     pageEncoding="UTF-8"%>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 	<html>
@@ -67,27 +67,8 @@
                                                     <td>Áo nike ádasdada</td>
                                                     <td>Áo nike vừa đắt vừa xấu</td>
                                                     <td>
-                                                        <c:url var="editURL" value="/admin-new">
-                                                            <c:param name="type" value="edit" />
-                                                            <c:param name="id" value="${item.id}" />
-                                                        </c:url>
                                                         <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-                                                            title="Cập nhật sản phẩm" href=""><i
-                                                                class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="checkbox"></td>
-                                                    <td>Áo nike ádasdada</td>
-                                                    <td>Áo nike vừa đắt vừa xấu</td>
-                                                    <td>
-                                                        <c:url var="editURL" value="/admin-new">
-                                                            <c:param name="type" value="edit" />
-                                                            <c:param name="id" value="${item.id}" />
-                                                        </c:url>
-                                                        <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-                                                            title="Cập nhật sản phẩm" href=""><i
+                                                            title="Cập nhật sản phẩm" href="/admin/edit"><i
                                                                 class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                         </a>
                                                     </td>

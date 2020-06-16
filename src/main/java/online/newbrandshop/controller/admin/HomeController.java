@@ -28,36 +28,36 @@ public class HomeController {
     ImageRepository imageRepository;
     @Autowired
     ProductRepository productRepository;
-    @RequestMapping("/uploadImage")
-    ModelAndView uploadImage()
-    {
-        ModelAndView mav=new ModelAndView("web/UploadImage");
-        return mav;
-    }
+//    @RequestMapping("/uploadImage")
+//    ModelAndView uploadImage()
+//    {
+//        ModelAndView mav=new ModelAndView("web/UploadImage");
+//        return mav;
+//    }
     
     //////test//////
     
-    @RequestMapping("/adminhome")
+    @RequestMapping("/home")
     ModelAndView adminhome()
     {
         ModelAndView mav=new ModelAndView("admin/home");
         return mav;
     }
     
-    @RequestMapping("/adminlist")
+    @RequestMapping("/list")
     ModelAndView adminlist()
     {
         ModelAndView mav=new ModelAndView("admin/new/list");
         return mav;
     }
     
-    @RequestMapping("/adminedit")
+    @RequestMapping("/edit")
     ModelAndView adminedit()
     {
         ModelAndView mav=new ModelAndView("admin/new/edit");
         return mav;
     }
-    @RequestMapping("/adminuploadimage")
+    @RequestMapping("/uploadImage")
     ModelAndView adminuploadimage()
     {
         ModelAndView mav=new ModelAndView("admin/imagepage/uploadimage");
@@ -87,13 +87,13 @@ public class HomeController {
         }
         return "web/UploadImage";
     }
-    @RequestMapping("/uploadedImage")
-    ModelAndView uploadedImage()
-    {
-        ModelAndView mav=new ModelAndView("/web/UploadedImage");
-        List<ImageEntity> imageEntities=imageRepository.findAll();
-        mav.addObject("test","huynh");
-        mav.addObject("list",imageEntities);
-        return mav;
-    }
+//    @RequestMapping("/uploadedImage")
+//    ModelAndView uploadedImage()
+//    {
+//        ModelAndView mav=new ModelAndView("/web/UploadedImage");
+//        List<ImageEntity> imageEntities=imageRepository.findAll();
+//        mav.addObject("test","huynh");
+//        mav.addObject("list",imageEntities);
+//        return mav;
+//    }
 }
