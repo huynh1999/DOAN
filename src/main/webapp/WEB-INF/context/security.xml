@@ -9,13 +9,12 @@
 	<http pattern="/admin/**" auto-config="false" use-expressions="true" disable-url-rewriting="true">
 		<intercept-url pattern="/admin/**"
 			access=" hasAnyRole('admin')" />
-			
+
 		<access-denied-handler
 			error-page="/AccessDenied" />
-		<form-login
+		<form-login login-page="/login"
 			username-parameter="j_username" password-parameter="j_password"
-			login-processing-url="/admin_j_spring_security_check"
-			authentication-success-handler-ref="customSuccessHandlerForAdmin"
+			login-processing-url="/spring_security_check"
 			authentication-failure-url="/adminlogin?incorrectAccount" />
 		<logout delete-cookies="JSESSIONID" logout-success-url="/home" />
 	</http>
@@ -46,7 +45,5 @@
 		class="online.newbrandshop.service.CustomUserDetailsService" />
 	<beans:bean id="customSuccessHandler"
 		class="online.newbrandshop.security.CustomSuccessHandler" />
-	<beans:bean id="customSuccessHandlerForAdmin"
-		class="online.newbrandshop.security.CustomSuccessHandlerForAdmin" />
 
 </beans:beans>

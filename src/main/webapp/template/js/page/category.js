@@ -14,12 +14,17 @@ function upload()
            root.append("<div class=\"_1sanpham\" role=\"listitem\">\n" +
                     "                <a href=\""+"/product/"+data[i].id +"\"><img alt=\"sanpham1\" class=\"anhsanpham\"\n" +
                     "                        src="+data[i].url1 +
-                    "                        alt=\"\"></a>\n" +
+                    "                        onerror=\"errorLoadImg.call(this)\"></a>\n" +
                     "                <p style=\" margin-top: 10px;\">"+data[i].name+"</p>\n" +
                     "                <p>"+data[i].price+"</p>\n" +
                     "            </div>");
     }
     now=max;
+}
+function errorLoadImg()
+{
+    this.onerror=null;
+    this.src="/template/img/sportswear-t-shirt-w9CHRW2020-06-01T14-01-10-704.jpg";
 }
 console.log("test");
 window.addEventListener("scroll", function(){
@@ -38,6 +43,6 @@ window.addEventListener("scroll", function(){
                 upload();
                 clearInterval(timer);
             }
-        })
+        },500)
     }
 });

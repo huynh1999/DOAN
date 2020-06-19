@@ -298,9 +298,7 @@
         </div>
         <div class="cot3" role="main">
             <h3>Thông tin 3</h3>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati voluptatem nihil delectus omnis quaerat,
-            consectetur itaque quae esse animi velit corporis unde excepturi officia ut dignissimos, ab asperiores, nisi
-            numquam.
+
         </div>
     </div>
 <script>

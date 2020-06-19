@@ -25,7 +25,7 @@ public class UserEntity extends BaseEntity {
 	@Column(name = "active")
 	private int active;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "roleuserid")
 	private RoleUserEntity roleUserEntity;
 

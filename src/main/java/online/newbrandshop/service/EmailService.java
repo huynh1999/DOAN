@@ -2,6 +2,7 @@ package online.newbrandshop.service;
 
 import online.newbrandshop.modal.BillEntity;
 import online.newbrandshop.modal.PayerEntity;
+import online.newbrandshop.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -36,7 +37,7 @@ public class EmailService {
             @Override
             public void prepare(MimeMessage mimeMessage) throws Exception {
                 MimeMessageHelper messageObj = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-                messageObj.setTo("17520599@gm.uit.edu.vn");
+                messageObj.setTo(SecurityUtils.getPrincipal().getEmail());
                 messageObj.setSubject("NewBrandShopOnline Confirm Bill");
                 messageObj.setText(text.toString(), true);
             }

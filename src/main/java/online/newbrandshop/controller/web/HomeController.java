@@ -59,11 +59,6 @@ public class HomeController {
 	EmailService emailService;
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	   public ModelAndView homePage(HttpSession session) {
-//		if(SecurityUtils.isAuthenticanted())
-//		{
-//			System.out.println(SecurityUtils.getPrincipal().getUsername());
-//		}
-//		else {System.out.println("Not Login");}
 		ModelAndView mav = new ModelAndView("web/home");
 		return mav;
 	}
@@ -110,16 +105,21 @@ public class HomeController {
 		}
 		catch (Exception e)
 		{
-			return "redirect:home?errorRegister";
+			return "redirect:login?errorRegister";
 		}
-		return "redirect:home?successRegister";
+		return "redirect:login?successRegister";
 	}
 	@RequestMapping("/category/{cate}")
 	ModelAndView category(){
 		ModelAndView mav=new ModelAndView("web/category");
 		return mav;
 	}
-
+	@RequestMapping("/registerWeb")
+	ModelAndView registerWeb()
+	{
+		ModelAndView mav=new ModelAndView("web/register");
+		return mav;
+	}
 	@RequestMapping("/product/{idproduct}")
 	ModelAndView chitiet(@PathVariable("idproduct")Long id){
 		ModelAndView mav=new ModelAndView("web/chitietsp");
@@ -139,15 +139,9 @@ public class HomeController {
 		ModelAndView mav=new ModelAndView("web/checkout");
 		return mav;
 	}
-	@RequestMapping("/error")
+	@RequestMapping("/errorHandle")
 	ModelAndView error(){
 		ModelAndView mav=new ModelAndView("web/error");
-		return mav;
-	}
-	//test fe admin
-	@RequestMapping("/admintest")
-	ModelAndView admin(){
-		ModelAndView mav=new ModelAndView("admin/new/list");
 		return mav;
 	}
 	@RequestMapping("bill/{nameBill}")
