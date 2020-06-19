@@ -12,7 +12,7 @@ function upload()
     for(var i=now;i<max;i++)
     {
            root.append("<div class=\"_1sanpham\" role=\"listitem\">\n" +
-                    "                <a href=\""+"product/"+data[i].id +"\"><img alt=\"sanpham1\" class=\"anhsanpham\"\n" +
+                    "                <a href=\""+"/product/"+data[i].id +"\"><img alt=\"sanpham1\" class=\"anhsanpham\"\n" +
                     "                        src="+data[i].url1 +
                     "                        alt=\"\"></a>\n" +
                     "                <p style=\" margin-top: 10px;\">"+data[i].name+"</p>\n" +
