@@ -131,7 +131,7 @@
 				<a href="#" class="fa fa-map-marker icon_color"><span class="text_"> HCM</span></a>
 			</div>
 		</sec:authorize>
-		<sec:authorize access="hasRole('customer')">
+		<sec:authorize access="hasAnyRole('customer','admin')">
 			<div class="headinfo_right dropdown" role="listitem">
 				<a href="#" class="text_ logintextsc" data-toggle="dropdown">Welcome <%=SecurityUtils.getPrincipal().getName()%></a>
 				<div class="dropdown-menu hidemydropdown">

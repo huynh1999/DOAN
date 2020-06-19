@@ -1,7 +1,4 @@
-/*
-	@author:Quang Truong
-	@date: Jan 15, 2020
-*/
+
 
 package online.newbrandshop.service;
 
@@ -42,11 +39,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		RoleUserEntity role = userEntity.getRoleUserEntity();
 		authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-		// put thong tin vao security de duy tri thong tin khi user login vao he thong
 		MyUser myUser = new MyUser(userEntity.getUserName(), userEntity.getPassword(), true, true, true, true,
 				authorities);
-		if (role.getRoleName().equals("customer")) {
-			//Hai Update
+		if (role.getRoleName().equals("customer")||role.getRoleName().equals("admin")) {
 			ProfileUserEntity profileUser = userEntity.getProfileUserEntity();
 			if(profileUser==null)return myUser;
 			myUser.setName(profileUser.getName());

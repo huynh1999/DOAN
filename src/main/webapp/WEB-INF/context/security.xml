@@ -22,7 +22,7 @@
 	<http auto-config="false" use-expressions="true" disable-url-rewriting="true">
 
 		<intercept-url pattern="/user/**"
-			access="hasAnyRole('customer')" />
+			access="hasAnyRole('customer','admin')" />
 		<access-denied-handler
 			error-page="/customerAccessDenied" />
 		<form-login login-page="/login"

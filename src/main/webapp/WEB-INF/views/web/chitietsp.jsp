@@ -37,7 +37,7 @@
         <div class="row">
           <h5>Chọn size</h5>
         </div>
-        <div class="row">
+        <div class="row" id="size">
           <div class="form-check">
             <label class="form-check-label">
               <input type="radio" checked class="form-check-input" name="optradio" value="XS">XS

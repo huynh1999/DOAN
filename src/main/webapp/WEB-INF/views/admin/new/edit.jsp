@@ -30,20 +30,6 @@
                                     <label class="col-sm-3 control-label no-padding-right">Brand</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="categoryCode" name="categoryCode">
-                                            <c:if test="${empty model.categoryCode}">
-                                                <option value="">Chọn loại sản phẩm</option>
-                                                <c:forEach var="item" items="${categories}">
-                                                    <option value="${item.code}">${item.name}</option>
-                                                </c:forEach>
-                                            </c:if>
-                                            <c:if test="${not empty model.categoryCode}">
-                                                <option value="">Chọn loại sản phẩm</option>
-                                                <c:forEach var="item" items="${categories}">
-                                                    <option value="${item.code}" <c:if test="${item.code == model.categoryCode}">selected="selected"</c:if>>
-                                                            ${item.name}
-                                                    </option>
-                                                </c:forEach>
-                                            </c:if>
                                         </select>
                                     </div>
                                 </div>

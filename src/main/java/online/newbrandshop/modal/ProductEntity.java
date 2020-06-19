@@ -39,7 +39,15 @@ public class ProductEntity extends BaseEntity{
 	String content;
 	@Column(name = "active")
 	int active;
+	@Column(name = "size")
+	String size;
+	public String getSize() {
+		return size;
+	}
 
+	public void setSize(String size) {
+		this.size = size;
+	}
 	public int getActive() {
 		return active;
 	}

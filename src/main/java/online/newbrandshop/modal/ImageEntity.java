@@ -9,8 +9,6 @@ import javax.persistence.Table;
 public class ImageEntity extends BaseEntity{
     @Column(name = "link")
     String link;
-    @Column(name = "idproduct")
-    int idproduct;
     public String getLink() {
         return link;
     }
@@ -19,11 +17,4 @@ public class ImageEntity extends BaseEntity{
         this.link = link;
     }
 
-    public int getIdproduct() {
-        return idproduct;
-    }
-
-    public void setIdproduct(int idproduct) {
-        this.idproduct = idproduct;
-    }
 }

@@ -1,5 +1,6 @@
 var listItem=JSON.parse(localStorage.getItem("cart_item"));
 var root=document.getElementById("root");
+//Load Data Default
 async function LoadData() {
     for(var i=0;i<listItem.length;i++)
     {
@@ -59,6 +60,7 @@ function ShowData(index,data) {
         "                            </td>\n" +
         "                        </tr>"
 }
+//delete Data
 function deleteItemCart(id,index) {console.log(index)
     listItem=JSON.parse(localStorage.getItem("cart_item"));
     listItem= $.grep(listItem, function(e){
@@ -72,6 +74,7 @@ function deleteItemCart(id,index) {console.log(index)
         if(indexid<indexnow){$(this).text(--indexnow)};
     })
 }
+//Add event listener when change size and amount
 function ChangeSize(selectElement)
 {
     selectElement.addEventListener("change",function(){
@@ -130,6 +133,8 @@ function SetDefaultValue()
         amount[index].setAttribute("selected","selected");
     }
 }
+
+
 function SetTotalPrice()
 {
     var element=document.getElementById("tong");

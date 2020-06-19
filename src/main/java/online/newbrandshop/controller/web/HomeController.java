@@ -196,6 +196,7 @@ public class HomeController {
 				json.put("img",productEntity.getUrl1());
 				json.put("amount",single.get("amount").asInt());
 				json.put("name",productEntity.getName());
+				json.put("size",single.get("size").asText());
 				jsonArray.put(json);
 				totalMoney=totalMoney.add(new BigInteger(productEntity.getPrice().replaceAll("\\D+","")).multiply(new BigInteger(single.get("amount").asText())));
 			}

@@ -30,7 +30,7 @@ public class EmailService {
         text.append("<p>Bill Code : "+bill.getBillName()+"</p>");
         text.append("</i>");
         text.append("</strong>");
-        text.append("<p>For more information about bill please go to : newbrandshop/bill/"+bill.getBillName()+"</p>");
+        text.append("<p>For more information about bill please go to : https://newbrandshop.online/bill/"+bill.getBillName()+"</p>");
         text.append("<p>Any question please contact with us.Thanks</p>");
 
         MimeMessagePreparator message = new MimeMessagePreparator() {
