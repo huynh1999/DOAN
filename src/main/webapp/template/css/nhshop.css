@@ -426,7 +426,7 @@ input:valid ~ span.show{
     visibility: visible;
 }
 input:focus ~ label,
-input:valid ~ label{
+input:not([value=""])[value] ~ label{
     transform: translateY(-40px);
     background: white;
     font-size: 16px;

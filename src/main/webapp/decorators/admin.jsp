@@ -39,7 +39,7 @@
                             Xin chào, <%=SecurityUtils.getPrincipal().getName()%>
                         </a>
                     <li class="light-blue dropdown-modal">
-                        <a href="#">
+                        <a href="/logout">
                             <i class="ace-icon fa fa-power-off"></i>
                             Thoát
                         </a>
@@ -186,6 +186,6 @@
     <script src="<c:url value='/template/assets/js/ace-elements.min.js' />"></script>
     <script src="<c:url value='/template/assets/js/ace.min.js' />"></script>
     <script src="<c:url value='/template/assets/js/jquery-ui.min.js' />"></script>
-    
+    <script src="${pageContext.request.contextPath}/template/js/common/axios.js"></script>
 </body>
 </html>

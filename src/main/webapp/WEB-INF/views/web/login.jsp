@@ -27,7 +27,7 @@
             <div class="chudau">
                 <h4 class="modal-title chudep">Login</h4>
             </div>
-
+            <div id="show_alert"></div>
             <form action="<c:url value="/j_spring_security_check" />" method="post">
                 <div class="input-field">
                     <input type="text" required="" name="j_username">
@@ -55,12 +55,18 @@
                     </fb:login-button>
             </div>
             <div class="signup">
-                <p id="signup">Not a member? <a href="#" id="signuplink" data-dismiss="modal">Signup
+                <p id="signup">Not a member? <a href="/registerWeb" id="signuplink" data-dismiss="modal">Signup
                     now</a></p>
             </div>
         </div>
     </div>
 </div>
+<script>
+    window.onload=function(){
+        $.getScript("/template/js/page/login.js");
+    }
+
+</script>
 </body>
 
 </html>

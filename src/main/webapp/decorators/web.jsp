@@ -4,6 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169858618-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-169858618-1');
+	</script>
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
@@ -22,10 +32,23 @@
 	window.fbAsyncInit = function() {
 		FB.init({
 			xfbml            : true,
-			version          : 'v7.0'
+			version          : '7.0'
 		});
 	};
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId      : '189392698895180',
+			cookie     : true,                     // Enable cookies to allow the server to access the session.
+			xfbml      : true,                     // Parse social plugins on this webpage.
+			version    : '7.0'           // Use this Graph API version for this call.
+		});
 
+
+		FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+			console.log("getLoginStatus"+response);
+			statusChangeCallback(response);        // Returns the login status.
+		});
+	};
 	(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
@@ -63,20 +86,7 @@
 	}
 
 
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId      : '189392698895180',
-			cookie     : true,                     // Enable cookies to allow the server to access the session.
-			xfbml      : true,                     // Parse social plugins on this webpage.
-			version    : '7.0'           // Use this Graph API version for this call.
-		});
 
-
-		FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
-			console.log("getLoginStatus"+response);
-			statusChangeCallback(response);        // Returns the login status.
-		});
-	};
 
 
 	(function(d, s, id) {                      // Load the SDK asynchronously
@@ -302,27 +312,27 @@
 							</div>
 							<form id="form_register" action="/register" method="post">
 								<div class="input-field">
-									<input type="text" required="" name="username">
+									<input type="text" required="" name="username" pattern="[a-z0-9]{6,15}" title="Vui lòng nhập đúng định dạng">
 									<label>User Name</label>
 								</div>
 								<div class="input-field">
-									<input type="text" required="" name="fullname">
+									<input type="text" required="" name="fullname" pattern="([^\u0000-\u007F]|[ a-zA-z]){6,25}" title="Vui lòng nhập đúng định dạng">
 									<label>Full Name</label>
 								</div>
 								<div class="input-field">
-									<input type="text" required="" name="phone">
+									<input type="text" required="" name="phone" pattern="0[0-9]{9}" title="Vui lòng nhập SDT có thật">
 									<label>Số điện thoại</label>
 								</div>
 								<div class="input-field">
-									<input type="text" required="" name="address">
+									<input type="text" required="" name="address" pattern="{6,30}" title="Vui lòng nhập địa chỉ có thật">
 									<label>Địa chỉ</label>
 								</div>
 								<div class="input-field">
-									<input type="text" required="" name="email">
+									<input type="text" required="" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[ a-zA-Z]{2,4}" title="Vui lòng nhập email có thật">
 									<label>Email</label>
 								</div>
 								<div class="input-field">
-									<input class="pswrd" id="password" type="password" required="" name="password">
+									<input class="pswrd" id="password" type="password" required="" name="password" pattern="{6,15}" title="Password từ 6 đến 15 kí tự">
 									<span class="show"></span>
 									<label>Password</label>
 								</div>
@@ -418,7 +428,10 @@
 			});
 			$("[name=username]").change(function () {
 				CheckUserName();
-			})
+			});
+			$("input").keyup(function () {
+				$(this).attr("value",$(this).val());
+			});
 		});
 
 

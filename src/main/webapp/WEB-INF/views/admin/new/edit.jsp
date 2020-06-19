@@ -99,55 +99,8 @@
         </div>
     </div>
     <script>
-        var editor = '';
-        $(document).ready(function(){
-            editor = CKEDITOR.replace( 'content');
-        });
-        
-        $('#btnAddOrUpdatesp').click(function (e) {
-            e.preventDefault();
-            var data = {};
-            var formData = $('#formSubmit').serializeArray();
-            $.each(formData, function (i, v) {
-                data[""+v.name+""] = v.value;
-            });
-            data["content"] = editor.getData();
-            var id = $('#id').val();
-            if (id == "") {
-                addsp(data);
-            } else {
-                updatesp(data);
-            }
-        });
-        function addsp(data) {
-            $.ajax({
-                url: '${APIurl}',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(data),
-                dataType: 'json',
-                success: function (result) {
-                    window.location.href = "${NewURL}?type=edit&id="+result.id+"&message=insert_success";
-                },
-                error: function (error) {
-                    window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
-                }
-            });
-        }
-        function updatesp(data) {
-            $.ajax({
-                url: '${APIurl}',
-                type: 'PUT',
-                contentType: 'application/json',
-                data: JSON.stringify(data),
-                dataType: 'json',
-                success: function (result) {
-                    window.location.href = "${NewURL}?type=edit&id="+result.id+"&message=update_success";
-                },
-                error: function (error) {
-                    window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
-                }
-            });
+        window.onload=function () {
+            $.getScript("/template/js/admin/edit.js");
         }
     </script>
 </body>
