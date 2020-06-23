@@ -38,36 +38,6 @@
           <h5>Chọn size</h5>
         </div>
         <div class="row" id="size">
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" checked class="form-check-input" name="optradio" value="XS">XS
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio" value="S">S
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio" value="M">M
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio" value="L">L
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio" value="XL">XL
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio" value="2XL">2XL
-            </label>
-          </div>
         </div>
         <div class="row btmua" style="text-align: center; margin: auto; margin-top: 20px;">
           <button type="button" class="btn btn-outline-warning btnshop" id="add_cart">Thêm vào giỏ hàng</button>

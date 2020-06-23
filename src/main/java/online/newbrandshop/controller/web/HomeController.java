@@ -128,11 +128,11 @@ public class HomeController {
 		return mav;
 	}
 
-	@RequestMapping("/custom")
-	ModelAndView custom(){
-		ModelAndView mav=new ModelAndView("web/custom");
-		return mav;
-	}
+//	@RequestMapping("/custom")
+//	ModelAndView custom(){
+//		ModelAndView mav=new ModelAndView("web/custom");
+//		return mav;
+//	}
 
 	@RequestMapping("/cart")
 	ModelAndView cart(){

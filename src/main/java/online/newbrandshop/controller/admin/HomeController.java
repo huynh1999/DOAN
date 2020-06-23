@@ -1,9 +1,14 @@
 package online.newbrandshop.controller.admin;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import online.newbrandshop.modal.CategoryEntity;
 import online.newbrandshop.modal.ImageEntity;
+import online.newbrandshop.modal.ProductEntity;
 import online.newbrandshop.repository.*;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +19,8 @@ import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 @RequestMapping("/admin")
 @Controller("controllerForAdmin")
@@ -28,6 +35,8 @@ public class HomeController {
     ImageRepository imageRepository;
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
 //    @RequestMapping("/uploadImage")
 //    ModelAndView uploadImage()
 //    {
@@ -36,7 +45,12 @@ public class HomeController {
 //    }
     
     //////test//////
-    
+    @RequestMapping("/AddNewProduct")
+    ModelAndView AddNewProductPage()
+    {
+        ModelAndView mav=new ModelAndView("admin/new/AddNew");
+        return mav;
+    }
     @RequestMapping("/home")
     ModelAndView adminhome()
     {
@@ -64,28 +78,51 @@ public class HomeController {
         return mav;
     }
     ////-----//////
-    
-    @RequestMapping(value = "/savefile",method = RequestMethod.POST)
-    public String savefile(@RequestParam CommonsMultipartFile file, HttpSession session) throws FileNotFoundException {
+
+    @RequestMapping(value = "/AddNewProduct",method = RequestMethod.POST)
+    public String AddNewProduct(@RequestParam("title")String title,@RequestParam("shortDescription")String shortDescription,
+                                @RequestParam("price")String price,@RequestParam("images") List<CommonsMultipartFile> files,
+                                @RequestParam("categoryCode")String categoryCode, HttpSession session) throws FileNotFoundException, JsonProcessingException {
         String path = session.getServletContext().getRealPath("/template/img");
-        String filename = file.getOriginalFilename();
+        List<String>fileNameRe=new ArrayList<>();
+        ProductEntity productEntity=new ProductEntity();
+        productEntity.setName(new String (title.getBytes (StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+        List<CategoryEntity>categoryEntity=new ArrayList<>();
+        categoryEntity.add(categoryRepository.findOneByCategoryName(categoryCode));
+        productEntity.setListCategories(categoryEntity);
+        productEntity.setActive(1);
+        productEntity.setPrice(new String (price.getBytes (StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+        for (CommonsMultipartFile file:files){
+            String filename = java.time.LocalDateTime.now().toString().replaceAll("\\.", ":").replaceAll(":", "-")+file.getOriginalFilename();
 
-        System.out.println(path + " " + filename);
-        try {
-            byte barr[] = file.getBytes();
+            System.out.println(path + " " + filename);
+            try {
+                byte barr[] = file.getBytes();
 
-            BufferedOutputStream bout = new BufferedOutputStream(
-                    new FileOutputStream(path + "/" + filename));
-            bout.write(barr);
-            bout.flush();
-            bout.close();
-            ImageEntity imageEntity=new ImageEntity();
-            imageEntity.setLink("/template/img/"+filename);
-            imageRepository.save(imageEntity);
-        } catch (Exception e) {
-            e.printStackTrace();
+                BufferedOutputStream bout = new BufferedOutputStream(
+                        new FileOutputStream(path + "/" + filename));
+                bout.write(barr);
+                bout.flush();
+                bout.close();
+                ImageEntity imageEntity=new ImageEntity();
+                imageEntity.setLink("/template/img/"+filename);
+                imageRepository.save(imageEntity);
+                fileNameRe.add("/template/img/"+filename);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "redirect:/admin/list?addfail";
+            }
         }
-        return "web/UploadImage";
+        JSONObject object=new JSONObject();
+        object.put("img",fileNameRe);
+        object.put("des",new String (shortDescription.getBytes (StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+        object.put("price",new String (price.getBytes (StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+        object.put("name",new String (title.getBytes (StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+        productEntity.setContent(object.toString());
+        productEntity.setUrl1(fileNameRe.get(0));
+        productEntity.setAmount(100);
+        productRepository.save(productEntity);
+        return "redirect:/admin/list?addsuccess";
     }
 //    @RequestMapping("/uploadedImage")
 //    ModelAndView uploadedImage()

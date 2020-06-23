@@ -33,7 +33,7 @@
                                         <div class="dt-buttons btn-overlap btn-group">
                                             <a flag="info"
                                                 class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
-                                                data-toggle="tooltip" title='Thêm sản phẩm' href="#">
+                                                data-toggle="tooltip" title='Thêm sản phẩm' href="/admin/AddNewProduct">
                                                 <span>
                                                     <i class="fa fa-plus-circle bigger-110 purple"></i>
                                                 </span>

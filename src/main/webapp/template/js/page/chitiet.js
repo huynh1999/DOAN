@@ -35,7 +35,8 @@ function addCart() {
 }
 function uploadContent() {
     var root=document.getElementById("des");
-    root.innerText=content.des[0].replace(". ","\n");
+    var des=Array.isArray(content.des)?content.des[0]:content.des;
+    root.innerText=des.replace(". ","\n");
     var img=document.getElementById("lsimg");
     var htmlImg="";
     for(var i=0;i<content.img.length;i++)
@@ -46,13 +47,44 @@ function uploadContent() {
     }
     img.innerHTML=htmlImg;
 }
+function uploadSize(data) {
+    var root=document.getElementById("size");
+    var body="";
+    body+=HtmlRadioButton("XL",data.XL);
+    body+=HtmlRadioButton("XS",data.XS);
+    body+=HtmlRadioButton("L",data.L);
+    body+=HtmlRadioButton("M",data.M);
+    body+=HtmlRadioButton("S",data.S);
+    body+=HtmlRadioButton("2XL",data["2XL"]);
+    root.innerHTML=body;
+}
+function HtmlRadioButton(size,sl) {
+    var re="";
+    if(sl>0){
+        re="<div class=\"form-check\">\n" +
+            "            <label class=\"form-check-label\">\n" +
+            "              <input type=\"radio\" checked class=\"form-check-input\" name=\"optradio\" value=\""+size+"\">"+size+"\n" +
+            "            </label>\n" +
+            "          </div>";
+    }
+    else re="<div class=\"form-check\">\n" +
+        "            <label class=\"form-check-label\">\n" +
+        "              <input type=\"radio\" disabled='true' class=\"form-check-input\" name=\"optradio\" value=\""+size+"\">"+size+"\n" +
+        "            </label>\n" +
+        "          </div>";
+    return re;
+}
 function doWork() {
     axios.get(url).then(re=>{
         content=re.data;
         uploadContent();
-    })
+    });
+    axios.get("/api/size/"+location.href.split("/")[4]).then(
+        re=>uploadSize(re.data)
+    );
     $(btnadd).click(function () {
         addCart();
     });
+    console.log("test")
 }
 doWork();

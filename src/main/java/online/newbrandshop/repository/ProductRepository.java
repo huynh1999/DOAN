@@ -18,9 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
-	@Transactional
-	@Query("select r from ProductEntity r ")
-	public List<ProductEntity> find20Product();
 
 	ProductEntity findById(Long id);
 	@Query(value = "select u from ProductEntity u where u.name like '%' || :keyword || '%'")

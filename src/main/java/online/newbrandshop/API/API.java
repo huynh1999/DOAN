@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
-import online.newbrandshop.modal.ProductEntity;
-import online.newbrandshop.modal.ProfileUserEntity;
-import online.newbrandshop.modal.RoleUserEntity;
-import online.newbrandshop.modal.UserEntity;
+import online.newbrandshop.modal.*;
 import online.newbrandshop.repository.*;
 import online.newbrandshop.security.MyUser;
 import online.newbrandshop.util.SecurityUtils;
@@ -32,6 +29,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -52,18 +50,26 @@ public class API {
     BillRepository billRepository;
     @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
+    MenuRepository menuRepository;
+    @Autowired
+    NameTypeRepository nameTypeRepository;
     @GetMapping(value = "/category/{cate}" ,produces = "application/json;charset=UTF-8")
     String FindCategory(@PathVariable("cate")String cate) throws JsonProcessingException {
         Pageable pageRequest= new PageRequest(0,1);
         List<ProductEntity>list=categoryRepository.findOneByCategoryName(cate).getListProducts();
         ObjectMapper mapper=new ObjectMapper();
+        Collections.reverse(list);
         return mapper.writeValueAsString(list);
     }
     @GetMapping(value = "/content/{id}",produces = "application/json;charset=UTF-8")
     String ChiTiet(@PathVariable("id")Long id){
         return productRepository.findById(id).getContent();
     }
-
+    @GetMapping(value = "/size/{id}",produces = "application/json;charset=UTF-8")
+    String Size(@PathVariable("id")Long id){
+        return productRepository.findById(id).getSize();
+    }
     @GetMapping(value = "/product/{id}",produces = "application/json;charset=UTF-8")
     String CheckOutInf(@PathVariable("id")Long id) throws JsonProcessingException {
         ProductEntity productEntity=productRepository.findById(id);
@@ -177,5 +183,17 @@ public class API {
         catch (Exception e) {
             return "error";
         }
+    }
+    @GetMapping("/getMenu")
+    public String GetMenu() throws JsonProcessingException {
+        List<MenuEntity>list=menuRepository.findAllOrderByType();
+        ObjectMapper mapper=new ObjectMapper();
+        return mapper.writeValueAsString(list);
+    }
+    @GetMapping("/getTypeNameMenu/{type}")
+    public String GetNameType(@PathVariable("type")int type) throws JsonProcessingException {
+        NameTypeEntity entity=nameTypeRepository.findFirstByType(type);
+        ObjectMapper mapper=new ObjectMapper();
+        return mapper.writeValueAsString(entity);
     }
 }

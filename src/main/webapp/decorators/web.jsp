@@ -152,50 +152,7 @@
 		</div>
 		<div class="headmenu_cl2" role="list">
 			<ul class="menu_list" role="list">
-				<li class="menu_item" role="listitem">
-					<div class="list_down">
-						<a href="category.html">MEN</a>
-						<div class="dropdown_content" role="dropdown_content">
-							<a class="sm_item" href="/category/ClothesMenNike">Nike</a>
-							<a class="sm_item" href="#">MEN 2</a>
-							<a class="sm_item" href="#">MEN 3</a>
-						</div>
-					</div>
-				</li>
-				<li class="menu_item" role="listitem">
-					<div class="list_down">
-						<a href="#">WOMEN</a>
-						<div class="dropdown_content">
-							<a class="sm_item" href="/category/ClothesWomanNike">Nike</a>
-							<a class="sm_item" href="#">WOMEN 2</a>
-							<a class="sm_item" href="#">WOMEN 3</a>
-						</div>
-					</div>
-				</li>
-				<li class="menu_item" role="listitem">
-					<div class="list_down">
-						<a href="#">KIDS</a>
-						<div class="dropdown_content">
-							<a class="sm_item" href="/category/ClothesKidBoyNike">BOY Nike</a>
-							<a class="sm_item" href="/category/ClothesKidGirlNike">GIRL Nike</a>
-							<a class="sm_item" href="#">KIDS 3</a>
-						</div>
-					</div>
-				</li>
-				<li class="menu_item" role="listitem">
-					<div class="list_down">
-						<a href="category.html">BRAND</a>
-						<div class="dropdown_content">
-							<a class="sm_item" href="category.html">NIKE</a>
-							<a class="sm_item" href="#">ADIDAS</a>
-							<a class="sm_item" href="#">GUCCI</a>
-							<a class="sm_item" href="#">CHANEL</a>
-						</div>
-					</div>
-				</li>
-				<li class="menu_item" role="listitem">
-					<a href="custom.html">CUSTOMISE</a>
-				</li>
+
 			</ul>
 		</div>
 		<div class="headmenu_cl3" role="form">
@@ -376,66 +333,6 @@
 	<script src="<c:url value='/template/js/common/jquery.js' />"></script>
 	<script src="<c:url value='/template/js/common/bootstrap.min.js' />"></script>
 	<script src="${pageContext.request.contextPath}/template/js/common/popper.js"></script>
-	<script>
-		$(document).ready(function () {
-			$(".loginclick").click(function () {
-				event.preventDefault();
-				$("#btshowlog").click();
-			})
-			$("#signuplink").click(function () {
-				event.preventDefault();
-				$("#btshowlogsignup").click();
-			})
-			if ($("a.logintextsc").text() != "Login") {
-				$("a.logintextsc").addClass("dropdown-toggle");
-
-				$("a.logintextsc").mouseenter(function () {
-					$(".hidemydropdown").show();
-				})
-				$("a.logintextsc").mouseleave(function () {
-					$(".hidemydropdown").mouseleave(function () {
-						$(".hidemydropdown").hide();
-					})
-				})
-			}
-			async function apiUsername() {
-				var redata="";
-				var userName=$("[name=username]").val();
-				await axios.post("/api/checkUsername",{
-					username:userName
-				}).then(re=>{
-					redata=re.data;
-				});
-				return redata==="ok";
-			}
-			async function CheckUserName() {
-				var t=await apiUsername();
-				console.log(t);
-				if(!t){
-					$("#error-alert-register").show();
-				}
-				else {
-					$("#error-alert-register").hide();
-				}
-			}
-			$("#form_register").on('submit',async function (e) {
-				e.preventDefault();
-				var t=await apiUsername();
-				if(t)
-				{
-					$("#form_register")[0].submit();
-				}
-			});
-			$("[name=username]").change(function () {
-				CheckUserName();
-			});
-			$("input").keyup(function () {
-				$(this).attr("value",$(this).val());
-			});
-		});
-
-
-
-	</script>
+	<script src="/template/js/page/web.js"></script>
 </body>
 </html>

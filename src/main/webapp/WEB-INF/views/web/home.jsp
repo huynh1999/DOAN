@@ -15,7 +15,6 @@
     <!-- Bootstrap CSS -->
     <!-- css  -->
     <link rel="stylesheet" href=" ${pageContext.request.contextPath}/template/css/nhshop.css">
-    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
 </head>
 
 <body>

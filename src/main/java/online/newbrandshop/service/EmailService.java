@@ -37,7 +37,7 @@ public class EmailService {
             @Override
             public void prepare(MimeMessage mimeMessage) throws Exception {
                 MimeMessageHelper messageObj = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-                messageObj.setTo(SecurityUtils.getPrincipal().getEmail());
+                messageObj.setTo(bill.getPayerEntity().getEmail());
                 messageObj.setSubject("NewBrandShopOnline Confirm Bill");
                 messageObj.setText(text.toString(), true);
             }

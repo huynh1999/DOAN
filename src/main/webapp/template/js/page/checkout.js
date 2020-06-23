@@ -1,4 +1,11 @@
+if(window.location.search==="?error")
+{
+    localStorage.setItem("cart_item",localStorage.getItem("tmp"));
+    localStorage.removeItem("tmp");
+    alert("Đã có lỗi khi đặt hàng.Vui lòng thử lại");
+}
 var listItem=JSON.parse(localStorage.getItem("cart_item"));
+if(listItem===null)listItem=[];
 var root=document.getElementById("root");
 //Load Data Default
 async function LoadData() {
@@ -11,12 +18,14 @@ async function LoadData() {
     }
 }
 function ShowData(index,data) {
-    root.innerHTML=root.innerHTML+"<tr class=\"mathang\">\n" +
+    $(root).append("<tr class=\"mathang\">\n" +
         "                            <th scope=\"row\">"+index+"</th>\n" +
         "                            <td><img class=\"anhsanpham thugon\"\n" +
         "                                    src=\""+data.url1+"\"\n" +
         "                                    alt=\"anh sp\"></td>\n" +
-        "                            <td>\n" +"<input class='idproduct' value='"+data.id+"' hidden>"+
+        "                            <td>\n" +
+        "                               <input class='idproduct' value='"+data.id+"' hidden> " +
+        "                               <input class='sizedata' value='"+data.size+"' hidden>"+
         "                                <h6>"+data.name+"</h6>\n" +
         "                                <div class=\"form-group mycustomformgroup\">\n" +
         "                                    <div class=\"mycustomformgroup_c1\">\n" +
@@ -24,12 +33,6 @@ function ShowData(index,data) {
         "                                    </div>\n" +
         "                                    <div class=\"mycustomformgroup_c2\">\n" +
         "                                        <select class=\"form-control mycustomselect\" name=\"size\" >\n" +
-        "                                            <option value=\"S\">S</option>\n" +
-        "                                            <option value=\"XS\">XS</option>\n" +
-        "                                            <option value=\"2XL\">2XL</option>\n" +
-        "                                            <option value=\"M\">M</option>\n" +
-        "                                            <option value=\"L\">L</option>\n" +
-        "                                            <option value=\"XL\">XL</option>\n" +
         "                                        </select>\n" +
         "                                    </div>\n" +
         "                                </div>\n" +
@@ -39,16 +42,6 @@ function ShowData(index,data) {
         "                                    </div>\n" +
         "                                    <div class=\"mycustomformgroup_c2\">\n" +
         "                                        <select class=\"form-control mycustomselect mycustomselectsl\" name=\"amount\">\n" +
-        "                                            <option value=\"1\">1</option>\n" +
-        "                                            <option value=\"2\">2</option>\n" +
-        "                                            <option value=\"3\">3</option>\n" +
-        "                                            <option value=\"4\">4</option>\n" +
-        "                                            <option value=\"5\">5</option>\n" +
-        "                                            <option value=\"6\">6</option>\n" +
-        "                                            <option value=\"7\">7</option>\n" +
-        "                                            <option value=\"8\">8</option>\n" +
-        "                                            <option value=\"9\">9</option>\n" +
-        "                                            <option value=\"10\">10</option>\n" +
         "                                        </select>\n" +
         "                                    </div>\n" +
         "\n" +
@@ -58,7 +51,31 @@ function ShowData(index,data) {
         "                            <td>\n" +
         "                                <p class=\"gia\">"+data.price+"</p>\n" +
         "                            </td>\n" +
-        "                        </tr>"
+        "                        </tr>");
+    SetSizeProductHave(data.size);
+}
+function SetSizeProductHave(data) {
+    var changeElement=$('tr').last();
+    var datatmp=JSON.parse(data);
+    var sizeHtml="";
+    if(datatmp.S>0)sizeHtml+="<option value='S'>S</option>";
+    if(datatmp.XL>0)sizeHtml+="<option value='XL'>XL</option>";
+    if(datatmp.XS>0)sizeHtml+="<option value='XS'>XS</option>";
+    if(datatmp["2XL"]>0)sizeHtml+="<option value='2XL'>2XL</option>";
+    if(datatmp.M>0)sizeHtml+="<option value='M'>M</option>";
+    if(datatmp.L>0)sizeHtml+="<option value='L'>L</option>";
+    changeElement.find('[name=size]').html(sizeHtml);
+}
+function SetAmountProductHave(data,element) {
+    var amountHtml="<option selected value='1'>1</option>";
+    var max;
+    if(data>10)max=10;
+    else max=data;
+    for(var i=1;i<max;i++)
+    {
+        amountHtml+="<option value='"+(i+1)+"'>"+(i+1)+"</option>"
+    }
+    element.innerHTML=amountHtml;
 }
 //delete Data
 function deleteItemCart(id,index) {console.log(index)
@@ -78,12 +95,17 @@ function deleteItemCart(id,index) {console.log(index)
 function ChangeSize(selectElement)
 {
     selectElement.addEventListener("change",function(){
+        var dataSize=JSON.parse($(this).parents("tr").find(".sizedata").val());
         var idproduct=$(this).parents("tr").find("input[hidden]").val();
+        var maxAmount;
         var option=$(this).find("option");
         for(var i=0;i<option.length;i++){
             if(option[i].selected){
+                maxAmount=dataSize[option[i].value];
+                SetAmountProductHave(maxAmount,$(this).parents("tr").find("select[name=amount]")[0]);
                 var listItem=JSON.parse(localStorage.getItem("cart_item"));
                 listItem.find(e=>e.id==idproduct).size=option[i].value;
+                listItem.find(e=>e.id==idproduct).amount=1;
                 localStorage.setItem("cart_item",JSON.stringify(listItem));
             }
         }
@@ -103,7 +125,7 @@ function ChangeAmount(selectElement) {
         SetTotalPrice();
     })
 }
-function SetSizeAndAmount()
+function SetSizeAndAmountEventChange()
 {
     var sizeSelect=$("select[name=size]");
     var amountSelect=$("select[name=amount]");
@@ -118,8 +140,10 @@ function SetDefaultValue()
     var row=document.getElementsByClassName("mathang");
     for(var i=0;i<row.length;i++)
     {
+        var maxAmount;
+        var selectedSizeValue;
+        var dataSize=JSON.parse($(row[i]).find(".sizedata").val());
         var size=$(row[i]).find("select[name=size]").find("option");
-        var amount=$(row[i]).find("select[name=amount]").find("option");
         var listItem=JSON.parse(localStorage.getItem("cart_item"));
         var sizeInfo=listItem[i].size;
         var index=listItem[i].amount-1;
@@ -127,10 +151,23 @@ function SetDefaultValue()
         {
             if(size[j].value===sizeInfo){
                 size[j].setAttribute("selected","selected");
+                selectedSizeValue=size[j].value;
+                maxAmount=dataSize[selectedSizeValue];
+                SetAmountProductHave(maxAmount,$(row[i]).find("select[name=amount]")[0]);
                 break;
             }
         }
-        amount[index].setAttribute("selected","selected");
+        var amount=$(row[i]).find("select[name=amount]").find("option");
+        if(maxAmount>=listItem[i].amount){
+            amount[index].setAttribute("selected","selected");
+        }
+        else{
+            var idProduct=$(row[i]).find(".idproduct").val();
+            var listItem=JSON.parse(localStorage.getItem("cart_item"));
+            listItem.find(e=>e.id==idProduct).amount=maxAmount;
+            localStorage.setItem("cart_item",JSON.stringify(listItem));
+            amount[maxAmount-1].setAttribute("selected","selected");
+        }
     }
 }
 
@@ -138,7 +175,6 @@ function SetDefaultValue()
 function SetTotalPrice()
 {
     var element=document.getElementById("tong");
-    var listItem=JSON.parse(localStorage.getItem("cart_item"));
     var total=0;
     for(var i=0;i<listItem.length;i++)
     {
@@ -150,6 +186,7 @@ function CheckOut()
 {
     $("#checkout").submit(function () {
         $("input[name=content]").attr("value",localStorage.getItem("cart_item"));
+        localStorage.setItem("tmp",localStorage.getItem("cart_item"));
         localStorage.removeItem("cart_item");
         return true;
     })
@@ -163,9 +200,16 @@ async function doWork() {
         $(this).parents("tr").remove();
         deleteItemCart(idproduct,index);
     });
-    SetSizeAndAmount();
+    $(".btn_thanhtoan").click(function (e) {
+        if(listItem.length!==0){
+            e.preventDefault();
+            $('#ModalOfCheckout').modal('show');
+        }
+    });
+    SetSizeAndAmountEventChange();
     SetDefaultValue();
     SetTotalPrice();
     CheckOut();
+    console.log("test");
 }
 doWork();

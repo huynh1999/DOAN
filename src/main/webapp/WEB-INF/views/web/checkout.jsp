@@ -52,8 +52,7 @@
 
                 </div>
                 <div class="row">
-                    <button type="button" class="btn btn-warning btn_thanhtoan" data-toggle="modal"
-                        data-target="#ModalOfCheckout" style="margin: auto; margin-top: 10px;">Thanh
+                    <button type="button" class="btn btn-warning btn_thanhtoan" style="margin: auto; margin-top: 10px;">Thanh
                         toán</button>
                 </div>
             </div>
@@ -126,7 +125,7 @@
               </div>
           </div>
       </sec:authorize>
-      <sec:authorize access="hasRole('customer')">
+      <sec:authorize access="hasAnyRole('customer','admin')">
           <div>
               <!-- The Modal -->
               <div class="modal fade" id="ModalOfCheckout">
