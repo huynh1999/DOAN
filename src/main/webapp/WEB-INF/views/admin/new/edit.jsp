@@ -63,6 +63,20 @@
                                     <label class="col-sm-3 control-label no-padding-right">Hình ảnh</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="anh" name="anh" value="${model.anh}"/>
+                                        <div class="row myanhnho">
+                                            <div class="anhnhothanhphan">
+                                                <img src="http://8showbiz.com/wp-content/uploads/2018/09/truong-quynh-anh-tich-cuc-tha-thinh-sau-ly-hon-voi-tim-hinh-5.jpg" alt="">
+                                                <button type="button" id="button-donganhnho">x</button>
+                                            </div>
+                                            <div class="anhnhothanhphan">
+                                                <img src="http://8showbiz.com/wp-content/uploads/2018/09/truong-quynh-anh-tich-cuc-tha-thinh-sau-ly-hon-voi-tim-hinh-5.jpg" alt="">
+                                                <button type="button" id="button-donganhnho">x</button>
+                                            </div>
+                                            <div class="anhnhothanhphan">
+                                                <img src="http://8showbiz.com/wp-content/uploads/2018/09/truong-quynh-anh-tich-cuc-tha-thinh-sau-ly-hon-voi-tim-hinh-5.jpg" alt="">
+                                                <button type="button" id="button-donganhnho">x</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <br/>
@@ -88,6 +102,11 @@
         window.onload=function () {
             $.getScript("/template/js/admin/edit.js");
         }
+    </script>
+    <script>
+        $("#button-donganhnho").click(function(){
+            $(".anhnhothanhphan").hide();
+        })
     </script>
 </body>
 </html>

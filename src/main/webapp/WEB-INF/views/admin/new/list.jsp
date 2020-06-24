@@ -25,6 +25,20 @@
                     <!-- /.breadcrumb -->
                 </div>
                 <div class="page-content">
+                	<div class="row" style="display: flex; width: 250px; justify-content: center;">
+                        <div class="col-2 mycol1">
+                            <select class="form-control" id="sel1" name="sellist1">
+                                <option>nike</option>
+                                <option>adidas</option>
+                                <option>chanel</option>
+                                <option>gucci</option>
+                            </select>
+                        </div>
+                        <div class="col-1 mycol2" style="text-align: left;">
+                            <button type="submit" class="btn btn-warning">Lọc</button>
+                        </div>
+
+                    </div>
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="widget-box table-filter">
