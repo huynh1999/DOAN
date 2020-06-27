@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title>NBShop.com</title>
+    <title>NBShop Online</title>
     <!-- Required meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords"

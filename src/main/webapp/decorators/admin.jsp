@@ -20,6 +20,9 @@
     <script src="/template/assets/js/jquery-ui.js"></script>
     <link rel="stylesheet" href=" ${pageContext.request.contextPath}/template/css/listsp.css">
     <link rel="stylesheet" href=" ${pageContext.request.contextPath}/template/css/edit.css">
+    <script type="text/javascript" src="/template/js/common/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="/template/css/bootstrap-multiselect.css" type="text/css"/>
+    <dec:head/>
 </head>
 
 <body class="no-skin">

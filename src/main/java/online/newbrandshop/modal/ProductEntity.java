@@ -44,7 +44,6 @@ public class ProductEntity extends BaseEntity{
 	public String getSize() {
 		return size;
 	}
-
 	public void setSize(String size) {
 		this.size = size;
 	}

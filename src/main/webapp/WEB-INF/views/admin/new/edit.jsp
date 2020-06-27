@@ -1,7 +1,6 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@include file="/common/taglib.jsp"%>
-<c:url var="APIurl" value="/api-admin-new"/>
-<c:url var ="NewURL" value="/admin-new"/>
+
 
 <html>
 <head>
@@ -29,7 +28,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right">Brand</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" id="categoryCode" name="categoryCode">
+                                        <select class="form-control" id="categoryCode" name="categoryCode" multiple>
                                         </select>
                                     </div>
                                 </div>
@@ -38,7 +37,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right">Tên sản phẩm</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="title" name="title" value="${model.title}"/>
+                                        <input type="text" class="form-control" id="name" name="name" value=""/>
                                     </div>
                                 </div>
                                 <br/>
@@ -46,7 +45,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right">Mô tả</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="shortDescription" name="shortDescription" value="${model.shortDescription}"/>
+                                        <input type="text" class="form-control" id="shortDescription" name="shortDescription" value=""/>
                                     </div>
                                 </div>
                                 <br/>
@@ -54,7 +53,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right">Giá</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="gia" name="gia" value="${model.gia}"/>
+                                        <input type="text" class="form-control" id="price" name="price" value=""/>
                                     </div>
                                 </div>
                                 <br/>
@@ -62,20 +61,9 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label no-padding-right">Hình ảnh</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="anh" name="anh" value="${model.anh}"/>
-                                        <div class="row myanhnho">
-                                            <div class="anhnhothanhphan">
-                                                <img src="http://8showbiz.com/wp-content/uploads/2018/09/truong-quynh-anh-tich-cuc-tha-thinh-sau-ly-hon-voi-tim-hinh-5.jpg" alt="">
-                                                <button type="button" id="button-donganhnho">x</button>
-                                            </div>
-                                            <div class="anhnhothanhphan">
-                                                <img src="http://8showbiz.com/wp-content/uploads/2018/09/truong-quynh-anh-tich-cuc-tha-thinh-sau-ly-hon-voi-tim-hinh-5.jpg" alt="">
-                                                <button type="button" id="button-donganhnho">x</button>
-                                            </div>
-                                            <div class="anhnhothanhphan">
-                                                <img src="http://8showbiz.com/wp-content/uploads/2018/09/truong-quynh-anh-tich-cuc-tha-thinh-sau-ly-hon-voi-tim-hinh-5.jpg" alt="">
-                                                <button type="button" id="button-donganhnho">x</button>
-                                            </div>
+                                        <input type="text" class="form-control" id="img" name="anh" value="${model.anh}"/>
+                                        <div class="row myanhnho" id="list_img">
+
                                         </div>
                                     </div>
                                 </div>
@@ -83,15 +71,9 @@
                                 <br/>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <c:if test="${not empty model.id}">
-                                            <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật sản phẩm" id="btnAddOrUpdatesp"/>
-                                        </c:if>
-                                        <c:if test="${empty model.id}">
-                                            <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm sản phẩm" id="btnAddOrUpdatesp"/>
-                                        </c:if>
+                                            <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật" id="btnUpdate"/>
                                     </div>
                                 </div>
-                                <input type="hidden" value="${model.id}" id="id" name="id"/>
                             </form>
                     </div>
                 </div>
@@ -102,11 +84,6 @@
         window.onload=function () {
             $.getScript("/template/js/admin/edit.js");
         }
-    </script>
-    <script>
-        $("#button-donganhnho").click(function(){
-            $(".anhnhothanhphan").hide();
-        })
     </script>
 </body>
 </html>

@@ -143,15 +143,16 @@ function SetDefaultValue()
         var maxAmount;
         var selectedSizeValue;
         var dataSize=JSON.parse($(row[i]).find(".sizedata").val());
-        var size=$(row[i]).find("select[name=size]").find("option");
+        var sizeElement=$(row[i]).find("select[name=size]").find("option");
         var listItem=JSON.parse(localStorage.getItem("cart_item"));
         var sizeInfo=listItem[i].size;
         var index=listItem[i].amount-1;
-        for(var j=0;i<size.length;j++)
+        for(var j=0;i<sizeElement.length;j++)
         {
-            if(size[j].value===sizeInfo){
-                size[j].setAttribute("selected","selected");
-                selectedSizeValue=size[j].value;
+            if(sizeElement[j].value===sizeInfo){
+                sizeElement[j].setAttribute("selected","selected");
+                //lấy sl của size
+                selectedSizeValue=sizeElement[j].value;
                 maxAmount=dataSize[selectedSizeValue];
                 SetAmountProductHave(maxAmount,$(row[i]).find("select[name=amount]")[0]);
                 break;

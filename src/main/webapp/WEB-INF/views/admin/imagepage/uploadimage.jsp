@@ -19,7 +19,7 @@
         <div class="page-content">
           <div class="row">
             <div class="col-xs-12">
-              <form id="formSubmit" method="post" action="/admin/api/savefiles" enctype="multipart/form-data">
+              <form id="formSubmit" method="post" action="/admin/saveimgs" enctype="multipart/form-data">
                 <div class="form-group">
                   <div class="col-sm-3" style="text-align: right;">
                     <input type="file" multiple="multiple" name="images" class="btn btn-white btn-warning btn-bold" value="Chọn ảnh"

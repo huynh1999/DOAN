@@ -65,7 +65,7 @@ public class HomeController {
         return mav;
     }
     
-    @RequestMapping("/edit")
+    @RequestMapping("/edit/{id}")
     ModelAndView adminedit()
     {
         ModelAndView mav=new ModelAndView("admin/new/edit");
@@ -78,27 +78,16 @@ public class HomeController {
         return mav;
     }
     ////-----//////
-
-    @RequestMapping(value = "/AddNewProduct",method = RequestMethod.POST)
-    public String AddNewProduct(@RequestParam("title")String title,@RequestParam("shortDescription")String shortDescription,
-                                @RequestParam("price")String price,@RequestParam("images") List<CommonsMultipartFile> files,
-                                @RequestParam("categoryCode")String categoryCode, HttpSession session) throws FileNotFoundException, JsonProcessingException {
+    @PostMapping("/saveimgs")
+    public String SaveImg(@RequestParam("images") List<CommonsMultipartFile> files,HttpSession session)
+    {
         String path = session.getServletContext().getRealPath("/template/img");
-        List<String>fileNameRe=new ArrayList<>();
-        ProductEntity productEntity=new ProductEntity();
-        productEntity.setName(new String (title.getBytes (StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
-        List<CategoryEntity>categoryEntity=new ArrayList<>();
-        categoryEntity.add(categoryRepository.findOneByCategoryName(categoryCode));
-        productEntity.setListCategories(categoryEntity);
-        productEntity.setActive(1);
-        productEntity.setPrice(new String (price.getBytes (StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
         for (CommonsMultipartFile file:files){
             String filename = java.time.LocalDateTime.now().toString().replaceAll("\\.", ":").replaceAll(":", "-")+file.getOriginalFilename();
 
             System.out.println(path + " " + filename);
             try {
                 byte barr[] = file.getBytes();
-
                 BufferedOutputStream bout = new BufferedOutputStream(
                         new FileOutputStream(path + "/" + filename));
                 bout.write(barr);
@@ -107,22 +96,64 @@ public class HomeController {
                 ImageEntity imageEntity=new ImageEntity();
                 imageEntity.setLink("/template/img/"+filename);
                 imageRepository.save(imageEntity);
-                fileNameRe.add("/template/img/"+filename);
             } catch (Exception e) {
                 e.printStackTrace();
-                return "redirect:/admin/list?addfail";
+                return "redirect:/admin/uploadImage?failed";
             }
         }
-        JSONObject object=new JSONObject();
-        object.put("img",fileNameRe);
-        object.put("des",new String (shortDescription.getBytes (StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
-        object.put("price",new String (price.getBytes (StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
-        object.put("name",new String (title.getBytes (StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
-        productEntity.setContent(object.toString());
-        productEntity.setUrl1(fileNameRe.get(0));
-        productEntity.setAmount(100);
-        productRepository.save(productEntity);
-        return "redirect:/admin/list?addsuccess";
+        return "redirect:/admin/uploadImage?success";
+    }
+    @RequestMapping(value = "/AddNewProduct",method = RequestMethod.POST)
+    public String AddNewProduct(@RequestParam("title")String title,@RequestParam("shortDescription")String shortDescription,
+                                @RequestParam("price")String price,@RequestParam("images") List<CommonsMultipartFile> files,
+                                @RequestParam("categoryCode")List<String> categoryCode, HttpSession session) throws FileNotFoundException, JsonProcessingException {
+        try {
+            String path = session.getServletContext().getRealPath("/template/img");
+            List<String> fileNameRe = new ArrayList<>();
+            for (CommonsMultipartFile file : files) {
+                String filename = java.time.LocalDateTime.now().toString().replaceAll("\\.", ":").replaceAll(":", "-") + file.getOriginalFilename();
+
+                System.out.println(path + " " + filename);
+                try {
+                    byte barr[] = file.getBytes();
+
+                    BufferedOutputStream bout = new BufferedOutputStream(
+                            new FileOutputStream(path + "/" + filename));
+                    bout.write(barr);
+                    bout.flush();
+                    bout.close();
+                    ImageEntity imageEntity = new ImageEntity();
+                    imageEntity.setLink("/template/img/" + filename);
+                    imageRepository.save(imageEntity);
+                    fileNameRe.add("/template/img/" + filename);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return "redirect:/admin/list?addfail";
+                }
+            }
+            ProductEntity productEntity = new ProductEntity();
+            productEntity.setName(new String(title.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+            List<CategoryEntity> categoryEntity = new ArrayList<>();
+            for (String cate : categoryCode) {
+                categoryEntity.add(categoryRepository.findOneByCategoryName(cate));
+            }
+            productEntity.setListCategories(categoryEntity);
+            productEntity.setActive(1);
+            productEntity.setPrice(new String(price.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+            JSONObject object = new JSONObject();
+            object.put("img", fileNameRe);
+            object.put("des", new String(shortDescription.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+            object.put("price", new String(price.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+            object.put("name", new String(title.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+            productEntity.setContent(object.toString());
+            productEntity.setUrl1(fileNameRe.get(0));
+            productEntity.setAmount(100);
+            productRepository.save(productEntity);
+            return "redirect:/admin/AddNewProduct?addsuccess";
+        }
+        catch (Exception e){
+            return "redirect:/admin/AddNewProduct?addfail";
+        }
     }
 //    @RequestMapping("/uploadedImage")
 //    ModelAndView uploadedImage()

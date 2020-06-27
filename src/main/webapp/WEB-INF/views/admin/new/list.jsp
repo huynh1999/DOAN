@@ -13,7 +13,6 @@
 
 	<body>
 		<div class="main-content">
-        <form>
             <div class="main-content-inner">
                 <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                     <ul class="breadcrumb">
@@ -26,16 +25,12 @@
                 </div>
                 <div class="page-content">
                 	<div class="row" style="display: flex; width: 250px; justify-content: center;">
-                        <div class="col-2 mycol1">
-                            <select class="form-control" id="sel1" name="sellist1">
-                                <option>nike</option>
-                                <option>adidas</option>
-                                <option>chanel</option>
-                                <option>gucci</option>
+                        <div class="col-2 ">
+                            <select class="form-control" id="categoryCode" name="categoryCode">
                             </select>
                         </div>
                         <div class="col-1 mycol2" style="text-align: left;">
-                            <button type="submit" class="btn btn-warning">Lọc</button>
+                            <button type="button" id="btn_search" class="btn btn-warning">Lọc</button>
                         </div>
 
                     </div>
@@ -75,18 +70,8 @@
                                                     <th>Thao tác</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><input type="checkbox"></td>
-                                                    <td>Áo nike ádasdada</td>
-                                                    <td>Áo nike vừa đắt vừa xấu</td>
-                                                    <td>
-                                                        <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-                                                            title="Cập nhật sản phẩm" href="/admin/edit"><i
-                                                                class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                            <tbody id="bodyList">
+
                                             </tbody>
                                         </table>
                                         <ul class="pagination" id="pagination"></ul>
@@ -102,8 +87,12 @@
                     </div>
                 </div>
             </div>
-        </form>
     </div>
+    <script>
+        window.onload=function () {
+            $.getScript("/template/js/admin/ListProduct.js")
+        }
+    </script>
 	</body>
 
 	</html>

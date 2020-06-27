@@ -8,7 +8,18 @@ function uploadBrand(data) {
     root.innerHTML=options;
 }
 async function doWork() {
+    if (window.location.search === "?addsuccess")
+    {
+        alert("Thêm sản phẩm thành công");
+    }
+    if (window.location.search === "?addfail")
+    {
+        alert("Thêm sản phẩm thất bại");
+    }
     await axios.get("/admin/api/getCategory").then(re=>{uploadBrand(re.data.split("|"))});
-
+    $('#categoryCode').multiselect({
+        includeSelectAllOption: true
+    });
+    $('b').css('margin-top','0px');
 }
 doWork();

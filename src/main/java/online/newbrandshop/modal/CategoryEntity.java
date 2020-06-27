@@ -5,10 +5,7 @@
 
 package online.newbrandshop.modal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +13,7 @@ import java.util.List;
 @Table(name = "category")
 public class CategoryEntity extends BaseEntity{
 
-	@ManyToMany(mappedBy = "listCategories")
+	@ManyToMany(mappedBy = "listCategories",fetch = FetchType.LAZY)
     private List<ProductEntity> listProducts = new ArrayList<>();
 	
 	@Column(name = "categoryname")

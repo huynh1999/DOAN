@@ -66,13 +66,16 @@ public class API {
     String ChiTiet(@PathVariable("id")Long id){
         return productRepository.findById(id).getContent();
     }
+
     @GetMapping(value = "/size/{id}",produces = "application/json;charset=UTF-8")
     String Size(@PathVariable("id")Long id){
         return productRepository.findById(id).getSize();
     }
+
     @GetMapping(value = "/product/{id}",produces = "application/json;charset=UTF-8")
     String CheckOutInf(@PathVariable("id")Long id) throws JsonProcessingException {
         ProductEntity productEntity=productRepository.findById(id);
+        productEntity.getListCategories();
         ObjectMapper mapper=new ObjectMapper();
         return mapper.writeValueAsString(productEntity);
     }

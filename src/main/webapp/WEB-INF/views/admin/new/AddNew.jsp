@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right">Brand</label>
                             <div class="col-sm-9">
-                                <select class="form-control" id="categoryCode" name="categoryCode">
+                                <select class="form-control" id="categoryCode" name="categoryCode" multiple>
                                 </select>
                             </div>
                         </div>
