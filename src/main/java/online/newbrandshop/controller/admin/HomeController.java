@@ -147,7 +147,6 @@ public class HomeController {
             object.put("name", new String(title.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
             productEntity.setContent(object.toString());
             productEntity.setUrl1(fileNameRe.get(0));
-            productEntity.setAmount(100);
             productRepository.save(productEntity);
             return "redirect:/admin/AddNewProduct?addsuccess";
         }

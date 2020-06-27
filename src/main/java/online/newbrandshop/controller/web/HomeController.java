@@ -3,6 +3,7 @@ package online.newbrandshop.controller.web;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.gson.Gson;
 import online.newbrandshop.modal.*;
 import online.newbrandshop.repository.*;
@@ -190,6 +191,17 @@ public class HomeController {
 			for(JsonNode single:nodes)
 			{
 				ProductEntity productEntity=productRepository.findById((long) single.get("id").asInt());
+				JsonNode sizeData=mapper.readTree(productEntity.getSize());
+				if(sizeData.get(single.get("size").asText()).asInt()<single.get("amount").asInt())
+				{
+					throw new Exception("Error Amount at checkout controller");
+				}
+				else {
+					productEntity.setSold(productEntity.getSold()+single.get("amount").asInt());
+					((ObjectNode)sizeData).put(single.get("size").asText(),sizeData.get(single.get("size").asText()).asInt()-single.get("amount").asInt() );
+					productEntity.setSize(sizeData.toString());
+					productRepository.save(productEntity);
+				}
 				JSONObject json = new JSONObject();
 				json.put("id",productEntity.getId());
 				json.put("price",(new BigInteger(productEntity.getPrice().replaceAll("\\D+","")).multiply(new BigInteger(single.get("amount").asText()))).toString());

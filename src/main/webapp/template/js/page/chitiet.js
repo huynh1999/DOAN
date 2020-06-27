@@ -15,7 +15,7 @@ function addCart() {
     {
         if(listSize[i].checked===true){item.size=listSize[i].value};
     }
-    if(localStorage.getItem("cart_item")===null)
+    if(localStorage.getItem("cart_item")==="null"||localStorage.getItem("cart_item")===null)
     {
         listItem.push(item);
         localStorage.setItem("cart_item",JSON.stringify(listItem));

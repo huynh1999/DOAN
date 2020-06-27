@@ -23,9 +23,6 @@ public class ProductEntity extends BaseEntity{
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "amount")
-	private int amount;
-
 	@Column(name = "image")
 	private String url1;
 
@@ -63,20 +60,12 @@ public class ProductEntity extends BaseEntity{
 		this.listCategories = listCategories;
 	}
 
-	public int getAmount() {
-		return amount;
-	}
-
 	public String getContent() {
 		return content;
 	}
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
 	}
 
 	public String getUrl1() {

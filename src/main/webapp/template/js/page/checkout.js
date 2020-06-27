@@ -1,8 +1,12 @@
 if(window.location.search==="?error")
 {
-    localStorage.setItem("cart_item",localStorage.getItem("tmp"));
-    localStorage.removeItem("tmp");
-    alert("Đã có lỗi khi đặt hàng.Vui lòng thử lại");
+    if(localStorage.getItem("tmp")!==null)
+    {
+        localStorage.setItem("cart_item",localStorage.getItem("tmp"));
+        localStorage.removeItem("tmp");
+        alert("Đã có lỗi khi đặt hàng.Vui lòng thử lại");
+    }
+
 }
 var listItem=JSON.parse(localStorage.getItem("cart_item"));
 if(listItem===null)listItem=[];
@@ -172,7 +176,7 @@ function SetDefaultValue()
     }
 }
 
-
+//hàm cập nhật giá
 function SetTotalPrice()
 {
     var element=document.getElementById("tong");
