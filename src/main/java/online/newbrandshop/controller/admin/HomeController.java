@@ -132,19 +132,19 @@ public class HomeController {
                 }
             }
             ProductEntity productEntity = new ProductEntity();
-            productEntity.setName(new String(title.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+            productEntity.setName(title);
             List<CategoryEntity> categoryEntity = new ArrayList<>();
             for (String cate : categoryCode) {
                 categoryEntity.add(categoryRepository.findOneByCategoryName(cate));
             }
             productEntity.setListCategories(categoryEntity);
             productEntity.setActive(1);
-            productEntity.setPrice(new String(price.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+            productEntity.setPrice(price);
             JSONObject object = new JSONObject();
             object.put("img", fileNameRe);
-            object.put("des", new String(shortDescription.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
-            object.put("price", new String(price.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
-            object.put("name", new String(title.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
+            object.put("des", shortDescription);
+            object.put("price",price);
+            object.put("name", title);
             productEntity.setContent(object.toString());
             productEntity.setUrl1(fileNameRe.get(0));
             productRepository.save(productEntity);

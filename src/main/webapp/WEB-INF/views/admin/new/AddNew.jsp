@@ -23,7 +23,7 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-xs-12">
-                    <form id="formSubmit" action="/admin/AddNewProduct" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+                    <form id="formSubmit" action="/admin/AddNewProduct" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right">Brand</label>
                             <div class="col-sm-9">

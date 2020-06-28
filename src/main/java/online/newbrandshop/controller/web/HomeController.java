@@ -88,6 +88,7 @@ public class HomeController {
 								,@RequestParam("phone") String phone,@RequestParam("email")String email
 								,@RequestParam("password")String password,@RequestParam("address")String address)
 	{
+		System.out.println(fullName);
 		try {
 			UserEntity userEntity = new UserEntity();
 			userEntity.setUserName(userName);

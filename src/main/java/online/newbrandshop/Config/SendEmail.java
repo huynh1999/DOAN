@@ -23,9 +23,8 @@ public class SendEmail {
 		mailSender.setPort(587);
 		mailSender.setUsername("newbrandshop2020@gmail.com");
 		mailSender.setPassword("huynh1999");
-
-		
-		
+		mailSender.setDefaultEncoding("UTF-8");
+		System.setProperty("mail.mime.charset", "utf8");
 		Properties props = mailSender.getJavaMailProperties();
 	    props.put("mail.transport.protocol", "smtp");
 	    props.put("mail.smtp.auth", "true");
