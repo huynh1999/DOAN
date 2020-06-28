@@ -144,6 +144,46 @@
                             <b class="arrow"></b>
                         </li>
                     </ul>
+                </li>
+                <li>
+                    <a href="/admin/uploadedImage" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-list"></i>
+                        <span class="menu-text"> Quản lí menu </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Quản lí category
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/uploadedImage" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-list"></i>
+                        <span class="menu-text"> Quản lí đơn hàng </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Dang sách đơn hàng
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
                     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                         <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
                             data-icon1="ace-icon fa fa-angle-double-left"

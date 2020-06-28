@@ -77,6 +77,18 @@ public class HomeController {
         ModelAndView mav=new ModelAndView("admin/imagepage/uploadimage");
         return mav;
     }
+    @RequestMapping("/quanlidh")
+    ModelAndView adminquanlidh()
+    {
+        ModelAndView mav=new ModelAndView("admin/donhang/list");
+        return mav;
+    }
+    @RequestMapping("/chitiethd")
+    ModelAndView adminchitietdh()
+    {
+        ModelAndView mav=new ModelAndView("admin/donhang/chitiet");
+        return mav;
+    }
     ////-----//////
     @PostMapping("/saveimgs")
     public String SaveImg(@RequestParam("images") List<CommonsMultipartFile> files,HttpSession session)

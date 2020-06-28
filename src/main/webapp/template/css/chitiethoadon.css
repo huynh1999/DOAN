@@ -1,0 +1,15 @@
+.ttsanpham{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+.anhsp {
+    width: 150px;
+}
+.tensp{
+    width: 130px;
+}
+.anhsp img{
+    width: 100%;
+    
+}
