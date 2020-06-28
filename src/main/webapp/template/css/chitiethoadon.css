@@ -13,8 +13,8 @@
     width: 100%;
     
 }
-.table td, 
-.table th {
+table td, 
+table th {
     white-space: nowrap;
     width: 1%;
 }

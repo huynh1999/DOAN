@@ -89,7 +89,16 @@ public class HomeController {
         ModelAndView mav=new ModelAndView("admin/donhang/chitiet");
         return mav;
     }
+    @RequestMapping("/managecate")
+    ModelAndView adminmanagecate()
+    {
+        ModelAndView mav=new ModelAndView("admin/category/managecate");
+        return mav;
+    }
     ////-----//////
+    
+    
+    
     @PostMapping("/saveimgs")
     public String SaveImg(@RequestParam("images") List<CommonsMultipartFile> files,HttpSession session)
     {
