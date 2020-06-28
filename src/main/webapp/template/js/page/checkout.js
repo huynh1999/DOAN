@@ -6,7 +6,9 @@ if(window.location.search==="?error")
         localStorage.removeItem("tmp");
         alert("Đã có lỗi khi đặt hàng.Vui lòng thử lại");
     }
-
+}
+else {
+    localStorage.removeItem("tmp");
 }
 var listItem=JSON.parse(localStorage.getItem("cart_item"));
 if(listItem===null)listItem=[];

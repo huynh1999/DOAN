@@ -289,7 +289,7 @@
 									<label>Email</label>
 								</div>
 								<div class="input-field">
-									<input class="pswrd" id="password" type="password" required="" name="password" pattern="{6,15}" title="Password từ 6 đến 15 kí tự">
+									<input class="pswrd" id="password" type="password" required="" name="password" pattern="[0-9a-zA-Z]{6,15}" title="Password từ 6 đến 15 kí tự">
 									<span class="show"></span>
 									<label>Password</label>
 								</div>

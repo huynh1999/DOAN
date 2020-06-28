@@ -144,7 +144,7 @@
                                       <h4 class="modal-title">Thông tin thanh toán</h4>
                                   </div>
 
-                                  <form action="${pageContext.request.contextPath}/checkout" id="checkout" method="post">
+                                  <form action="${pageContext.request.contextPath}/checkout" id="checkout" method="post" accept-charset="utf-8">
                                       <div class="input-field">
                                           <input type="text" required="" name="name" value="<%=SecurityUtils.getPrincipal().getName()%>">
                                           <label>Tên</label>
