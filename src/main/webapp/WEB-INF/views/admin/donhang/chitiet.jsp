@@ -10,6 +10,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Quản lí đơn hàng</title>
 		<link rel="stylesheet" href=" ${pageContext.request.contextPath}/template/css/chitiethoadon.css">
+		
 	</head>
 
 	<body>
@@ -71,6 +72,7 @@
                                 <table class="table">
                                     <tr>
                                         <th>Tên sản phẩm</th>
+                                        <th>Size</th>
                                         <th>Số lượng</th>
                                         <th>Đơn vị giá</th>
                                     </tr>
@@ -85,6 +87,7 @@
                                             </div>
 
                                         </td>
+                                        <td>S</td>
                                         <td>1</td>
                                         <td>100000</td>
                                     </tr>
@@ -99,10 +102,12 @@
                                             </div>
 
                                         </td>
+                                        <td>S</td>
                                         <td>1</td>
                                         <td>100000</td>
                                     </tr>
                                     <tr>
+                                        <th></th>
                                         <th></th>
                                         <th>Thành tiền</th>
                                         <th>200000</th>
