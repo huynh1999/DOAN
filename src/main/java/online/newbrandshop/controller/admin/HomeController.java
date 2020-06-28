@@ -95,6 +95,12 @@ public class HomeController {
         ModelAndView mav=new ModelAndView("admin/category/managecate");
         return mav;
     }
+    @RequestMapping("/manageimage")
+    ModelAndView adminmanageimage()
+    {
+        ModelAndView mav=new ModelAndView("admin/imagepage/list");
+        return mav;
+    }
     ////-----//////
     
     
