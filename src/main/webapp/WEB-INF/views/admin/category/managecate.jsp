@@ -23,7 +23,7 @@
             text-align: center;
         }
         .myborder{
-            border-left: 2px groove rgb(248, 246, 246);
+            border-left: 2px inset rgb(248, 246, 246);
         }
     </style>
 	</head>

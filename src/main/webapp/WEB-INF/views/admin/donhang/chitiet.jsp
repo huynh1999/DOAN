@@ -60,7 +60,10 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right">Trạng thái</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" value="Đã thanh toán" disabled />
+                            <select name="" id="">
+                                  <option value="">Đã giao</option>
+                                  <option value="">Đã hủy</option>
+                            </select>
                         </div>
                     </div>
                     <br />

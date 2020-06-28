@@ -26,6 +26,20 @@
                     <!-- /.breadcrumb -->
                 </div>
                 <div class="page-content">
+                <div class="col-xs-12">
+                <div class="row" style="display: flex; width: fit-content; justify-content: space-between;">
+                
+                        <div class="col-2 ">
+                            <select class="form-control" name="categoryCode">
+                            	<option>Đã hủy</option>
+                            	<option>Đã giao</option>	
+                            </select>
+                        </div>
+                        <div class="col-1 mycol2" style="text-align: left;">
+                            <button type="button" id="btn_search" class="btn btn-warning">Lọc</button>
+                        </div>
+</div>
+                    </div>
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="row">
@@ -47,10 +61,7 @@
                                                     <td>huynh</td>
                                                     <td>31/4/2020</td>
                                                     <td>
-                                                        <select name="" id="">
-                                                            <option value="">Đã giao</option>
-                                                            <option value="">Đã hủy</option>
-                                                        </select>
+                                                        đã giao
                                                     </td>
                                                     <td>
                                                         <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
@@ -64,10 +75,7 @@
                                                     <td>nghia</td>
                                                     <td>31/4/2020</td>
                                                     <td>
-                                                        <select name="" id="">
-                                                            <option value="">Đã giao</option>
-                                                            <option value="">Đã hủy</option>
-                                                        </select>
+                                                        đã hủy
                                                     </td>
                                                     <td>
                                                         <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
