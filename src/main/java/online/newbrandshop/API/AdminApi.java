@@ -3,9 +3,7 @@ package online.newbrandshop.API;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import online.newbrandshop.modal.CategoryEntity;
-import online.newbrandshop.modal.ImageEntity;
-import online.newbrandshop.modal.ProductEntity;
+import online.newbrandshop.modal.*;
 import online.newbrandshop.repository.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +39,7 @@ public class AdminApi {
     @Autowired
     NameTypeRepository nameTypeRepository;
 
+
     @GetMapping("/getCategory")
     public String GetCategory()
     {
@@ -73,5 +72,75 @@ public class AdminApi {
         entity.setName(node.get("name").asText());
         productRepository.save(entity);
         return "ok";
+    }
+    @PostMapping("/addType")
+    public String AddType(@RequestBody JsonNode node)
+    {
+        try {
+            NameTypeEntity entity=new NameTypeEntity();
+            entity.setNameType(node.get("name").asText());
+            nameTypeRepository.save(entity);
+        }
+        catch (Exception e){
+            return "error";
+        }
+        return "ok";
+
+    }
+    @PostMapping("/addCategoryCode")
+    public String AddCategoryCode(@RequestBody JsonNode node)
+    {
+        try {
+            CategoryEntity entity=new CategoryEntity();
+            entity.setCategoryName(node.get("code").asText());
+            categoryRepository.save(entity);
+        }
+        catch (Exception e){
+            return "error";
+        }
+        return "ok";
+
+    }
+    @PostMapping("/addCategoryToType")
+    public String AddCategoryToType(@RequestBody JsonNode node)
+    {
+        try{
+            MenuEntity menuEntity=new MenuEntity();
+            CategoryEntity categoryEntity=categoryRepository.findOneByCategoryName(node.get("categoryCode").asText());
+            if(categoryEntity==null)return "error";
+            menuEntity.setNameCategory(categoryEntity.getCategoryName());
+            menuEntity.setNameMenu(node.get("categoryMenu").asText());
+            NameTypeEntity nameTypeEntity=nameTypeRepository.findFirstByNameType(node.get("nameType").asText());
+            menuEntity.setType(nameTypeEntity);
+            menuRepository.save(menuEntity);
+        }
+        catch (Exception e){
+            return "error";
+        }
+        return "ok";
+    }
+    @DeleteMapping("/deleteType")
+    public String DeleteType(@RequestBody JsonNode node)
+    {
+        try {
+            NameTypeEntity nameTypeEntity=nameTypeRepository.findFirstByNameType(node.get("name").asText());
+            nameTypeRepository.delete(nameTypeEntity);
+            return "ok";
+        }
+        catch (Exception e){
+            return "error";
+        }
+    }
+    @DeleteMapping("/deleteMenu")
+    public String DeleteMenu(@RequestBody JsonNode node)
+    {
+        try {
+            MenuEntity menuEntity=menuRepository.findByNameAndType(node.get("nameCate").asText(),node.get("nameType").asText());
+            menuRepository.delete(menuEntity);
+            return "ok";
+        }
+        catch (Exception e){
+            return "error";
+        }
     }
 }

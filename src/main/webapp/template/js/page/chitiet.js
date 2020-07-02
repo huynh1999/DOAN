@@ -1,7 +1,7 @@
 var content;
 var idproduct=parseInt(location.href.split("/")[4]);
 var btnadd=document.getElementById("add_cart");
-var url="/api/content/"+location.href.split("/")[4];
+var url="/api/content/"+idproduct;
 var listSize=document.getElementsByName("optradio");
 function addCart() {
     var listItem=[];
@@ -74,17 +74,40 @@ function HtmlRadioButton(size,sl) {
         "          </div>";
     return re;
 }
+async function uploadRecommendProduct() {
+    var idProduct=window.location.pathname.split("/")[2];
+    var recommendProduct;
+    await axios.get("/api/getRecommendProduct/"+idProduct).then(re=>{
+        recommendProduct=re.data;
+    })
+    var element=document.getElementById("recommendProduct");
+    var content="";
+    for(var i=0;i<recommendProduct.length;i++)
+    {
+        content+="<div class=\"col _1sanpham\" role=\"listitem\">"+
+            "<a href=\"/product/"+recommendProduct[i].id+"\"><img alt=\"sanpham1\" class=\"anhsanpham\"\n" +
+            "                        src=\""+recommendProduct[i].url1+"\"\n" +
+            "                        alt=\"\"></a>\n" +
+            "                <p>"+recommendProduct[i].name+"</p>"+
+            "                <p>"+recommendProduct[i].price.replace("?","đ")+"</p></div>"
+    }
+    element.innerHTML=content;
+}
 function doWork() {
     axios.get(url).then(re=>{
         content=re.data;
         uploadContent();
+    }).catch(er=>{
+        var element=document.getElementById("root");
+        element.innerText="Hiện không có sản phẩm này"
     });
-    axios.get("/api/size/"+location.href.split("/")[4]).then(
+    axios.get("/api/size/"+idproduct).then(
         re=>uploadSize(re.data)
     );
     $(btnadd).click(function () {
         addCart();
     });
+    uploadRecommendProduct();
     console.log("test")
 }
 doWork();

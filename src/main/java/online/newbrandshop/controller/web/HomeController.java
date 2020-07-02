@@ -233,5 +233,10 @@ public class HomeController {
 		}
 
 	}
+	@RequestMapping("/search")
+	public ModelAndView search()
+	{
+		return new ModelAndView("web/search");
+	}
 
 }

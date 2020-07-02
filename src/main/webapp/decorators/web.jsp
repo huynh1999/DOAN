@@ -156,10 +156,9 @@
 			</ul>
 		</div>
 		<div class="headmenu_cl3" role="form">
-			<form class="search" action="" role="search">
+			<form class="search" action="/search" role="search">
 				<div class="input-group">
-
-					<input id="input1" type="text" placeholder="Search">
+					<input id="input1" type="text" placeholder="Search" name="keyword">
 					<div class="input-group-appen">
 						<span class="fa fa-search myis"></span>
 					</div>
@@ -281,7 +280,7 @@
 									<label>Số điện thoại</label>
 								</div>
 								<div class="input-field">
-									<input type="text" required="" name="address" pattern="{6,30}" title="Vui lòng nhập địa chỉ có thật">
+									<input type="text" required="" name="address" pattern=".{6,30}" title="Vui lòng nhập địa chỉ có thật">
 									<label>Địa chỉ</label>
 								</div>
 								<div class="input-field">
@@ -289,7 +288,7 @@
 									<label>Email</label>
 								</div>
 								<div class="input-field">
-									<input class="pswrd" id="password" type="password" required="" name="password" pattern="[0-9a-zA-Z]{6,15}" title="Password từ 6 đến 15 kí tự">
+									<input class="pswrd" id="password" type="password" required="" name="password" pattern="[ 0-9a-zA-Z]{6,15}" title="Password từ 6 đến 15 kí tự">
 									<span class="show"></span>
 									<label>Password</label>
 								</div>

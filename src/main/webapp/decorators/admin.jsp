@@ -156,7 +156,7 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="#">
+                            <a href="/admin/manageCategory">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Quản lí category
                             </a>
@@ -176,9 +176,9 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="#">
+                            <a href="/admin/manageBill">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                Dang sách đơn hàng
+                                Danh sách đơn hàng
                             </a>
 
                             <b class="arrow"></b>

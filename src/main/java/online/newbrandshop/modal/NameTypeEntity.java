@@ -1,24 +1,16 @@
 package online.newbrandshop.modal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "nametype")
 public class NameTypeEntity extends BaseEntity {
-    @Column(name = "type")
-    int type;
     @Column(name = "nametype")
     String nameType;
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
+    @OneToMany(mappedBy = "type",cascade = CascadeType.REMOVE, orphanRemoval=true)
+    List<MenuEntity>menuEntities;
 
     public String getNameType() {
         return nameType;
@@ -26,5 +18,12 @@ public class NameTypeEntity extends BaseEntity {
 
     public void setNameType(String nameType) {
         this.nameType = nameType;
+    }
+    public List<MenuEntity> getMenuEntities() {
+        return menuEntities;
+    }
+
+    public void setMenuEntities(List<MenuEntity> menuEntities) {
+        this.menuEntities = menuEntities;
     }
 }

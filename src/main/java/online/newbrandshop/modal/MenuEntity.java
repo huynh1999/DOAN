@@ -1,8 +1,8 @@
 package online.newbrandshop.modal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "menu")
@@ -12,11 +12,22 @@ public class MenuEntity extends BaseEntity{
 
     @Column(name = "namecategory")
     private String nameCategory;
-    @Column(name = "type")
-    private int type;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "type")
+    NameTypeEntity type;
+
+    public void setType(NameTypeEntity type) {
+        this.type = type;
+    }
 
     public String getNameMenu() {
         return nameMenu;
+    }
+
+    public NameTypeEntity getType() {
+        return type;
     }
 
     public void setNameMenu(String nameMenu) {
@@ -31,11 +42,4 @@ public class MenuEntity extends BaseEntity{
         this.nameCategory = nameCategory;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
 }
