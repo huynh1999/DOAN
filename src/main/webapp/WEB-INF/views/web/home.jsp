@@ -19,37 +19,34 @@
 
 <body>
     <!-- body  -->
-
-        <div id="my_slide" class="carousel slide my_slide" data-ride="carousel">
-            <ol class="carousel-indicators _hidden">
-                <li data-target="#my_slide" data-slide-to="0" class="active"></li>
-                <li data-target="#my_slide" data-slide-to="1"></li>
-                <li data-target="#my_slide" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner" role="main">
-                <div class="carousel-item active">
-                    <p>Due to unavoidable circumstances, some orders may be delayed. We apologize for any inconvenience
-                        and
-                        we appreciate your patience.</p>
-                </div>
-                <div class="carousel-item">
-                    <span>FREE DELIVERY TO YOU</span>
-                    <p>Get Free Standard Delivery On All Orders. See Details</p>
-                </div>
-                <div class="carousel-item">
-                    <p>hello</p>
-                </div>
+    <div id="my_slide" class="carousel slide my_slide" data-ride="carousel">
+        <ol class="carousel-indicators _hidden">
+            <li data-target="#my_slide" data-slide-to="0" class="active"></li>
+            <li data-target="#my_slide" data-slide-to="1"></li>
+            <li data-target="#my_slide" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="main">
+            <div class="carousel-item active">
+                <p>Due to unavoidable circumstances, some orders may be delayed. We apologize for any inconvenience and
+                    we appreciate your patience.</p>
             </div>
-            <a class="carousel-control-prev" href="#my_slide" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#my_slide" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            <div class="carousel-item">
+                <span>FREE DELIVERY TO YOU</span>
+                <p>Get Free Standard Delivery On All Orders. See Details</p>
+            </div>
+            <div class="carousel-item">
+                <p>hello</p>
+            </div>
         </div>
-
+        <a class="carousel-control-prev" href="#my_slide" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#my_slide" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 
     <!-- login  -->
 
@@ -65,66 +62,108 @@
     <!-- top brand  -->
     <!--  -->
     <i class="fa fa-star mystar"></i>
-        <h5 class="tieu_de">TOP BRAND</h5>
-        <!-- slickslide -->
-        <div class="main-slider row">
-            <div class="videoslide col-xl-12">
-                <div class="video">
-                    <video autoplay="true" muted="true" loop="true" aria-valuetext="true" class="video_intro">
-                        <source src="/template/videos/gucci.mp4">
-                        Your browser does not support HTML5 video.
+    <h5 class="tieu_de">TOP BRAND</h5>
+    <div class="content_box" role="main">
 
-                    </video>
-                </div>
-                <div class="motavideo">
-                    <h5>GUCCI</h5>
-                    <p>Là thương hiệu nổi tiếng và uy tín ở châu Âu. Sản phẩm có nhiều mẫu mã đa dạng phong phú. </p>
-                    <a href="" class="shopnow">Shop now</a>
+
+        <div class="shop_content" role="main">
+            <div class="left" role="main">
+                <video autoplay="true" muted="true" loop="true" aria-valuetext="true" id="video_intro">
+                    <source src="/template/videos/gucci.mp4">
+                    Your browser does not support HTML5 video.
+
+                </video>
+            </div>
+            <div class="right" role="main">
+                <div class="right_top" role="main">
+                    <p>GUCCI</p><br>
+                    <div class="right_bot" role="main">
+                        <blockquote>
+                            <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
+                            <span>Aperiam dolorem itaque delectus sunt atque debitis sapiente magni, </span>
+                            <span>dicta assumenda officia voluptatum</span>
+                            <span>voluptas provident maiores sit, expedita inventore placeat quis facere.</span>
+                        </blockquote>
+                        <a class="shopnow" href="#">Shop now >></a>
+                    </div>
                 </div>
 
             </div>
-            <div class="videoslide col-xl-12">
-                <div class="video">
-                    <video autoplay="true" muted="true" loop="true" aria-valuetext="true" class="video_intro">
-                        <source src="/template/videos/nike.mp4">
-                        Your browser does not support HTML5 video.
 
-                    </video>
-                </div>
-                <div class="motavideo">
-                    <h5>NIKE</h5>
-                    <p>Là thương hiệu nổi tiếng và uy tín ở châu Âu. Sản phẩm có nhiều mẫu mã đa dạng phong phú. </p>
-                    <a href="" class="shopnow">Shop now</a>
+
+        </div>
+        <div class="shop_content" role="main">
+            <div class="left" role="main">
+                <video autoplay="true" muted="true" loop="true" aria-valuetext="true" id="video_intro">
+                    <source src="/template/videos/chanel.mp4">
+                    Your browser does not support HTML5 video.
+
+                </video>
+            </div>
+            <div class="right" role="main">
+                <div class="right_top" role="main">
+                    <p>CHANEL</p><br>
+                    <div class="right_bot" role="main">
+                        <blockquote>
+                            <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
+                            <span>Aperiam dolorem itaque delectus sunt atque debitis sapiente magni, </span>
+                            <span>dicta assumenda officia voluptatum</span>
+                            <span>voluptas provident maiores sit, expedita inventore placeat quis facere.</span>
+                        </blockquote>
+                        <a class="shopnow" href="#">Shop now >></a>
+                    </div>
                 </div>
 
             </div>
-            <div class="videoslide col-xl-12">
-                <div class="video">
-                    <video autoplay="true" muted="true" loop="true" aria-valuetext="true" class="video_intro">
-                        <source src="/template/videos/adidas.mp4">
-                        Your browser does not support HTML5 video.
 
-                    </video>
-                </div>
-                <div class="motavideo">
-                    <h5>ADIDAS</h5>
-                    <p>Là thương hiệu nổi tiếng và uy tín ở châu Âu. Sản phẩm có nhiều mẫu mã đa dạng phong phú. </p>
-                    <a href="" class="shopnow">Shop now</a>
+
+        </div>
+        <div class="shop_content" role="main">
+            <div class="left" role="main">
+                <video autoplay="true" muted="true" loop="true" aria-valuetext="true" id="video_intro">
+                    <source src="/template/videos/adidas.mp4">
+                    Your browser does not support HTML5 video.
+
+                </video>
+            </div>
+            <div class="right" role="main">
+                <div class="right_top" role="main">
+                    <p>ADIDAS</p><br>
+                    <div class="right_bot" role="main">
+                        <blockquote>
+                            <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
+                            <span>Aperiam dolorem itaque delectus sunt atque debitis sapiente magni, </span>
+                            <span>dicta assumenda officia voluptatum</span>
+                            <span>voluptas provident maiores sit, expedita inventore placeat quis facere.</span>
+                        </blockquote>
+                        <a class="shopnow" href="#">Shop now >></a>
+                    </div>
                 </div>
 
             </div>
-            <div class="videoslide col-xl-12">
-                <div class="video">
-                    <video autoplay="true" muted="true" loop="true" aria-valuetext="true" class="video_intro">
-                        <source src="/template/videos/chanel.mp4">
-                        Your browser does not support HTML5 video.
 
-                    </video>
-                </div>
-                <div class="motavideo">
-                    <h5>CHANEL</h5>
-                    <p>Là thương hiệu nổi tiếng và uy tín ở châu Âu. Sản phẩm có nhiều mẫu mã đa dạng phong phú. </p>
-                    <a href="" class="shopnow">Shop now</a>
+
+        </div>
+        <div class="shop_content" role="main">
+            <div class="left" role="main">
+                <video autoplay="true" muted="true" loop="true" aria-valuetext="true" id="video_intro">
+                    <source src="/template/videos/nike.mp4">
+                    Your browser does not support HTML5 video.
+
+                </video>
+            </div>
+            <div class="right" role="main">
+                <div class="right_top" role="main">
+                    <p>NIKE</p><br>
+                    <div class="right_bot" role="main">
+                        <blockquote>
+                            <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
+                            <span>Aperiam dolorem itaque delectus sunt atque debitis sapiente magni, </span>
+                            <span>dicta assumenda officia voluptatum</span>
+                            <span>voluptas provident maiores sit, expedita inventore placeat quis facere.</span>
+                        </blockquote>
+                        <a class="shopnow" href="#">Shop now >></a>
+                    </div>
                 </div>
 
             </div>
@@ -132,62 +171,16 @@
 
         </div>
 
-        <!-- top product  -->
-        <br>
-        <i class="fa fa-star mystar"></i>
-        <h5 class="tieu_de">TOP PRODUCT</h5>
-        <div class="product-slider row">
-            <div class="onepartslide">
-                <a href="#"><img alt="sanpham4" class="anhsanpham"
-                        src="https://cdn2.yame.vn/pimg/so-mi-nam-y2010-tn-g02-0019333/bd607f52-b1cf-0d00-65a6-0016c85210ee.jpg?w=440"
-                        alt=""></a>
-                <p>Ao nike 12212</p>
-                <p>100.000 vnd</p>
-                <div class="shopbasket">
-                    <a href=""><i class="fa fa-shopping-basket"></i></a>
-                </div>
-            </div>
-            <div class="onepartslide">
-                <a href="#"><img alt="sanpham4" class="anhsanpham"
-                        src="https://cdn3.yame.vn/pimg/ao-thun-nam-y2010-bd-b03-0019572/d901b2c4-22ec-0300-5539-0016c9eb9d40.jpg?w=440"
-                        alt=""></a>
-                <p>Ao nike 12212</p>
-                <p>100.000 vnd</p>
-                <div class="shopbasket">
-                    <a href=""><i class="fa fa-shopping-basket"></i></a>
-                </div>
-            </div>
-            <div class="onepartslide">
-                <a href="#"><img alt="sanpham4" class="anhsanpham"
-                        src="https://cdn2.yame.vn/pimg/so-mi-nam-y2010-tn-g02-0019333/bd607f52-b1cf-0d00-65a6-0016c85210ee.jpg?w=440"
-                        alt=""></a>
-                <p>Ao nike 12212</p>
-                <p>100.000 vnd</p>
-                <div class="shopbasket">
-                    <a href=""><i class="fa fa-shopping-basket"></i></a>
-                </div>
-            </div>
-            <div class="onepartslide">
-                <a href="#"><img alt="sanpham4" class="anhsanpham"
-                        src="https://cdn2.yame.vn/pimg/ao-khoac-y2010-kaki-e06-0019437/2711de3d-4e22-1c00-56b4-0016a7829674.jpg?w=100&h=140&c=true"
-                        alt=""></a>
-                <p>Ao nike 12212</p>
-                <p>100.000 vnd</p>
-                <div class="shopbasket">
-                    <a href=""><i class="fa fa-shopping-basket"></i></a>
-                </div>
-            </div>
-            <div class="onepartslide">
-                <a href="#"><img alt="sanpham4" class="anhsanpham"
-                        src="https://cdn2.yame.vn/pimg/so-mi-nam-y2010-tn-g02-0019333/bd607f52-b1cf-0d00-65a6-0016c85210ee.jpg?w=440"
-                        alt=""></a>
-                <p>Ao nike 12212</p>
-                <p>100.000 vnd</p>
-                <div class="shopbasket">
-                    <a href=""><i class="fa fa-shopping-basket"></i></a>
-                </div>
-            </div>
-        </div>
+
+
+
+    </div>
+    <!--               -->
+    <!--               -->
+    <!--               -->
+    <!-- top product  -->
+    <i class="fa fa-star mystar"></i>
+    <h5 class="tieu_de">TOP PRODUCT</h5>
 <%--    <div class="product_box" role="list">--%>
 <%--        <div class="_12sanpham" role="list">--%>
 <%--            <div class="_1sanpham" role="listitem">--%>
@@ -289,7 +282,24 @@
     <!--  -->
     <!--  -->
     <!-- footer  -->
-    
+    <div class="footer" role="main">
+        <div class="cot1" role="main">
+            <h3>Thông tin 1</h3>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur reprehenderit quod laborum eveniet hic
+            facilis, molestias voluptas! Reiciendis eveniet labore, dolorem, cumque dignissimos laudantium libero
+            repellat, natus porro possimus cum!
+        </div>
+        <div class="cot2" role="main">
+            <h3>Thông tin 2</h3>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium itaque pariatur earum perferendis,
+            reprehenderit repellendus hic quaerat, explicabo placeat vitae labore qui necessitatibus quisquam
+            voluptatibus id dolorum consectetur, non maiores.
+        </div>
+        <div class="cot3" role="main">
+            <h3>Thông tin 3</h3>
+
+        </div>
+    </div>
 <script>
     window.onload=function () {
         $.getScript("/template/js/page/home.js")

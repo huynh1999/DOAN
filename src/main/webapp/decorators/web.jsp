@@ -156,9 +156,16 @@
 			</ul>
 		</div>
 		<div class="headmenu_cl3" role="form">
+<<<<<<< HEAD
 			<form class="search" action="/search" role="search">
 				<div class="input-group">
 					<input id="input1" type="text" placeholder="Search" name="keyword">
+=======
+			<form class="search" action="" role="search">
+				<div class="input-group">
+
+					<input id="input1" type="text" placeholder="Search">
+>>>>>>> parent of 039b7fa... responsive trang home
 					<div class="input-group-appen">
 						<span class="fa fa-search myis"></span>
 					</div>
