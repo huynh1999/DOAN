@@ -1,6 +1,4 @@
 <%@include file="/common/taglib.jsp"%>
-<c:url var="APIurl" value="/api-admin-new"/>
-<c:url var ="NewURL" value="/admin-new"/>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
     pageEncoding="UTF-8"%>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -59,96 +57,47 @@
                           </div>
                     </div> -->
                             <div class="sidebar responsive ace-save-state">
-                                <ul class="nav nav-list">
-                                    <li>
-                                        <a href="#" class="dropdown-toggle">
-                                            <i class="menu-icon fa fa-folder"></i>
-                                            <span class="menu-text"> Men </span>
+                                <ul class="nav nav-list" id="listMenuType">
 
-                                            <b class="arrow fa fa-angle-down"></b>
-                                        </a>
-                                        <b class="arrow"></b>
-
-                                        <ul class="submenu">
-                                            <li>
-                                                <a href="">
-                                                    <i class="menu-icon fa fa-caret-right"></i>
-                                                    Nike
-                                                </a>
-
-                                                <b class="arrow"></b>
-                                            </li>
-                                            <li>
-                                                <a href="">
-                                                    <i class="menu-icon fa fa-caret-right"></i>
-                                                    Adidas
-                                                </a>
-
-                                                <b class="arrow"></b>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-toggle">
-                                            <i class="menu-icon fa fa-folder"></i>
-                                            <span class="menu-text"> Women </span>
-
-                                            <b class="arrow fa fa-angle-down"></b>
-                                        </a>
-                                        <b class="arrow"></b>
-
-                                        <ul class="submenu">
-                                            <li>
-                                                <a href="">
-                                                    <i class="menu-icon fa fa-caret-right"></i>
-                                                    Nike
-                                                </a>
-
-                                                <b class="arrow"></b>
-                                            </li>
-                                            <li>
-                                                <a href="">
-                                                    <i class="menu-icon fa fa-caret-right"></i>
-                                                    Adidas
-                                                </a>
-
-                                                <b class="arrow"></b>
-                                            </li>
-                                        </ul>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg-3 myborder">
-                            <form action="">
+                            <form action="#">
                                 <h3>Add type</h3>
                                 <label for="tentype">Tên type</label>
                                 <br>
-                                <input name="tentype" type="text">
+                                <input name="nametype" id="nametype" type="text">
                                 <br>
-                                <button type="button" class="btn btn-warning">Thêm</button>
+                                <button id="btn_addtype" type="button" class="btn btn-warning">Thêm</button>
+                            </form>
+                            <br>
+                            <form action="#">
+                                <h3>Add New Category Code</h3>
+                                <label for="">Category Code</label>
+                                <br>
+                                <input name="categoryCode" id="addCategoryCode" type="text">
+                                <br>
+                                <button type="button" id="btn_addCategoryCode" class="btn btn-warning">Thêm</button>
                             </form>
                         </div>
                         <div class="col-lg-3 myborder">
-                            <form action="">
-                                <h3>Add category</h3>
+                            <form action="#">
+                                <h3>Add Menu</h3>
                                 <label for="sel1">Chọn type:</label>
-                                <select class="form-control" id="seltype" name="sellist1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
+                                <select class="form-control" id="TypeMenuForm" name="sellist1">
                                 </select>
                                 <label for="tencategory">Tên category</label><br>
-                                <input name="tencategory" type="text"><br>
+                                <input name="tencategory" id="nameMenu" type="text"><br>
                                 <label for="categorycode">Category code</label><br>
-                                <input name="categorycode" type="text">
+                                <select class="form-control" id="CategoryCodeMenuForm" name="sellist">
+                                </select>
                                 <br>
-                                <button type="button" class="btn btn-warning">Thêm</button>
+                                <button type="button" id="btn_addMenu" class="btn btn-warning">Thêm</button>
                             </form>
                         </div>
                         <div class="col-lg-3 myborder">
-                            <form id="xoatypecate" action="">
+                            <form id="xoatypecate" action="#">
                                 <h3>Xóa</h3>
                                 <div class="form-check-inline">
                                     <label class="form-check-label" for="radio1">
@@ -159,30 +108,23 @@
                                 <div class="form-check-inline">
                                     <label class="form-check-label" for="radio2">
                                         <input type="radio" class="form-check-input" id="radio2" name="optradio"
-                                            value="option1">Category
+                                            value="option1">Menu
                                     </label>
                                 </div>
                                 <div class="del-type">
-                                    <label for="seldeltype">Type:</label>
-                                    <select class="form-control" id="seldeltype" name="seldeltype">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                    <label for="typeOfDelete">Type:</label>
+                                    <select class="form-control" id="typeOfDelete" name="typeOfDelete">
+
                                     </select>
                                 </div>
 
                                 <div class="del-cate" style="display: none;">
-                                    <label for="seldelcate">Category:</label>
-                                    <select class="form-control" id="seldelcate" name="seldelcate">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                    <label for="categoryOfDelete">Menu:</label>
+                                    <select class="form-control" id="categoryOfDelete" name="categoryOfDelete">
                                     </select>
                                 </div>
                                 <br>
-                                <button type="button" class="btn btn-warning">Thêm</button>
+                                <button type="button" id="deleteBtn" class="btn btn-warning">Xóa</button>
                             </form>
                         </div>
                     </div>
@@ -190,25 +132,11 @@
             </div>
         </div>
     </div>
+
     <script>
-        $(document).ready(function () {
-            $('.dropdown-submenu a.test').on("click", function (e) {
-                $(this).next('ul').toggle();
-                e.stopPropagation();
-                e.preventDefault();
-            });
-        });
-    </script>
-    <script>
-        $("#xoatypecate").change(function () {
-            if ($('#radio2').is(':checked')) {
-                $(".del-cate").show();
-                console.log("true");
-            } else if (!($('#radio2').is(':checked'))) {
-                $(".del-cate").hide();
-                console.log("false");
-            }
-        })
+        window.onload=function () {
+            $.getScript("/template/js/admin/manageCategory.js");
+        }
     </script>
 	</body>
 

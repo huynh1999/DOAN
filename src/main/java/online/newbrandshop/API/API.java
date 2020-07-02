@@ -28,10 +28,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -79,7 +76,7 @@ public class API {
         ObjectMapper mapper=new ObjectMapper();
         return mapper.writeValueAsString(productEntity);
     }
-    @PostMapping("/checkUsername")
+    @PostMapping(value = "/checkUsername",produces = "application/json;charset=UTF-8")
     String CheckUserName(@RequestBody JsonNode node)
     {
         UserEntity userEntity=userRepository.findOneByUserNameAndActive(node.get("username").asText(),1);
@@ -187,16 +184,44 @@ public class API {
             return "error";
         }
     }
-    @GetMapping("/getMenu")
-    public String GetMenu() throws JsonProcessingException {
-        List<MenuEntity>list=menuRepository.findAllOrderByType();
+    @GetMapping(value = "/getTypeAndCategory",produces = "application/json;charset=UTF-8")
+    public String GetTypeAndCategory() throws JsonProcessingException {
+        List<NameTypeEntity>entities=nameTypeRepository.findAll();
+        ObjectMapper mapper=new ObjectMapper();
+        return mapper.writeValueAsString(entities);
+    }
+    @GetMapping(value = "/getRecommendProduct/{idproduct}",produces = "application/json;charset=UTF-8")
+    public String GetRecommendProduct(@PathVariable("idproduct")long idproduct) throws JsonProcessingException {
+        ProductEntity productEntity=productRepository.findById(idproduct);
+        if(productEntity==null)productEntity=productRepository.findById((long)200);
+        List<CategoryEntity>categoryEntityList=productEntity.getListCategories();
+        List<ProductEntity>list=new ArrayList<>();
+        for(int i=0;i<categoryEntityList.size();i++)
+        {
+            list.addAll(categoryEntityList.get(i).getListProducts());
+        }
+        Random random=new Random();
+        List<ProductEntity>re=new ArrayList<>();
+        re.add(productEntity);
+        for(int i=0;i<3;i++)
+        {
+            ProductEntity productEntity1=list.get(random.nextInt(list.size()));
+            if(re.contains(productEntity1))
+            {
+                i--;
+            }
+            else re.add(productEntity1);
+
+        }
+        re.remove(0);
+        ObjectMapper mapper=new ObjectMapper();
+        return mapper.writeValueAsString(re);
+    }
+    @PostMapping(value = "/search",produces = "application/json;charset=UTF-8")
+    public String search(@RequestBody JsonNode node) throws JsonProcessingException {
+        System.out.println(node.get("keyword").asText());
+        List<ProductEntity>list=productRepository.search(node.get("keyword").asText());
         ObjectMapper mapper=new ObjectMapper();
         return mapper.writeValueAsString(list);
-    }
-    @GetMapping("/getTypeNameMenu/{type}")
-    public String GetNameType(@PathVariable("type")int type) throws JsonProcessingException {
-        NameTypeEntity entity=nameTypeRepository.findFirstByType(type);
-        ObjectMapper mapper=new ObjectMapper();
-        return mapper.writeValueAsString(entity);
     }
 }

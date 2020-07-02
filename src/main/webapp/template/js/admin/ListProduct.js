@@ -19,7 +19,7 @@ function uploadDataAfterSearch(data)
             "                                                    <td>"+JSON.parse(data[i].content).des+"</td>\n" +
             "                                                    <td>\n" +
             "                                                        <a class=\"btn btn-sm btn-primary btn-edit\" data-toggle=\"tooltip\"\n" +
-            "                                                            title=\"Cập nhật sản phẩm\" href=\"/admin/edit/"+data[i].id+"\"><i\n" +
+            "                                                            title=\"Cập nhật sản phẩm\" href=\"/admin/editProduct/"+data[i].id+"\"><i\n" +
             "                                                                class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\n" +
             "                                                        </a>\n" +
             "                                                    </td>\n" +

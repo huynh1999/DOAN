@@ -57,13 +57,9 @@ function SetupDefault()
         $(this).attr("value",$(this).val());
     });
 }
-async function HtmlMenuType(type)
+function HtmlMenuType(dataType)
 {
-    var dataType;
-    await axios.get("/api/getTypeNameMenu/"+type).then(re=>{
-        dataType=re.data;
-    });
-    var html="<li class=\"menu_item\" id='type"+type+"' role=\"listitem\">" +
+    var html="<li class=\"menu_item\" id='type"+dataType.id+"' role=\"listitem\">" +
         "          <div class=\"list_down\">\n" +
         "              <a href=\"#\">"+dataType.nameType+"</a>\n" +
         "              <div class=\"dropdown_content\">\n" +
@@ -75,25 +71,27 @@ async function HtmlMenuType(type)
 async function LoadMenu()
 {
     var dataMenuApi;
-    await axios.get("/api/getMenu").then(re=>dataMenuApi=re.data);
-    var dataMenu=[];
+    await axios.get("/api/getTypeAndCategory").then(re=>dataMenuApi=re.data);
     for(var i=0;i<dataMenuApi.length;i++)
     {
-        var type=dataMenuApi[i].type;
-        if(dataMenu[type-1]===undefined)dataMenu[type-1]="";
-        dataMenu[type-1]+="<a class=\"sm_item\" href=\"/category/"+dataMenuApi[i].nameCategory+"\">"+dataMenuApi[i].nameMenu+"</a>";
-    }
-    for(var i=0;i<dataMenu.length;i++)
-    {
-        if(dataMenu[i]!==undefined)
+        var id="#type"+dataMenuApi[i].id;
+        HtmlMenuType(dataMenuApi[i]);
+        var contentMenu="";
+        for(var j=0;j<dataMenuApi[i].menuEntities.length;j++)
         {
-            var id="#type"+(i+1);
-            await HtmlMenuType(i+1);
-            $(id).find("div.dropdown_content").append(dataMenu[i]);
+            contentMenu+="<a class=\"sm_item\" href=\"/category/"+dataMenuApi[i].menuEntities[j].nameCategory+"\">"+dataMenuApi[i].menuEntities[j].nameMenu+"</a>";
         }
+        $(id).find("div.dropdown_content").append(contentMenu);
     }
 }
 $(document).ready(function () {
+    $("#input1").keyup(function(e){
+        if(e.keyCode == 13)
+        {
+            $(".search").submit();
+        }
+    });
     SetupDefault();
     LoadMenu();
+    console.log("test");
 });

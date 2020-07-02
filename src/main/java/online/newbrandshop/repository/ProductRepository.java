@@ -18,21 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
-
-	ProductEntity findById(Long id);
-	@Query(value = "select u from ProductEntity u where u.name like '%' || :keyword || '%'")
-	public List<ProductEntity> search(@Param("keyword") String keyword);
-
-	@Transactional
-	@Query("delete from ProductEntity r where r.name = :name")
-	void delete(String name);
-
-	@Transactional
-	@Query("select count (r.id) from ProductEntity r")
-	long countTotalRecords();
-
-	@Transactional
-	@Query("select r from ProductEntity r")
-	public List<ProductEntity> find10Products(Pageable pageable);
-
+	@Query("select p from ProductEntity p where p.active=1 and p.id=:id")
+	ProductEntity findById(@Param("id") Long id);
+	@Query("select u from ProductEntity u where u.name LIKE %:keyword%")
+	List<ProductEntity> search(@Param("keyword") String keyword);
+	List<ProductEntity>findByNameContaining(String name);
 }

@@ -181,6 +181,7 @@ function SetDefaultValue()
 //hàm cập nhật giá
 function SetTotalPrice()
 {
+    listItem=JSON.parse(localStorage.getItem("cart_item"));
     var element=document.getElementById("tong");
     var total=0;
     for(var i=0;i<listItem.length;i++)

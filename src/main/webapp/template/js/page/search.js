@@ -4,20 +4,30 @@ var max=12;
 var now=0;
 root=$("#box_item");
 var body=document.getElementsByTagName("body")[0];
-axios.get("/api/category/"+window.location.href.split("/").slice(-1)[0])
-    .then(re=>{data=re.data;upload()})
-    .catch(error=>{root.innerHTML="Đã có lỗi xảy ra"});
+axios.post("/api/search/",{keyword:window.location.search.replace(/\W/g," ").replace(" keyword ","")})
+    .then(re=>{
+        if(max>re.data.length)max=re.data.length;
+        data=re.data;
+        upload()
+    })
+    .catch(error=>{
+
+    });
 function upload()
 {
+    if(data.length===0){
+        root.html("Không có sản phẩm phù hợp");
+        document.getElementById("loadingGif").innerHTML=""
+    }
     for(var i=now;i<max;i++)
     {
-           root.append("<div class=\"_1sanpham\" role=\"listitem\">\n" +
-                    "                <a href=\""+"/product/"+data[i].id + "?"+data[i].name.replace(/\s/g,"-")+"\"><img alt=\"sanpham1\" class=\"anhsanpham\"\n" +
-                    "                        src="+data[i].url1 +
-                    "                        onerror=\"errorLoadImg.call(this)\"></a>\n" +
-                    "                <p style=\" margin-top: 10px;\">"+data[i].name+"</p>\n" +
-                    "                <p>"+data[i].price+"</p>\n" +
-                    "            </div>");
+        root.append("<div class=\"_1sanpham\" role=\"listitem\">\n" +
+            "                <a href=\""+"/product/"+data[i].id + "?"+data[i].name.replace(/\s/g,"-")+"\"><img alt=\"sanpham1\" class=\"anhsanpham\"\n" +
+            "                        src="+data[i].url1 +
+            "                        onerror=\"errorLoadImg.call(this)\"></a>\n" +
+            "                <p style=\" margin-top: 10px;\">"+data[i].name+"</p>\n" +
+            "                <p>"+data[i].price+"</p>\n" +
+            "            </div>");
     }
     now=max;
 }

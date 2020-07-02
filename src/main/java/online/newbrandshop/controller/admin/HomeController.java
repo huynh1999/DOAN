@@ -65,7 +65,7 @@ public class HomeController {
         return mav;
     }
     
-    @RequestMapping("/edit/{id}")
+    @RequestMapping("/editProduct/{id}")
     ModelAndView adminedit()
     {
         ModelAndView mav=new ModelAndView("admin/new/edit");
@@ -77,7 +77,7 @@ public class HomeController {
         ModelAndView mav=new ModelAndView("admin/imagepage/uploadimage");
         return mav;
     }
-    @RequestMapping("/quanlidh")
+    @RequestMapping("/manageBill")
     ModelAndView adminquanlidh()
     {
         ModelAndView mav=new ModelAndView("admin/donhang/list");
@@ -89,7 +89,7 @@ public class HomeController {
         ModelAndView mav=new ModelAndView("admin/donhang/chitiet");
         return mav;
     }
-    @RequestMapping("/managecate")
+    @RequestMapping("/manageCategory")
     ModelAndView adminmanagecate()
     {
         ModelAndView mav=new ModelAndView("admin/category/managecate");
